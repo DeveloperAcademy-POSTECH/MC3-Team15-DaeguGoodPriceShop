@@ -8,5 +8,5 @@
 import Foundation
 
 final class MapViewModel {
-    
+    private let model = MapModel()
 }
