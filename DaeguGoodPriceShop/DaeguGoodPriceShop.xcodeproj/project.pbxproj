@@ -16,6 +16,8 @@
 		A8E74E86286BFB90000DB2B8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E85286BFB90000DB2B8 /* MapViewModel.swift */; };
 		A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E87286BFBA5000DB2B8 /* MapModel.swift */; };
 		A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E89286BFBB5000DB2B8 /* Shop.swift */; };
+
+		F24F320C286D444500AA9679 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24F320B286D444500AA9679 /* Main.storyboard */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +33,11 @@
 		A8E74E85286BFB90000DB2B8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		A8E74E87286BFBA5000DB2B8 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		A8E74E89286BFBB5000DB2B8 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+
+		F24F320B286D444500AA9679 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 				A8E74E82286BFB23000DB2B8 /* ViewModel */,
 				A8E74E83286BFB2C000DB2B8 /* Model */,
 				A8E74E84286BFB32000DB2B8 /* Entity */,
+				F24F320B286D444500AA9679 /* Main.storyboard */,
 			);
 			path = DaeguGoodPriceShop;
 			sourceTree = "<group>";
@@ -188,7 +195,11 @@
 				A8E74E79286BFA8B000DB2B8 /* LaunchScreen.storyboard in Resources */,
 				A8E74E76286BFA8B000DB2B8 /* Assets.xcassets in Resources */,
 				A8E74E74286BFA8A000DB2B8 /* Main.storyboard in Resources */,
+
+				F24F320C286D444500AA9679 /* Main.storyboard in Resources */,
+
 				DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
