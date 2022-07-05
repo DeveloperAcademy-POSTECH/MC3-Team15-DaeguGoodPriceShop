@@ -73,7 +73,11 @@ class MapViewController: UIViewController {
     
     private func addAnnotation(shops: [Shop]) {
         for shop in shops {
-            addPin(category: .restaurant, coordinate: shop.location)
+            guard let category = ShopCategory.getCategory(subCategory: shop.category) else {
+                continue
+            }
+            
+            addPin(category: category, coordinate: shop.location)
         }
     }
     
@@ -110,15 +114,15 @@ extension MapViewController: MKMapViewDelegate {
         //TODO: Annotation Image 추가
         switch annotation.category {
         case .restaurant:
-            annotationImage = UIImage(systemName: "swift")?.withTintColor(.orange)
+            annotationImage = UIImage(systemName: "book")?.withTintColor(.red)
         case .hair:
-            annotationImage = UIImage(systemName: "swift")?.withTintColor(.orange)
+            annotationImage = UIImage(systemName: "doc")?.withTintColor(.blue)
         case .laundry:
-            annotationImage = UIImage(systemName: "swift")?.withTintColor(.orange)
+            annotationImage = UIImage(systemName: "paperplane")?.withTintColor(.orange)
         case .beauty:
-            annotationImage = UIImage(systemName: "swift")?.withTintColor(.orange)
+            annotationImage = UIImage(systemName: "trash")?.withTintColor(.yellow)
         case .bath:
-            annotationImage = UIImage(systemName: "swift")?.withTintColor(.orange)
+            annotationImage = UIImage(systemName: "swift")?.withTintColor(.purple)
         }
         
         annotationImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))

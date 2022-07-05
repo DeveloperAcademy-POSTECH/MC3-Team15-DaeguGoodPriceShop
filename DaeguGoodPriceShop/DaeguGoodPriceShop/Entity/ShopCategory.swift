@@ -14,23 +14,25 @@ enum ShopCategory {
     case beauty
     case bath
     
-    func isShopIncludedCategory(subCategory: String) -> Bool {
-        switch self {
-        case .restaurant:
-            let subCategories: Set<String> = ["한식", "중식", "양식", "분식", "제과", "일식", "카페"]
-            return subCategories.contains(subCategory)
+    static func getCategory(subCategory: String) -> ShopCategory? {
+        switch subCategory {
+        case "한식", "중식", "양식", "분식", "제과", "일식", "카페":
+            return .restaurant
             
-        case .hair:
-            return subCategory == "미용"
+        case "미용":
+            return .hair
             
-        case .laundry:
-            return subCategory == "세탁"
+        case "세탁":
+            return .laundry
             
-        case .beauty:
-            return subCategory == "피부미용"
+        case "피부미용":
+            return .beauty
             
-        case .bath:
-            return subCategory == "목욕"
+        case "목욕":
+            return .bath
+            
+        default:
+            return nil
         }
     }
 }
