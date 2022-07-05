@@ -43,7 +43,7 @@ struct MapModel {
     }
     
     func getCategorizedShop(category: ShopCategory) -> [Shop] {
-        return shops.filter{ ShopCategory.getCategory(subCategory: $0.category) == category }
+        return shops.filter{ $0.getCategory() == category }
     }
 }
 

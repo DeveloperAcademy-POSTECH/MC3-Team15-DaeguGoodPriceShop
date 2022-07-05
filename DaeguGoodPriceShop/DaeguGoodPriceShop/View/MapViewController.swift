@@ -73,7 +73,7 @@ class MapViewController: UIViewController {
     
     private func addAnnotation(shops: [Shop]) {
         for shop in shops {
-            guard let category = ShopCategory.getCategory(subCategory: shop.category) else {
+            guard let category = shop.getCategory() else {
                 continue
             }
             

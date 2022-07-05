@@ -1,7 +1,7 @@
 [
   {
     "serialNumber": 1,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "현대이용소",
     "ownerName": "이수길",
     "country": "중구",
@@ -14,7 +14,7 @@
   },
   {
     "serialNumber": 2,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "춘사김밥",
     "ownerName": "이춘자",
     "country": "중구",
@@ -27,7 +27,7 @@
   },
   {
     "serialNumber": 3,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "영생이용소",
     "ownerName": "김상국",
     "country": "중구",
@@ -40,7 +40,7 @@
   },
   {
     "serialNumber": 4,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "마산설렁탕",
     "ownerName": "조웅제",
     "country": "중구",
@@ -53,7 +53,7 @@
   },
   {
     "serialNumber": 5,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "중해반점",
     "ownerName": "우려원",
     "country": "중구",
@@ -66,7 +66,7 @@
   },
   {
     "serialNumber": 6,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "만리향반점",
     "ownerName": "전은숙",
     "country": "중구",
@@ -79,7 +79,7 @@
   },
   {
     "serialNumber": 7,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "은혜이용소",
     "ownerName": "성기환",
     "country": "중구",
@@ -92,7 +92,7 @@
   },
   {
     "serialNumber": 8,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "한우장",
     "ownerName": "김여옥",
     "country": "중구",
@@ -105,7 +105,7 @@
   },
   {
     "serialNumber": 9,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "단아정",
     "ownerName": "권기화",
     "country": "중구",
@@ -118,7 +118,7 @@
   },
   {
     "serialNumber": 10,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "옛날국수",
     "ownerName": "공희영",
     "country": "중구",
@@ -131,7 +131,7 @@
   },
   {
     "serialNumber": 11,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "장성루",
     "ownerName": "장경숙",
     "country": "중구",
@@ -144,7 +144,7 @@
   },
   {
     "serialNumber": 12,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "누렁소식당",
     "ownerName": "김희철",
     "country": "중구",
@@ -157,7 +157,7 @@
   },
   {
     "serialNumber": 13,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "명가",
     "ownerName": "정경옥",
     "country": "중구",
@@ -170,7 +170,7 @@
   },
   {
     "serialNumber": 14,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "우리할매칼국수",
     "ownerName": "신현순",
     "country": "중구",
@@ -183,7 +183,7 @@
   },
   {
     "serialNumber": 15,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "특별한돼지국밥",
     "ownerName": "황미량",
     "country": "중구",
@@ -196,7 +196,7 @@
   },
   {
     "serialNumber": 16,
-    "category": "분식",
+    "subcategory": "분식",
     "shopName": "제일분식",
     "ownerName": "이귀옥",
     "country": "중구",
@@ -209,7 +209,7 @@
   },
   {
     "serialNumber": 17,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "정안이용소",
     "ownerName": "문동식",
     "country": "중구",
@@ -222,7 +222,7 @@
   },
   {
     "serialNumber": 18,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "낙동강반점",
     "ownerName": "김명순",
     "country": "중구",
@@ -235,7 +235,7 @@
   },
   {
     "serialNumber": 19,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "장셰프한식전통중화요리",
     "ownerName": "권숙자",
     "country": "중구",
@@ -248,7 +248,7 @@
   },
   {
     "serialNumber": 20,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "한양뚝배기감자탕",
     "ownerName": "박영희",
     "country": "중구",
@@ -261,7 +261,7 @@
   },
   {
     "serialNumber": 21,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "천선루",
     "ownerName": "석경화",
     "country": "중구",
@@ -274,7 +274,7 @@
   },
   {
     "serialNumber": 22,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "대구삼계탕",
     "ownerName": "이영자",
     "country": "동구",
@@ -287,7 +287,7 @@
   },
   {
     "serialNumber": 23,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "두곡동숯불갈비",
     "ownerName": "김복태",
     "country": "동구",
@@ -300,7 +300,7 @@
   },
   {
     "serialNumber": 24,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "영남루반점",
     "ownerName": "김경숙",
     "country": "동구",
@@ -313,7 +313,7 @@
   },
   {
     "serialNumber": 25,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "유정갈비",
     "ownerName": "서정오",
     "country": "동구",
@@ -326,7 +326,7 @@
   },
   {
     "serialNumber": 26,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "태종대",
     "ownerName": "전태연",
     "country": "동구",
@@ -339,7 +339,7 @@
   },
   {
     "serialNumber": 27,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "팔공식당",
     "ownerName": "김영순",
     "country": "동구",
@@ -352,7 +352,7 @@
   },
   {
     "serialNumber": 28,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "흥부고을숯불갈비",
     "ownerName": "신승탁",
     "country": "동구",
@@ -365,7 +365,7 @@
   },
   {
     "serialNumber": 29,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "고향손칼국수",
     "ownerName": "이명희",
     "country": "동구",
@@ -378,7 +378,7 @@
   },
   {
     "serialNumber": 30,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "미진손칼국수",
     "ownerName": "정유나",
     "country": "동구",
@@ -391,7 +391,7 @@
   },
   {
     "serialNumber": 31,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "이가숯불갈비",
     "ownerName": "김영숙",
     "country": "동구",
@@ -404,7 +404,7 @@
   },
   {
     "serialNumber": 32,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "장터불고기",
     "ownerName": "박태자",
     "country": "동구",
@@ -417,7 +417,7 @@
   },
   {
     "serialNumber": 33,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "큰집삼계탕",
     "ownerName": "김덕규",
     "country": "동구",
@@ -430,7 +430,7 @@
   },
   {
     "serialNumber": 34,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "통큰갈비",
     "ownerName": "손정옥",
     "country": "동구",
@@ -443,7 +443,7 @@
   },
   {
     "serialNumber": 35,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "강변복어",
     "ownerName": "황복순",
     "country": "동구",
@@ -456,7 +456,7 @@
   },
   {
     "serialNumber": 36,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "거송복어",
     "ownerName": "황현옥",
     "country": "동구",
@@ -469,7 +469,7 @@
   },
   {
     "serialNumber": 37,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "광명한우식육식당",
     "ownerName": "배규호",
     "country": "동구",
@@ -482,7 +482,7 @@
   },
   {
     "serialNumber": 38,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "다모아식당",
     "ownerName": "이옥수",
     "country": "동구",
@@ -495,7 +495,7 @@
   },
   {
     "serialNumber": 39,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "방촌식육식당",
     "ownerName": "이치난",
     "country": "동구",
@@ -508,7 +508,7 @@
   },
   {
     "serialNumber": 40,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "시장냉면",
     "ownerName": "김경희",
     "country": "동구",
@@ -521,7 +521,7 @@
   },
   {
     "serialNumber": 41,
-    "category": "일식",
+    "subcategory": "일식",
     "shopName": "정동진",
     "ownerName": "최미영",
     "country": "동구",
@@ -534,7 +534,7 @@
   },
   {
     "serialNumber": 42,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "대청봉",
     "ownerName": "김종원",
     "country": "동구",
@@ -547,7 +547,7 @@
   },
   {
     "serialNumber": 43,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "청도추어탕",
     "ownerName": "곽철순",
     "country": "동구",
@@ -560,7 +560,7 @@
   },
   {
     "serialNumber": 44,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "희망나눔장수잔치국수",
     "ownerName": "최현정",
     "country": "동구",
@@ -573,7 +573,7 @@
   },
   {
     "serialNumber": 45,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "소반",
     "ownerName": "엄복영",
     "country": "동구",
@@ -586,7 +586,7 @@
   },
   {
     "serialNumber": 46,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "면사랑칼국수",
     "ownerName": "김규태",
     "country": "동구",
@@ -599,7 +599,7 @@
   },
   {
     "serialNumber": 47,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "헐리우드 헤어",
     "ownerName": "이정숙",
     "country": "동구",
@@ -612,7 +612,7 @@
   },
   {
     "serialNumber": 48,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "부산복해물칼국수",
     "ownerName": "신무성",
     "country": "동구",
@@ -625,7 +625,7 @@
   },
   {
     "serialNumber": 49,
-    "category": "세탁",
+    "subcategory": "세탁",
     "shopName": "태왕세탁소",
     "ownerName": "조병택",
     "country": "동구",
@@ -638,7 +638,7 @@
   },
   {
     "serialNumber": 50,
-    "category": "제과",
+    "subcategory": "제과",
     "shopName": "미소띤하루",
     "ownerName": "강윤호",
     "country": "동구",
@@ -651,7 +651,7 @@
   },
   {
     "serialNumber": 51,
-    "category": "양식",
+    "subcategory": "양식",
     "shopName": "파스타누오바",
     "ownerName": "차광민",
     "country": "동구",
@@ -664,7 +664,7 @@
   },
   {
     "serialNumber": 52,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "신산홍",
     "ownerName": "임미란",
     "country": "동구",
@@ -677,7 +677,7 @@
   },
   {
     "serialNumber": 53,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "만보칼국수",
     "ownerName": "나정희",
     "country": "동구",
@@ -690,7 +690,7 @@
   },
   {
     "serialNumber": 54,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "가원식당",
     "ownerName": "백순기",
     "country": "동구",
@@ -703,7 +703,7 @@
   },
   {
     "serialNumber": 55,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "공산숯불갈비",
     "ownerName": "이경남",
     "country": "동구",
@@ -716,7 +716,7 @@
   },
   {
     "serialNumber": 56,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "금성숯불식당",
     "ownerName": "김정옥",
     "country": "서구",
@@ -729,7 +729,7 @@
   },
   {
     "serialNumber": 57,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "혜인미용실",
     "ownerName": "배덕순",
     "country": "서구",
@@ -742,7 +742,7 @@
   },
   {
     "serialNumber": 58,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "갈비세상",
     "ownerName": "이규근",
     "country": "서구",
@@ -755,7 +755,7 @@
   },
   {
     "serialNumber": 59,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "덕성반점",
     "ownerName": "채정환",
     "country": "서구",
@@ -768,7 +768,7 @@
   },
   {
     "serialNumber": 60,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "쌍둥이정갈비",
     "ownerName": "장선영",
     "country": "서구",
@@ -781,7 +781,7 @@
   },
   {
     "serialNumber": 61,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "아란미용실",
     "ownerName": "강순분",
     "country": "서구",
@@ -794,7 +794,7 @@
   },
   {
     "serialNumber": 62,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "성화미용실",
     "ownerName": "김윤자",
     "country": "서구",
@@ -807,7 +807,7 @@
   },
   {
     "serialNumber": 63,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "금성각",
     "ownerName": "황명자",
     "country": "서구",
@@ -820,7 +820,7 @@
   },
   {
     "serialNumber": 64,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "이모김밥",
     "ownerName": "김병양",
     "country": "서구",
@@ -833,7 +833,7 @@
   },
   {
     "serialNumber": 65,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "초원식당",
     "ownerName": "김경순",
     "country": "서구",
@@ -846,7 +846,7 @@
   },
   {
     "serialNumber": 66,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "소백산식당",
     "ownerName": "허영자",
     "country": "서구",
@@ -859,7 +859,7 @@
   },
   {
     "serialNumber": 67,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "동화성",
     "ownerName": "박희숙",
     "country": "서구",
@@ -872,7 +872,7 @@
   },
   {
     "serialNumber": 68,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "킴스미용실",
     "ownerName": "김숙희",
     "country": "서구",
@@ -885,7 +885,7 @@
   },
   {
     "serialNumber": 69,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "소라미용실",
     "ownerName": "권복남",
     "country": "서구",
@@ -898,7 +898,7 @@
   },
   {
     "serialNumber": 70,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "현대이용소",
     "ownerName": "최용섭",
     "country": "서구",
@@ -911,7 +911,7 @@
   },
   {
     "serialNumber": 71,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "작은미용실",
     "ownerName": "황혜영",
     "country": "서구",
@@ -924,7 +924,7 @@
   },
   {
     "serialNumber": 72,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "수목식당",
     "ownerName": "김민자",
     "country": "남구",
@@ -937,7 +937,7 @@
   },
   {
     "serialNumber": 73,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "할매가마솥국밥",
     "ownerName": "배옥순",
     "country": "남구",
@@ -950,7 +950,7 @@
   },
   {
     "serialNumber": 74,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "화신불고기",
     "ownerName": "조정문",
     "country": "남구",
@@ -963,7 +963,7 @@
   },
   {
     "serialNumber": 75,
-    "category": "일식",
+    "subcategory": "일식",
     "shopName": "더스시",
     "ownerName": "서정욱",
     "country": "남구",
@@ -976,7 +976,7 @@
   },
   {
     "serialNumber": 76,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "뒤뜨레",
     "ownerName": "김태숙",
     "country": "남구",
@@ -989,7 +989,7 @@
   },
   {
     "serialNumber": 77,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "미스돈생삼겹살",
     "ownerName": "엄영희",
     "country": "남구",
@@ -1002,7 +1002,7 @@
   },
   {
     "serialNumber": 78,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "영선식당",
     "ownerName": "강명구",
     "country": "남구",
@@ -1015,7 +1015,7 @@
   },
   {
     "serialNumber": 79,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "하하생막창뒷고기",
     "ownerName": "이혜경",
     "country": "남구",
@@ -1028,7 +1028,7 @@
   },
   {
     "serialNumber": 80,
-    "category": "양식",
+    "subcategory": "양식",
     "shopName": "도누한",
     "ownerName": "안영례",
     "country": "남구",
@@ -1041,7 +1041,7 @@
   },
   {
     "serialNumber": 81,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "김가네철판닭갈비앤부대찌게",
     "ownerName": "김영숙",
     "country": "남구",
@@ -1054,7 +1054,7 @@
   },
   {
     "serialNumber": 82,
-    "category": "양식",
+    "subcategory": "양식",
     "shopName": "지구인",
     "ownerName": "김순란",
     "country": "남구",
@@ -1067,7 +1067,7 @@
   },
   {
     "serialNumber": 83,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "청도할머니김밥",
     "ownerName": "노옥분",
     "country": "남구",
@@ -1080,7 +1080,7 @@
   },
   {
     "serialNumber": 84,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "예림미용실",
     "ownerName": "이정숙",
     "country": "남구",
@@ -1093,7 +1093,7 @@
   },
   {
     "serialNumber": 85,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "한아름미용실",
     "ownerName": "기혜자",
     "country": "남구",
@@ -1106,7 +1106,7 @@
   },
   {
     "serialNumber": 86,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "홍미용실",
     "ownerName": "김동성",
     "country": "남구",
@@ -1119,7 +1119,7 @@
   },
   {
     "serialNumber": 87,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "희망이발관",
     "ownerName": "박문식",
     "country": "북구",
@@ -1132,7 +1132,7 @@
   },
   {
     "serialNumber": 88,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "모범이용원",
     "ownerName": "백재훈",
     "country": "북구",
@@ -1145,7 +1145,7 @@
   },
   {
     "serialNumber": 89,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "한신이용소",
     "ownerName": "이정식",
     "country": "북구",
@@ -1158,7 +1158,7 @@
   },
   {
     "serialNumber": 90,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "유성이용소",
     "ownerName": "노희선",
     "country": "북구",
@@ -1171,7 +1171,7 @@
   },
   {
     "serialNumber": 91,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "남성헤어샵",
     "ownerName": "김연기",
     "country": "북구",
@@ -1184,7 +1184,7 @@
   },
   {
     "serialNumber": 92,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "장터숫불",
     "ownerName": "이복순",
     "country": "북구",
@@ -1197,7 +1197,7 @@
   },
   {
     "serialNumber": 93,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "변사또숫불",
     "ownerName": "장기원",
     "country": "북구",
@@ -1210,7 +1210,7 @@
   },
   {
     "serialNumber": 94,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "유정식당",
     "ownerName": "윤양희",
     "country": "북구",
@@ -1223,7 +1223,7 @@
   },
   {
     "serialNumber": 95,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "상하이반점",
     "ownerName": "박찬용",
     "country": "북구",
@@ -1236,7 +1236,7 @@
   },
   {
     "serialNumber": 96,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "짜장궁",
     "ownerName": "곽경한",
     "country": "북구",
@@ -1249,7 +1249,7 @@
   },
   {
     "serialNumber": 97,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "늘봄숯불식당",
     "ownerName": "이경자",
     "country": "북구",
@@ -1262,7 +1262,7 @@
   },
   {
     "serialNumber": 98,
-    "category": "세탁",
+    "subcategory": "세탁",
     "shopName": "명성푸르지오세탁소",
     "ownerName": "장효철",
     "country": "북구",
@@ -1275,7 +1275,7 @@
   },
   {
     "serialNumber": 99,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "시장미용실",
     "ownerName": "서연순",
     "country": "북구",
@@ -1288,7 +1288,7 @@
   },
   {
     "serialNumber": 100,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "들꽃미용실",
     "ownerName": "박필수",
     "country": "북구",
@@ -1301,7 +1301,7 @@
   },
   {
     "serialNumber": 101,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "왕추",
     "ownerName": "지영조",
     "country": "북구",
@@ -1314,7 +1314,7 @@
   },
   {
     "serialNumber": 102,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "북경반점",
     "ownerName": "하성웅",
     "country": "북구",
@@ -1327,7 +1327,7 @@
   },
   {
     "serialNumber": 103,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "삼익반점",
     "ownerName": "오일수",
     "country": "북구",
@@ -1340,7 +1340,7 @@
   },
   {
     "serialNumber": 104,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "짚시헤어라인",
     "ownerName": "이금수",
     "country": "북구",
@@ -1353,7 +1353,7 @@
   },
   {
     "serialNumber": 105,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "몽짬뽕",
     "ownerName": "주대억",
     "country": "수성구",
@@ -1366,7 +1366,7 @@
   },
   {
     "serialNumber": 106,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "종성식당",
     "ownerName": "김현숙",
     "country": "수성구",
@@ -1379,7 +1379,7 @@
   },
   {
     "serialNumber": 107,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "맛자랑",
     "ownerName": "김금희",
     "country": "수성구",
@@ -1392,7 +1392,7 @@
   },
   {
     "serialNumber": 108,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "전주식콩나물해장국",
     "ownerName": "전정옥",
     "country": "수성구",
@@ -1405,7 +1405,7 @@
   },
   {
     "serialNumber": 109,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "별미국수",
     "ownerName": "장인환",
     "country": "수성구",
@@ -1418,7 +1418,7 @@
   },
   {
     "serialNumber": 110,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "전원식당",
     "ownerName": "방정순",
     "country": "수성구",
@@ -1431,7 +1431,7 @@
   },
   {
     "serialNumber": 111,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "우리국시",
     "ownerName": "김순금",
     "country": "수성구",
@@ -1444,7 +1444,7 @@
   },
   {
     "serialNumber": 112,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "수미헤어샵",
     "ownerName": "윤형유",
     "country": "수성구",
@@ -1457,7 +1457,7 @@
   },
   {
     "serialNumber": 113,
-    "category": "분식",
+    "subcategory": "분식",
     "shopName": "동곡손칼국수",
     "ownerName": "오광열",
     "country": "수성구",
@@ -1470,7 +1470,7 @@
   },
   {
     "serialNumber": 114,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "부자돼지촌",
     "ownerName": "이은숙",
     "country": "수성구",
@@ -1483,7 +1483,7 @@
   },
   {
     "serialNumber": 115,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "영아미용실",
     "ownerName": "김영선",
     "country": "수성구",
@@ -1496,7 +1496,7 @@
   },
   {
     "serialNumber": 116,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "빨강머리컷트",
     "ownerName": "정민경",
     "country": "수성구",
@@ -1509,7 +1509,7 @@
   },
   {
     "serialNumber": 117,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "동피랑충무김밥",
     "ownerName": "이동현",
     "country": "수성구",
@@ -1522,7 +1522,7 @@
   },
   {
     "serialNumber": 118,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "별미칼국수",
     "ownerName": "이경순",
     "country": "수성구",
@@ -1535,7 +1535,7 @@
   },
   {
     "serialNumber": 119,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "짜장집을 찾아서",
     "ownerName": "정옥태",
     "country": "수성구",
@@ -1548,7 +1548,7 @@
   },
   {
     "serialNumber": 120,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "어랑생선구이",
     "ownerName": "최병례",
     "country": "수성구",
@@ -1561,7 +1561,7 @@
   },
   {
     "serialNumber": 121,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "수희식당",
     "ownerName": "이근희",
     "country": "수성구",
@@ -1574,7 +1574,7 @@
   },
   {
     "serialNumber": 122,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "청도식당",
     "ownerName": "김금희",
     "country": "수성구",
@@ -1587,7 +1587,7 @@
   },
   {
     "serialNumber": 123,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "콩부대찌개",
     "ownerName": "백승희",
     "country": "수성구",
@@ -1600,7 +1600,7 @@
   },
   {
     "serialNumber": 124,
-    "category": "양식",
+    "subcategory": "양식",
     "shopName": "서양식당",
     "ownerName": "김희정",
     "country": "수성구",
@@ -1613,7 +1613,7 @@
   },
   {
     "serialNumber": 125,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "아름타리",
     "ownerName": "이귀순",
     "country": "수성구",
@@ -1626,7 +1626,7 @@
   },
   {
     "serialNumber": 126,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "마을불고기",
     "ownerName": "성일경",
     "country": "수성구",
@@ -1639,7 +1639,7 @@
   },
   {
     "serialNumber": 127,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "정원한우갈비",
     "ownerName": "김진희",
     "country": "수성구",
@@ -1652,7 +1652,7 @@
   },
   {
     "serialNumber": 128,
-    "category": "카페",
+    "subcategory": "카페",
     "shopName": "카페 아날로그",
     "ownerName": "류의상",
     "country": "수성구",
@@ -1665,7 +1665,7 @@
   },
   {
     "serialNumber": 129,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "풍기삼계탕",
     "ownerName": "이순희",
     "country": "수성구",
@@ -1678,7 +1678,7 @@
   },
   {
     "serialNumber": 130,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "산동성",
     "ownerName": "조의상",
     "country": "수성구",
@@ -1691,7 +1691,7 @@
   },
   {
     "serialNumber": 131,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "짬뽕집",
     "ownerName": "최경일",
     "country": "수성구",
@@ -1704,7 +1704,7 @@
   },
   {
     "serialNumber": 132,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "힐링헤어",
     "ownerName": "김경남",
     "country": "수성구",
@@ -1717,7 +1717,7 @@
   },
   {
     "serialNumber": 133,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "맛보리밥상",
     "ownerName": "류경화",
     "country": "수성구",
@@ -1730,7 +1730,7 @@
   },
   {
     "serialNumber": 134,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "장수삼계탕",
     "ownerName": "정무선",
     "country": "수성구",
@@ -1743,7 +1743,7 @@
   },
   {
     "serialNumber": 135,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "장터돼지국밥",
     "ownerName": "주초연",
     "country": "수성구",
@@ -1756,7 +1756,7 @@
   },
   {
     "serialNumber": 136,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "일조엄마손",
     "ownerName": "남두선",
     "country": "수성구",
@@ -1769,7 +1769,7 @@
   },
   {
     "serialNumber": 137,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "미담",
     "ownerName": "김범준",
     "country": "수성구",
@@ -1782,7 +1782,7 @@
   },
   {
     "serialNumber": 138,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "금풍국수",
     "ownerName": "손위숙",
     "country": "수성구",
@@ -1795,7 +1795,7 @@
   },
   {
     "serialNumber": 139,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "천사돼지국밥",
     "ownerName": "정지연",
     "country": "수성구",
@@ -1808,7 +1808,7 @@
   },
   {
     "serialNumber": 140,
-    "category": "카페",
+    "subcategory": "카페",
     "shopName": "커피딜라이트",
     "ownerName": "김재윤",
     "country": "수성구",
@@ -1821,7 +1821,7 @@
   },
   {
     "serialNumber": 141,
-    "category": "분식",
+    "subcategory": "분식",
     "shopName": "전국시대분식",
     "ownerName": "남정은",
     "country": "수성구",
@@ -1834,7 +1834,7 @@
   },
   {
     "serialNumber": 142,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "밀밭식당",
     "ownerName": "김소원",
     "country": "수성구",
@@ -1847,7 +1847,7 @@
   },
   {
     "serialNumber": 143,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "의성식당",
     "ownerName": "박종희",
     "country": "수성구",
@@ -1860,7 +1860,7 @@
   },
   {
     "serialNumber": 144,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "부산식당",
     "ownerName": "김정희",
     "country": "수성구",
@@ -1873,7 +1873,7 @@
   },
   {
     "serialNumber": 145,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "밀밭손수제비",
     "ownerName": "김미숙",
     "country": "수성구",
@@ -1886,7 +1886,7 @@
   },
   {
     "serialNumber": 146,
-    "category": "목욕",
+    "subcategory": "목욕",
     "shopName": "신광탕",
     "ownerName": "장유진",
     "country": "수성구",
@@ -1899,7 +1899,7 @@
   },
   {
     "serialNumber": 147,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "이모콩나물밥",
     "ownerName": "김경화",
     "country": "수성구",
@@ -1912,7 +1912,7 @@
   },
   {
     "serialNumber": 148,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "참한손 고향맛집",
     "ownerName": "소공순",
     "country": "수성구",
@@ -1925,7 +1925,7 @@
   },
   {
     "serialNumber": 149,
-    "category": "피부미용",
+    "subcategory": "피부미용",
     "shopName": "그레이스",
     "ownerName": "이승희",
     "country": "수성구",
@@ -1938,7 +1938,7 @@
   },
   {
     "serialNumber": 150,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "365먹골촌",
     "ownerName": "안을임",
     "country": "달서구",
@@ -1951,7 +1951,7 @@
   },
   {
     "serialNumber": 151,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "시골밥상",
     "ownerName": "양명화",
     "country": "달서구",
@@ -1964,7 +1964,7 @@
   },
   {
     "serialNumber": 152,
-    "category": "일식",
+    "subcategory": "일식",
     "shopName": "돌섬회타운",
     "ownerName": "이경희",
     "country": "달서구",
@@ -1977,7 +1977,7 @@
   },
   {
     "serialNumber": 153,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "가야산식당(숯불갈비)",
     "ownerName": "김선임",
     "country": "달서구",
@@ -1990,7 +1990,7 @@
   },
   {
     "serialNumber": 154,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "아름식당",
     "ownerName": "김영희",
     "country": "달서구",
@@ -2003,7 +2003,7 @@
   },
   {
     "serialNumber": 155,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "현대식당",
     "ownerName": "김상이",
     "country": "달서구",
@@ -2016,7 +2016,7 @@
   },
   {
     "serialNumber": 156,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "김밥매니아",
     "ownerName": "송춘녀",
     "country": "달서구",
@@ -2029,7 +2029,7 @@
   },
   {
     "serialNumber": 157,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "와룡돈까스",
     "ownerName": "이종영",
     "country": "달서구",
@@ -2042,7 +2042,7 @@
   },
   {
     "serialNumber": 158,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "박가네돈까스",
     "ownerName": "박순희",
     "country": "달서구",
@@ -2055,7 +2055,7 @@
   },
   {
     "serialNumber": 159,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "밥묵고고기묵고",
     "ownerName": "김재순",
     "country": "달서구",
@@ -2068,7 +2068,7 @@
   },
   {
     "serialNumber": 160,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "다사랑헤어",
     "ownerName": "백영애",
     "country": "달서구",
@@ -2081,7 +2081,7 @@
   },
   {
     "serialNumber": 161,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "착한멸치바지락칼국수",
     "ownerName": "허영기",
     "country": "달서구",
@@ -2094,7 +2094,7 @@
   },
   {
     "serialNumber": 162,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "천안문",
     "ownerName": "이선희",
     "country": "달서구",
@@ -2107,7 +2107,7 @@
   },
   {
     "serialNumber": 163,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "차이차이",
     "ownerName": "김경민",
     "country": "달서구",
@@ -2120,7 +2120,7 @@
   },
   {
     "serialNumber": 164,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "서태후",
     "ownerName": "배상혁",
     "country": "달서구",
@@ -2133,7 +2133,7 @@
   },
   {
     "serialNumber": 165,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "우당탕반점",
     "ownerName": "유승락(개명)",
     "country": "달서구",
@@ -2146,7 +2146,7 @@
   },
   {
     "serialNumber": 166,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "홍화성",
     "ownerName": "임복선",
     "country": "달서구",
@@ -2159,7 +2159,7 @@
   },
   {
     "serialNumber": 167,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "신광이용소",
     "ownerName": "박헌환",
     "country": "달서구",
@@ -2172,7 +2172,7 @@
   },
   {
     "serialNumber": 168,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "수헤어",
     "ownerName": "배순철",
     "country": "달서구",
@@ -2185,7 +2185,7 @@
   },
   {
     "serialNumber": 169,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "수미미용실",
     "ownerName": "오명숙",
     "country": "달서구",
@@ -2198,7 +2198,7 @@
   },
   {
     "serialNumber": 170,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "신라미장",
     "ownerName": "이경희",
     "country": "달서구",
@@ -2211,7 +2211,7 @@
   },
   {
     "serialNumber": 171,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "이경화헤어샵",
     "ownerName": "이영숙",
     "country": "달서구",
@@ -2224,7 +2224,7 @@
   },
   {
     "serialNumber": 172,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "내담미용실",
     "ownerName": "박종향",
     "country": "달서구",
@@ -2237,7 +2237,7 @@
   },
   {
     "serialNumber": 173,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "가야산식육식당",
     "ownerName": "이용목",
     "country": "달서구",
@@ -2250,7 +2250,7 @@
   },
   {
     "serialNumber": 174,
-    "category": "목욕",
+    "subcategory": "목욕",
     "shopName": "록천목욕탕",
     "ownerName": "장인숙",
     "country": "달서구",
@@ -2263,7 +2263,7 @@
   },
   {
     "serialNumber": 175,
-    "category": "일식",
+    "subcategory": "일식",
     "shopName": "강구회",
     "ownerName": "배기석",
     "country": "달서구",
@@ -2276,7 +2276,7 @@
   },
   {
     "serialNumber": 176,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "영화반점",
     "ownerName": "강정석",
     "country": "달서구",
@@ -2289,7 +2289,7 @@
   },
   {
     "serialNumber": 177,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "동보성반점",
     "ownerName": "전미순",
     "country": "달서구",
@@ -2302,7 +2302,7 @@
   },
   {
     "serialNumber": 178,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "금화루",
     "ownerName": "김재숙",
     "country": "달서구",
@@ -2315,7 +2315,7 @@
   },
   {
     "serialNumber": 179,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "평사리가는길",
     "ownerName": "송규견",
     "country": "달서구",
@@ -2328,7 +2328,7 @@
   },
   {
     "serialNumber": 180,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "까치골숯불촌",
     "ownerName": "서효동",
     "country": "달서구",
@@ -2341,7 +2341,7 @@
   },
   {
     "serialNumber": 181,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "그곳에가면손칼국수",
     "ownerName": "이양미",
     "country": "달서구",
@@ -2354,7 +2354,7 @@
   },
   {
     "serialNumber": 182,
-    "category": "세탁",
+    "subcategory": "세탁",
     "shopName": "세탁일번가",
     "ownerName": "송경아",
     "country": "달서구",
@@ -2367,7 +2367,7 @@
   },
   {
     "serialNumber": 183,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "중화반점 차오",
     "ownerName": "도재섭",
     "country": "달서구",
@@ -2380,7 +2380,7 @@
   },
   {
     "serialNumber": 184,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "국시애",
     "ownerName": "한종순",
     "country": "달서구",
@@ -2393,7 +2393,7 @@
   },
   {
     "serialNumber": 185,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "국수내가한다",
     "ownerName": "김경선",
     "country": "달서구",
@@ -2406,7 +2406,7 @@
   },
   {
     "serialNumber": 186,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "짬뽕의 따거",
     "ownerName": "이은희",
     "country": "달서구",
@@ -2419,7 +2419,7 @@
   },
   {
     "serialNumber": 187,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "밀밭손국시",
     "ownerName": "이인숙",
     "country": "달서구",
@@ -2432,7 +2432,7 @@
   },
   {
     "serialNumber": 188,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "백년마실",
     "ownerName": "이명숙",
     "country": "달서구",
@@ -2445,7 +2445,7 @@
   },
   {
     "serialNumber": 189,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "죽도생아구찜",
     "ownerName": "김강민",
     "country": "달서구",
@@ -2458,7 +2458,7 @@
   },
   {
     "serialNumber": 190,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "샬롬헤어",
     "ownerName": "강혜숙",
     "country": "달서구",
@@ -2471,7 +2471,7 @@
   },
   {
     "serialNumber": 191,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "25시국수",
     "ownerName": "안경숙",
     "country": "달서구",
@@ -2484,7 +2484,7 @@
   },
   {
     "serialNumber": 192,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "웃는돈지국수가",
     "ownerName": "이지현",
     "country": "달서구",
@@ -2497,7 +2497,7 @@
   },
   {
     "serialNumber": 193,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "별미국수",
     "ownerName": "김정희",
     "country": "달서구",
@@ -2510,7 +2510,7 @@
   },
   {
     "serialNumber": 194,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "종로빈대떡",
     "ownerName": "오귀연",
     "country": "달서구",
@@ -2523,7 +2523,7 @@
   },
   {
     "serialNumber": 195,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "굿미용실",
     "ownerName": "이영철",
     "country": "달서구",
@@ -2536,7 +2536,7 @@
   },
   {
     "serialNumber": 196,
-    "category": "카페",
+    "subcategory": "카페",
     "shopName": "엠트리",
     "ownerName": "문경서",
     "country": "달서구",
@@ -2549,7 +2549,7 @@
   },
   {
     "serialNumber": 197,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "한양푼이 닭개장국수 추어탕",
     "ownerName": "한영순",
     "country": "달서구",
@@ -2562,7 +2562,7 @@
   },
   {
     "serialNumber": 198,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "중앙분식",
     "ownerName": "시미연",
     "country": "달서구",
@@ -2575,7 +2575,7 @@
   },
   {
     "serialNumber": 199,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "다온헤어",
     "ownerName": "김해숙",
     "country": "달서구",
@@ -2588,7 +2588,7 @@
   },
   {
     "serialNumber": 200,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "서울미용실",
     "ownerName": "이이자",
     "country": "달서구",
@@ -2601,7 +2601,7 @@
   },
   {
     "serialNumber": 201,
-    "category": "일식",
+    "subcategory": "일식",
     "shopName": "백두산식당",
     "ownerName": "김일순",
     "country": "달서구",
@@ -2614,7 +2614,7 @@
   },
   {
     "serialNumber": 202,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "쌀맛난다",
     "ownerName": "이현덕",
     "country": "달서구",
@@ -2627,7 +2627,7 @@
   },
   {
     "serialNumber": 203,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "웅이네",
     "ownerName": "김윤권",
     "country": "달서구",
@@ -2640,7 +2640,7 @@
   },
   {
     "serialNumber": 204,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "성원푸드",
     "ownerName": "김수정",
     "country": "달서구",
@@ -2653,7 +2653,7 @@
   },
   {
     "serialNumber": 205,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "국수둥지",
     "ownerName": "이인창",
     "country": "달서구",
@@ -2666,7 +2666,7 @@
   },
   {
     "serialNumber": 206,
-    "category": "중식",
+    "subcategory": "중식",
     "shopName": "보배루",
     "ownerName": "이슬기",
     "country": "달서구",
@@ -2679,7 +2679,7 @@
   },
   {
     "serialNumber": 207,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "Kim's 헤어샵",
     "ownerName": "김춘한",
     "country": "달서구",
@@ -2692,7 +2692,7 @@
   },
   {
     "serialNumber": 208,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "해바라기식당",
     "ownerName": "이해숙",
     "country": "달서구",
@@ -2705,7 +2705,7 @@
   },
   {
     "serialNumber": 209,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "국시랑손수제비",
     "ownerName": "김옥화",
     "country": "달서구",
@@ -2718,7 +2718,7 @@
   },
   {
     "serialNumber": 210,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "웰빙순두부",
     "ownerName": "조이란",
     "country": "달서구",
@@ -2731,7 +2731,7 @@
   },
   {
     "serialNumber": 211,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "토담골",
     "ownerName": "한선애",
     "country": "달서구",
@@ -2744,7 +2744,7 @@
   },
   {
     "serialNumber": 212,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "고갱이",
     "ownerName": "김예일",
     "country": "달서구",
@@ -2757,7 +2757,7 @@
   },
   {
     "serialNumber": 213,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "어통가",
     "ownerName": "전준영",
     "country": "달서구",
@@ -2770,7 +2770,7 @@
   },
   {
     "serialNumber": 214,
-    "category": "일식",
+    "subcategory": "일식",
     "shopName": "바사카다",
     "ownerName": "김민석",
     "country": "달서구",
@@ -2783,7 +2783,7 @@
   },
   {
     "serialNumber": 215,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "청도시골밥상",
     "ownerName": "이정학",
     "country": "달서구",
@@ -2796,7 +2796,7 @@
   },
   {
     "serialNumber": 216,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "생생맛정식",
     "ownerName": "이복희",
     "country": "달서구",
@@ -2809,7 +2809,7 @@
   },
   {
     "serialNumber": 217,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "집밥이 땡긴다",
     "ownerName": "김봉현",
     "country": "달서구",
@@ -2822,7 +2822,7 @@
   },
   {
     "serialNumber": 218,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "맛깔정",
     "ownerName": "전득찬",
     "country": "달서구",
@@ -2835,7 +2835,7 @@
   },
   {
     "serialNumber": 219,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "반할서문손만두",
     "ownerName": "손원학",
     "country": "달서구",
@@ -2848,7 +2848,7 @@
   },
   {
     "serialNumber": 220,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "계명숯불갈비",
     "ownerName": "장인효",
     "country": "달서구",
@@ -2861,7 +2861,7 @@
   },
   {
     "serialNumber": 221,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "일미식당",
     "ownerName": "박인숙",
     "country": "달서구",
@@ -2874,7 +2874,7 @@
   },
   {
     "serialNumber": 222,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "행복식당",
     "ownerName": "강승철",
     "country": "달서구",
@@ -2887,7 +2887,7 @@
   },
   {
     "serialNumber": 223,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "국수촌",
     "ownerName": "석호면",
     "country": "달서구",
@@ -2900,7 +2900,7 @@
   },
   {
     "serialNumber": 224,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "합천명품토종흑돼지촌",
     "ownerName": "방현아",
     "country": "달서구",
@@ -2913,7 +2913,7 @@
   },
   {
     "serialNumber": 225,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "삼천식당",
     "ownerName": "이기진",
     "country": "달서구",
@@ -2926,7 +2926,7 @@
   },
   {
     "serialNumber": 226,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "호야식당",
     "ownerName": "김명순",
     "country": "달서구",
@@ -2939,7 +2939,7 @@
   },
   {
     "serialNumber": 227,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "새하얀식당",
     "ownerName": "조옥순",
     "country": "달서구",
@@ -2952,7 +2952,7 @@
   },
   {
     "serialNumber": 228,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "미지미용실",
     "ownerName": "임화자",
     "country": "달서구",
@@ -2965,7 +2965,7 @@
   },
   {
     "serialNumber": 229,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "다복칼국수",
     "ownerName": "신경숙",
     "country": "달서구",
@@ -2978,7 +2978,7 @@
   },
   {
     "serialNumber": 230,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "시골명가보리밥집",
     "ownerName": "이향숙",
     "country": "달서구",
@@ -2991,7 +2991,7 @@
   },
   {
     "serialNumber": 231,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "뽀끼뽀끼분식이야기",
     "ownerName": "한차남",
     "country": "달서구",
@@ -3004,7 +3004,7 @@
   },
   {
     "serialNumber": 232,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "빨간국밥",
     "ownerName": "곽성섭",
     "country": "달서구",
@@ -3017,7 +3017,7 @@
   },
   {
     "serialNumber": 233,
-    "category": "일식",
+    "subcategory": "일식",
     "shopName": "청구회&해물",
     "ownerName": "정수란",
     "country": "달서구",
@@ -3030,7 +3030,7 @@
   },
   {
     "serialNumber": 234,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "민머리방",
     "ownerName": "박희옥",
     "country": "달서구",
@@ -3043,7 +3043,7 @@
   },
   {
     "serialNumber": 235,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "공화루",
     "ownerName": "황대근",
     "country": "달서구",
@@ -3056,7 +3056,7 @@
   },
   {
     "serialNumber": 236,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "꽃길헤어",
     "ownerName": "신수진",
     "country": "달서구",
@@ -3069,7 +3069,7 @@
   },
   {
     "serialNumber": 237,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "옥방맛집",
     "ownerName": "김명숙",
     "country": "달서구",
@@ -3082,7 +3082,7 @@
   },
   {
     "serialNumber": 238,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "행복맛집",
     "ownerName": "고재숙",
     "country": "달서구",
@@ -3095,7 +3095,7 @@
   },
   {
     "serialNumber": 239,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "강변이용소",
     "ownerName": "박노득",
     "country": "달성군",
@@ -3108,7 +3108,7 @@
   },
   {
     "serialNumber": 240,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "명호이용소",
     "ownerName": "유명호",
     "country": "달성군",
@@ -3121,7 +3121,7 @@
   },
   {
     "serialNumber": 241,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "윤정헤어",
     "ownerName": "추효심",
     "country": "달성군",
@@ -3134,7 +3134,7 @@
   },
   {
     "serialNumber": 242,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "동곡윤송손칼국수",
     "ownerName": "조재희",
     "country": "달성군",
@@ -3147,7 +3147,7 @@
   },
   {
     "serialNumber": 243,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "서순자손수제비",
     "ownerName": "윤기원",
     "country": "달성군",
@@ -3160,7 +3160,7 @@
   },
   {
     "serialNumber": 244,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "수원미용타운",
     "ownerName": "안인숙",
     "country": "달성군",
@@ -3173,7 +3173,7 @@
   },
   {
     "serialNumber": 245,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "순해집손칼국수",
     "ownerName": "김미옥",
     "country": "달성군",
@@ -3186,7 +3186,7 @@
   },
   {
     "serialNumber": 246,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "이영희헤어샵",
     "ownerName": "이영희",
     "country": "달성군",
@@ -3199,7 +3199,7 @@
   },
   {
     "serialNumber": 247,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "정아국밥",
     "ownerName": "정곡자",
     "country": "달성군",
@@ -3212,7 +3212,7 @@
   },
   {
     "serialNumber": 248,
-    "category": "목욕",
+    "subcategory": "목욕",
     "shopName": "선샤인사우나",
     "ownerName": "이태현",
     "country": "달성군",
@@ -3225,7 +3225,7 @@
   },
   {
     "serialNumber": 249,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "이놈애양곱창",
     "ownerName": "최설봄",
     "country": "달성군",
@@ -3238,7 +3238,7 @@
   },
   {
     "serialNumber": 250,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "고구려",
     "ownerName": "나윤덕",
     "country": "달성군",
@@ -3251,7 +3251,7 @@
   },
   {
     "serialNumber": 251,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "대명숯불갈비",
     "ownerName": "한경순",
     "country": "달성군",
@@ -3264,7 +3264,7 @@
   },
   {
     "serialNumber": 252,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "별난집삼겹살",
     "ownerName": "김영보",
     "country": "달성군",
@@ -3277,7 +3277,7 @@
   },
   {
     "serialNumber": 253,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "호야네착한국수",
     "ownerName": "이영아",
     "country": "달성군",
@@ -3290,7 +3290,7 @@
   },
   {
     "serialNumber": 254,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "웰빙 보리밥",
     "ownerName": "김연자",
     "country": "달성군",
@@ -3303,7 +3303,7 @@
   },
   {
     "serialNumber": 255,
-    "category": "미용",
+    "subcategory": "미용",
     "shopName": "헤어일번지",
     "ownerName": "이말희",
     "country": "달성군",
@@ -3316,7 +3316,7 @@
   },
   {
     "serialNumber": 256,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "유가국수",
     "ownerName": "김미정",
     "country": "달성군",
@@ -3329,7 +3329,7 @@
   },
   {
     "serialNumber": 257,
-    "category": "한식",
+    "subcategory": "한식",
     "shopName": "김밥 면 맛나분식",
     "ownerName": "문미선",
     "country": "달성군",
