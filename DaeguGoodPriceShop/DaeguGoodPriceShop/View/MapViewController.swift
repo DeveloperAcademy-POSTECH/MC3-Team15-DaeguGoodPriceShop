@@ -7,9 +7,12 @@
 
 import UIKit
 import MapKit
+import Combine
 
 class MapViewController: UIViewController {
+    private let mapViewModel = MapViewModel()
     @IBOutlet weak var mapView: MKMapView!
+    private var observers: Set<AnyCancellable> = []
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
@@ -24,12 +27,12 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureView()
         configureMapView()
+        configureBindings()
     }
     
-    func configureView() {
+    private func configureView() {
         mapView.addSubview(userTrackingButton)
         
         NSLayoutConstraint.activate([
@@ -40,12 +43,31 @@ class MapViewController: UIViewController {
         ])
     }
     
-    func configureMapView() {
+    private func configureMapView() {
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.showsScale = true
         mapView.showsCompass = true
         mapView.showsLargeContentViewer = true
+    }
+    
+    private func configureBindings() {
+        mapViewModel.$locationAutorization
+            .sink { [weak self] bool in
+                self?.userTrackingButton.isHidden = !bool
+            }
+            .store(in: &self.observers)
+        mapViewModel.$initialLocation
+            .sink { [weak self] location in
+                self?.configureLocation(location)
+            }
+            .store(in: &self.observers)
+    }
+    
+    private func configureLocation(_ location: CLLocation?) {
+        guard let location = location else { return }
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
     }
 }
 
