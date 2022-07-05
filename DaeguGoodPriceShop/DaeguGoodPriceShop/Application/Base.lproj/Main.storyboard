@@ -17,20 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, World" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hI3-Sh-dXn">
-                                <rect key="frame" x="160.5" y="442.5" width="93" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cWX-za-8Fb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hI3-Sh-dXn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6I8-Ia-m7O"/>
-                            <constraint firstItem="hI3-Sh-dXn" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="eHY-um-Z6e"/>
+                            <constraint firstAttribute="bottom" secondItem="cWX-za-8Fb" secondAttribute="bottom" id="6jP-4Z-LEI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cWX-za-8Fb" secondAttribute="trailing" id="CRr-RP-UY2"/>
+                            <constraint firstItem="cWX-za-8Fb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XOS-rU-mIB"/>
+                            <constraint firstItem="cWX-za-8Fb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nkj-Rt-Q8Y"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="cWX-za-8Fb" id="cfi-IH-hdc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
