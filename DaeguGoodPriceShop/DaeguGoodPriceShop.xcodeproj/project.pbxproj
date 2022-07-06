@@ -7,7 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A80AAF7F2875D75000795C87 /* ShopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF7E2875D75000795C87 /* ShopAnnotationView.swift */; };
+		A80AAF8128764F5C00795C87 /* KoreanFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8028764F5C00795C87 /* KoreanFoodAnnotationView.swift */; };
+		A80AAF8328764F6900795C87 /* ChineseFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8228764F6900795C87 /* ChineseFoodAnnotationView.swift */; };
+		A80AAF8528764F7900795C87 /* WesternFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8428764F7900795C87 /* WesternFoodAnnotationView.swift */; };
+		A80AAF8728764F9500795C87 /* JapaneseFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8628764F9500795C87 /* JapaneseFoodAnnotationView.swift */; };
+		A80AAF8928764FA500795C87 /* FlourBasedFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8828764FA500795C87 /* FlourBasedFoodAnnotationView.swift */; };
+		A80AAF8B28764FB000795C87 /* BakeryAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8A28764FB000795C87 /* BakeryAnnotationView.swift */; };
+		A80AAF8D28764FB600795C87 /* CafeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8C28764FB600795C87 /* CafeAnnotationView.swift */; };
+		A80AAF8F28764FBD00795C87 /* HairCutAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF8E28764FBD00795C87 /* HairCutAnnotationView.swift */; };
+		A80AAF9128764FCB00795C87 /* CleaningAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */; };
+		A80AAF9328764FD500795C87 /* SkinCareAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */; };
+		A80AAF9528764FDC00795C87 /* BathAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */; };
+		A80AAF972876508400795C87 /* ShopAnnotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF962876508400795C87 /* ShopAnnotatable.swift */; };
 		A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */; };
 		A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */; };
 		A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */; };
@@ -24,7 +35,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A80AAF7E2875D75000795C87 /* ShopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8028764F5C00795C87 /* KoreanFoodAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanFoodAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8228764F6900795C87 /* ChineseFoodAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseFoodAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8428764F7900795C87 /* WesternFoodAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WesternFoodAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8628764F9500795C87 /* JapaneseFoodAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseFoodAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8828764FA500795C87 /* FlourBasedFoodAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlourBasedFoodAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8A28764FB000795C87 /* BakeryAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakeryAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8C28764FB600795C87 /* CafeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF8E28764FBD00795C87 /* HairCutAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairCutAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCareAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathAnnotationView.swift; sourceTree = "<group>"; };
+		A80AAF962876508400795C87 /* ShopAnnotatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotatable.swift; sourceTree = "<group>"; };
 		A8E74E69286BFA8A000DB2B8 /* DaeguGoodPriceShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaeguGoodPriceShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,7 +122,18 @@
 			isa = PBXGroup;
 			children = (
 				A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */,
-				A80AAF7E2875D75000795C87 /* ShopAnnotationView.swift */,
+				A80AAF962876508400795C87 /* ShopAnnotatable.swift */,
+				A80AAF8028764F5C00795C87 /* KoreanFoodAnnotationView.swift */,
+				A80AAF8228764F6900795C87 /* ChineseFoodAnnotationView.swift */,
+				A80AAF8428764F7900795C87 /* WesternFoodAnnotationView.swift */,
+				A80AAF8628764F9500795C87 /* JapaneseFoodAnnotationView.swift */,
+				A80AAF8828764FA500795C87 /* FlourBasedFoodAnnotationView.swift */,
+				A80AAF8A28764FB000795C87 /* BakeryAnnotationView.swift */,
+				A80AAF8C28764FB600795C87 /* CafeAnnotationView.swift */,
+				A80AAF8E28764FBD00795C87 /* HairCutAnnotationView.swift */,
+				A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */,
+				A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */,
+				A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,16 +252,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A80AAF8F28764FBD00795C87 /* HairCutAnnotationView.swift in Sources */,
 				A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */,
+				A80AAF8D28764FB600795C87 /* CafeAnnotationView.swift in Sources */,
 				DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */,
 				A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */,
-				A80AAF7F2875D75000795C87 /* ShopAnnotationView.swift in Sources */,
+				A80AAF9328764FD500795C87 /* SkinCareAnnotationView.swift in Sources */,
+				A80AAF8528764F7900795C87 /* WesternFoodAnnotationView.swift in Sources */,
+				A80AAF8328764F6900795C87 /* ChineseFoodAnnotationView.swift in Sources */,
+				A80AAF9528764FDC00795C87 /* BathAnnotationView.swift in Sources */,
+				A80AAF9128764FCB00795C87 /* CleaningAnnotationView.swift in Sources */,
 				A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */,
+				A80AAF8928764FA500795C87 /* FlourBasedFoodAnnotationView.swift in Sources */,
+				A80AAF972876508400795C87 /* ShopAnnotatable.swift in Sources */,
 				A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */,
+				A80AAF8B28764FB000795C87 /* BakeryAnnotationView.swift in Sources */,
+				A80AAF8728764F9500795C87 /* JapaneseFoodAnnotationView.swift in Sources */,
 				DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */,
 				DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */,
 				A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */,
 				A8E74E86286BFB90000DB2B8 /* MapViewModel.swift in Sources */,
+				A80AAF8128764F5C00795C87 /* KoreanFoodAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
