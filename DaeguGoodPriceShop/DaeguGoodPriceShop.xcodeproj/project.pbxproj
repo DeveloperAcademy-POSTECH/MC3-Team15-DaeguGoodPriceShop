@@ -16,6 +16,10 @@
 		A8E74E86286BFB90000DB2B8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E85286BFB90000DB2B8 /* MapViewModel.swift */; };
 		A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E87286BFBA5000DB2B8 /* MapModel.swift */; };
 		A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E89286BFBB5000DB2B8 /* Shop.swift */; };
+		DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7052873C7630038EDE4 /* ShopCategory.swift */; };
+		DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7082873D9DD0038EDE4 /* LocationManager.swift */; };
+		DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */; };
+		DA34E72D2875043A0038EDE4 /* MapViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E72C2875043A0038EDE4 /* MapViewController+.swift */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +35,10 @@
 		A8E74E85286BFB90000DB2B8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		A8E74E87286BFBA5000DB2B8 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		A8E74E89286BFBB5000DB2B8 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		DA34E7052873C7630038EDE4 /* ShopCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategory.swift; sourceTree = "<group>"; };
+		DA34E7082873D9DD0038EDE4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotation.swift; sourceTree = "<group>"; };
+		DA34E72C2875043A0038EDE4 /* MapViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+.swift"; sourceTree = "<group>"; };
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +72,7 @@
 		A8E74E6B286BFA8A000DB2B8 /* DaeguGoodPriceShop */ = {
 			isa = PBXGroup;
 			children = (
+				DA34E7072873D9CC0038EDE4 /* Manager */,
 				DAB60438286C26C50039C969 /* Resource */,
 				A8E74E80286BFAAE000DB2B8 /* Application */,
 				A8E74E81286BFAFD000DB2B8 /* View */,
@@ -91,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */,
+				DA34E72C2875043A0038EDE4 /* MapViewController+.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E74E87286BFBA5000DB2B8 /* MapModel.swift */,
+				DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,8 +126,17 @@
 			isa = PBXGroup;
 			children = (
 				A8E74E89286BFBB5000DB2B8 /* Shop.swift */,
+				DA34E7052873C7630038EDE4 /* ShopCategory.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		DA34E7072873D9CC0038EDE4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				DA34E7082873D9DD0038EDE4 /* LocationManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		DAB60438286C26C50039C969 /* Resource */ = {
@@ -200,9 +220,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */,
+				DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */,
 				A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */,
 				A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */,
 				A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */,
+				DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */,
+				DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */,
+				DA34E72D2875043A0038EDE4 /* MapViewController+.swift in Sources */,
 				A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */,
 				A8E74E86286BFB90000DB2B8 /* MapViewModel.swift in Sources */,
 			);
