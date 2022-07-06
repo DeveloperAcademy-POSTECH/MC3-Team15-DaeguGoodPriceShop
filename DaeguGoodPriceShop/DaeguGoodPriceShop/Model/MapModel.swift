@@ -41,9 +41,5 @@ struct MapModel {
         os_log(.debug, log: .default, "Successfully Get Json Data")
         return shops
     }
-    
-    func getCategorizedShop(category: ShopCategory) -> [Shop] {
-        return shops.filter{ $0.getCategory() == category }
-    }
 }
 

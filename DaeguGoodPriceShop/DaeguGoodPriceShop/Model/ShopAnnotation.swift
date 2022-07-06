@@ -13,7 +13,7 @@ final class ShopAnnotationView: MKAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        frame = CGRect(x: 0, y: 0, width: 40, height: 50)
+        frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         setupUI()
     }

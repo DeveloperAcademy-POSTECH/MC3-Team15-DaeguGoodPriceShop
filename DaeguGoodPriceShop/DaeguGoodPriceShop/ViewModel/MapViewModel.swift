@@ -13,7 +13,7 @@ final class MapViewModel {
     @Published private(set) var locationAutorization: Bool = false
     @Published private(set) var initialLocation: CLLocation?
     private let locationManager = LocationManager()
-    let model = MapModel()
+    private let model = MapModel()
     
     init() {
         configureBindings()
@@ -42,8 +42,16 @@ final class MapViewModel {
     }
     
     func getNearShopsFromUser() -> [Shop] {
-        model.shops
+        return model.shops
                 .filter{ getDistanceFromUser($0) < 1000 }
                 .sorted{ getDistanceFromUser($0) < getDistanceFromUser($1) }
+    }
+    
+    func getCategorizedShop(category: ShopCategory?) -> [Shop] {
+        if category == nil {
+            return model.shops
+        } else {
+            return model.shops.filter{ $0.getCategory() == category }
+        }
     }
 }

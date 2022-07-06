@@ -19,6 +19,7 @@
 		DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7052873C7630038EDE4 /* ShopCategory.swift */; };
 		DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7082873D9DD0038EDE4 /* LocationManager.swift */; };
 		DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */; };
+		DA34E72D2875043A0038EDE4 /* MapViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E72C2875043A0038EDE4 /* MapViewController+.swift */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		DA34E7052873C7630038EDE4 /* ShopCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategory.swift; sourceTree = "<group>"; };
 		DA34E7082873D9DD0038EDE4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotation.swift; sourceTree = "<group>"; };
+		DA34E72C2875043A0038EDE4 /* MapViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+.swift"; sourceTree = "<group>"; };
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */,
+				DA34E72C2875043A0038EDE4 /* MapViewController+.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */,
 				DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */,
 				DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */,
+				DA34E72D2875043A0038EDE4 /* MapViewController+.swift in Sources */,
 				A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */,
 				A8E74E86286BFB90000DB2B8 /* MapViewModel.swift in Sources */,
 			);
