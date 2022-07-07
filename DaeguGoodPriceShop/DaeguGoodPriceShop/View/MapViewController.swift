@@ -97,6 +97,11 @@ class MapViewController: UIViewController {
             BathAnnotationView.self,
             forAnnotationViewWithReuseIdentifier: BathAnnotationView.identifier
         )
+        mapView.register(
+            ClusteringAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier:
+                MKMapViewDefaultClusterAnnotationViewReuseIdentifier
+        )
     }
     
     private func configureBindings() {
