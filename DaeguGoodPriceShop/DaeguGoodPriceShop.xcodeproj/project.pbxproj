@@ -19,6 +19,7 @@
 		A80AAF9328764FD500795C87 /* SkinCareAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */; };
 		A80AAF9528764FDC00795C87 /* BathAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */; };
 		A80AAF972876508400795C87 /* ShopAnnotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF962876508400795C87 /* ShopAnnotatable.swift */; };
+		A80AAF99287656D400795C87 /* ClusteringAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */; };
 		A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */; };
 		A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */; };
 		A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */; };
@@ -47,6 +48,7 @@
 		A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCareAnnotationView.swift; sourceTree = "<group>"; };
 		A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathAnnotationView.swift; sourceTree = "<group>"; };
 		A80AAF962876508400795C87 /* ShopAnnotatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotatable.swift; sourceTree = "<group>"; };
+		A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusteringAnnotationView.swift; sourceTree = "<group>"; };
 		A8E74E69286BFA8A000DB2B8 /* DaeguGoodPriceShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaeguGoodPriceShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */,
 				A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */,
 				A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */,
+				A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */,
 				A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */,
 				A80AAF9328764FD500795C87 /* SkinCareAnnotationView.swift in Sources */,
+				A80AAF99287656D400795C87 /* ClusteringAnnotationView.swift in Sources */,
 				A80AAF8528764F7900795C87 /* WesternFoodAnnotationView.swift in Sources */,
 				A80AAF8328764F6900795C87 /* ChineseFoodAnnotationView.swift in Sources */,
 				A80AAF9528764FDC00795C87 /* BathAnnotationView.swift in Sources */,

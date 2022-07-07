@@ -12,10 +12,17 @@ final class WesternFoodAnnotationView: MKAnnotationView, ShopAnnotatable {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        self.clusteringIdentifier = "CateringStore"
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var annotation: MKAnnotation? {
+        willSet {
+            self.clusteringIdentifier = "CateringStore"
+        }
     }
     
     override func prepareForDisplay() {

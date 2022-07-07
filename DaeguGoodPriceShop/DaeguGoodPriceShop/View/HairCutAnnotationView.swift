@@ -12,10 +12,17 @@ final class HairCutAnnotationView: MKAnnotationView, ShopAnnotatable {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        self.clusteringIdentifier = "HairdressingShop"
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var annotation: MKAnnotation? {
+        willSet {
+            self.clusteringIdentifier = "HairdressingShop"
+        }
     }
     
     override func prepareForDisplay() {
