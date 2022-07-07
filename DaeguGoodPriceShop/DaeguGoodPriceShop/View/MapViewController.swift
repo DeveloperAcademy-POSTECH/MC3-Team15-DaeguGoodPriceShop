@@ -5,13 +5,12 @@
 //  Created by Shin Jae Ung on 2022/06/29.
 //
 
-import UIKit
 import MapKit
 import Combine
 
 class MapViewController: UIViewController {
     private let mapViewModel = MapViewModel()
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     private var observers: Set<AnyCancellable> = []
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
@@ -29,6 +28,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         configureMapView()
+        registerAnnotationViewClasses()
         configureBindings()
         addAnnotation()
     }
@@ -50,6 +50,53 @@ class MapViewController: UIViewController {
         mapView.showsScale = true
         mapView.showsCompass = true
         mapView.showsLargeContentViewer = true
+    }
+    
+    private func registerAnnotationViewClasses() {
+        mapView.register(
+            KoreanFoodAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: KoreanFoodAnnotationView.identifier
+        )
+        mapView.register(
+            ChineseFoodAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: ChineseFoodAnnotationView.identifier
+        )
+        mapView.register(
+            WesternFoodAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: WesternFoodAnnotationView.identifier
+        )
+        mapView.register(
+            JapaneseFoodAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: JapaneseFoodAnnotationView.identifier
+        )
+        mapView.register(
+            FlourBasedFoodAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: FlourBasedFoodAnnotationView.identifier
+        )
+        mapView.register(
+            BakeryAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: BakeryAnnotationView.identifier
+        )
+        mapView.register(
+            CafeAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: CafeAnnotationView.identifier
+        )
+        mapView.register(
+            HairCutAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: HairCutAnnotationView.identifier
+        )
+        mapView.register(
+            CleaningAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: CleaningAnnotationView.identifier
+        )
+        mapView.register(
+            SkinCareAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: SkinCareAnnotationView.identifier
+        )
+        mapView.register(
+            BathAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: BathAnnotationView.identifier
+        )
     }
     
     private func configureBindings() {
@@ -91,7 +138,30 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let _ = annotation as? ShopAnnotation else { return nil }
-        return mapView.dequeueReusableAnnotationView(withIdentifier: ShopAnnotationView.identifier)
+        guard let annotation = annotation as? ShopAnnotation else { return nil }
+        switch annotation.shopSubCategory {
+        case .koreanFood:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: KoreanFoodAnnotationView.identifier)
+        case .chineseFood:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: ChineseFoodAnnotationView.identifier)
+        case .westernFood:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: WesternFoodAnnotationView.identifier)
+        case .japaneseFood:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: JapaneseFoodAnnotationView.identifier)
+        case .flourBasedFood:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: FlourBasedFoodAnnotationView.identifier)
+        case .bakery:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: BakeryAnnotationView.identifier)
+        case .cafe:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: CafeAnnotationView.identifier)
+        case .hairCut:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: HairCutAnnotationView.identifier)
+        case .cleaning:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: CleaningAnnotationView.identifier)
+        case .skinCare:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: SkinCareAnnotationView.identifier)
+        case .bath:
+            return mapView.dequeueReusableAnnotationView(withIdentifier: BathAnnotationView.identifier)
+        }
     }
 }
