@@ -72,26 +72,26 @@ class MapViewController: UIViewController {
     }
     
     private func addAnnotation(category: ShopCategory? = nil) {
-        let shops = mapViewModel.getCategorizedShop(category: category)
-        addPins(shops: shops)
-    }
-    
-    private func addPins(shops: [Shop]) {
-        for shop in shops {
-            guard let category = shop.getCategory() else {
-                continue
-            }
-            
-            addPin(category: category, coordinate: shop.location)
+        mapViewModel.getShops().forEach { shop in
+            guard let shopSubCategory = shop.shopSubCategory else { return }
+            mapView.addAnnotation(
+                ShopAnnotation(
+                    shopSubCategory: shopSubCategory,
+                    latitude: shop.latitude,
+                    longitude: shop.longitude
+                )
+            )
         }
-    }
-    
-    private func addPin(category: ShopCategory, coordinate: CLLocation) {
-        let pin = ShopAnnotation(category: category, location: coordinate)
-        mapView.addAnnotation(pin)
     }
     
     private func removeAnnotation() {
         mapView.removeAnnotations(mapView.annotations)
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let _ = annotation as? ShopAnnotation else { return nil }
+        return mapView.dequeueReusableAnnotationView(withIdentifier: ShopAnnotationView.identifier)
     }
 }

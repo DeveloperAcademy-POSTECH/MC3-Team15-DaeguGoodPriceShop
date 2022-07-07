@@ -33,25 +33,32 @@ final class MapViewModel {
         locationManager.configureAutorization()
     }
     
-    private func getDistanceFromUser(_ shop: Shop) -> CLLocationDistance {
-        return initialLocation?.distance(from: shop.location) ?? -1
-    }
+//    private func getDistanceFromUser(_ shop: Shop) -> CLLocationDistance {
+//        return initialLocation?.distance(from: shop.location) ?? -1
+//    }
+//
+//    private func getDistanceString(_ distance: Double) -> String {
+//        return distance < 1000 ? String(format: "%.1f", distance) + "m" : String(format: "%.1f", distance / 1000) + "km"
+//    }
+//
+//    func getNearShopsFromUser() -> [Shop] {
+//        return model.shops
+//                .filter{ getDistanceFromUser($0) < 1000 }
+//                .sorted{ getDistanceFromUser($0) < getDistanceFromUser($1) }
+//    }
     
-    private func getDistanceString(_ distance: Double) -> String {
-        return distance < 1000 ? String(format: "%.1f", distance) + "m" : String(format: "%.1f", distance / 1000) + "km"
-    }
-    
-    func getNearShopsFromUser() -> [Shop] {
-        return model.shops
-                .filter{ getDistanceFromUser($0) < 1000 }
-                .sorted{ getDistanceFromUser($0) < getDistanceFromUser($1) }
-    }
-    
-    func getCategorizedShop(category: ShopCategory?) -> [Shop] {
-        if category == nil {
-            return model.shops
-        } else {
-            return model.shops.filter{ $0.getCategory() == category }
+    func getShops() -> [Shop] {
+        return self.model.shops.filter { shop in
+            guard shop.shopSubCategory != nil else { return false }
+            return true
         }
     }
+    
+//    func getCategorizedShop(category: ShopCategory?) -> [Shop] {
+//        if category == nil {
+//            return model.shops
+//        } else {
+//            return model.shops.filter{ $0.getCategory() == category }
+//        }
+//    }
 }
