@@ -11,7 +11,16 @@ import Combine
 class MapViewController: UIViewController {
     private let mapViewModel = MapViewModel()
     @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet weak var modalHeight: NSLayoutConstraint!
     private var observers: Set<AnyCancellable> = []
+    
+    @IBOutlet weak var modalView: UIView!
+    @IBOutlet weak var gestureView: UIView!
+    @IBOutlet weak var gestureBarView: UIView!
+    private let defaultHeight: CGFloat = 250
+    private let minimumHeight: CGFloat = 70
+    private let fullHeight: CGFloat = UIScreen.main.bounds.height - 70
+    private var currentHeight: CGFloat = 70
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
@@ -34,6 +43,7 @@ class MapViewController: UIViewController {
         registerAnnotationViewClasses()
         configureBindings()
         addAnnotation()
+        setupPanGesture()
     }
     
     private func configureView() {
@@ -47,6 +57,14 @@ class MapViewController: UIViewController {
         userTrackingButton.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.25)
         
         mapView.addSubview(userTrackingButton)
+        
+        modalView.layer.cornerRadius = 20
+        modalView.layer.shadowRadius = 4
+        modalView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        modalView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.25)
+        modalHeight.constant = minimumHeight
+        gestureBarView.layer.cornerRadius = 2
+        
         
         NSLayoutConstraint.activate([
             userTrackingButton.widthAnchor.constraint(equalToConstant: 50),
@@ -182,3 +200,55 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
 }
+
+extension MapViewController {
+    @IBAction func buttonClicked(_ sender: Any) {
+        changeModalHeight(defaultHeight)
+    }
+    
+    func changeModalHeight(_ height: CGFloat) {
+        UIView.animate(withDuration: 0.3) {
+            self.modalHeight.constant = height
+            self.view.layoutIfNeeded()
+        }
+        
+        currentHeight = height
+    }
+    
+    private func setupPanGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
+        panGesture.delaysTouchesBegan = false
+        panGesture.delaysTouchesEnded = false
+        gestureView.addGestureRecognizer(panGesture)
+    }
+    
+    @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        let isDraggingDown = translation.y > 0
+        let newHeight = currentHeight - translation.y
+        
+        switch gesture.state {
+        case .changed:
+            if newHeight < fullHeight {
+                modalHeight.constant = newHeight
+                modalView.layoutIfNeeded()
+            }
+        case .ended:
+            if newHeight < defaultHeight && isDraggingDown {
+                changeModalHeight(minimumHeight)
+            }
+            else if newHeight < defaultHeight {
+                changeModalHeight(defaultHeight)
+            }
+            else if newHeight < fullHeight && isDraggingDown {
+                changeModalHeight(defaultHeight)
+            }
+            else if newHeight > defaultHeight && !isDraggingDown {
+                changeModalHeight(fullHeight)
+            }
+        default:
+            break
+        }
+    }
+}
+

@@ -124,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */,
-				A80AAF962876508400795C87 /* ShopAnnotatable.swift */,
 				A80AAF8028764F5C00795C87 /* KoreanFoodAnnotationView.swift */,
 				A80AAF8228764F6900795C87 /* ChineseFoodAnnotationView.swift */,
 				A80AAF8428764F7900795C87 /* WesternFoodAnnotationView.swift */,
@@ -137,6 +136,7 @@
 				A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */,
 				A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */,
 				A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */,
+				A80AAF962876508400795C87 /* ShopAnnotatable.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,7 +423,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = ZRTG6WMRW7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -452,7 +452,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = ZRTG6WMRW7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
