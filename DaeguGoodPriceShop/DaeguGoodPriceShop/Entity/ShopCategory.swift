@@ -22,10 +22,21 @@ enum ShopSubCategory: String {
 }
 
 enum ShopCategory {
-    case CateringStore
-    case HairdressingShop
-    case LaundryShop
-    case ServiceShop
+    case cateringStore
+    case hairdressingShop
+    case laundryShop
+    case serviceShop
     
-    
+    var subCategories: [ShopSubCategory] {
+        switch self {
+        case .cateringStore:
+            return [.koreanFood, .chineseFood, .westernFood, .japaneseFood, .flourBasedFood, .bakery, .cafe]
+        case .hairdressingShop:
+            return [.hairCut]
+        case .laundryShop:
+            return [.cleaning]
+        case .serviceShop:
+            return [.skinCare, .bath]
+        }
+    }
 }

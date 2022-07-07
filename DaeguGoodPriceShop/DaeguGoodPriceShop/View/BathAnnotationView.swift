@@ -8,8 +8,6 @@
 import MapKit
 
 final class BathAnnotationView: MKAnnotationView, ShopAnnotatable {
-    static let identifier = "BathAnnotationView"
-    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.clusteringIdentifier = "ServiceShop"
