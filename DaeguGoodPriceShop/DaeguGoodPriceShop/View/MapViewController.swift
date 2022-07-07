@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
-        button.isHidden = false
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
@@ -23,6 +23,9 @@ class MapViewController: UIViewController {
         
         return button
     }()
+    
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var buttonsContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +37,22 @@ class MapViewController: UIViewController {
     }
     
     private func configureView() {
+        buttonsContainerView.layer.cornerRadius = 10
+        buttonsContainerView.layer.shadowRadius = 4
+        buttonsContainerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        buttonsContainerView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.25)
+        
+        userTrackingButton.layer.shadowRadius = 4
+        userTrackingButton.layer.shadowOffset = CGSize(width: 0, height: 4)
+        userTrackingButton.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.25)
+        
         mapView.addSubview(userTrackingButton)
         
         NSLayoutConstraint.activate([
             userTrackingButton.widthAnchor.constraint(equalToConstant: 50),
             userTrackingButton.heightAnchor.constraint(equalToConstant: 50),
-            userTrackingButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -30),
-            userTrackingButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -100)
+            userTrackingButton.rightAnchor.constraint(equalTo: self.mapView.rightAnchor, constant: -20),
+            userTrackingButton.topAnchor.constraint(equalTo: self.buttonsContainerView.bottomAnchor, constant: 10),
         ])
     }
     
