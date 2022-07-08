@@ -13,6 +13,7 @@ class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     private var observers: Set<AnyCancellable> = []
     var selectedAnnotationView: MKAnnotationView?
+    var selectedAnnotation: MKAnnotationView?
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
