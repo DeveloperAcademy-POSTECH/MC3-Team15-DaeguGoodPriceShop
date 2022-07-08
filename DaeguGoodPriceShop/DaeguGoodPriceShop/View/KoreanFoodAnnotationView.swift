@@ -8,8 +8,6 @@
 import MapKit
 
 final class KoreanFoodAnnotationView: MKAnnotationView, ShopAnnotatable {
-    static let identifier = "KoreanFoodAnnotationView"
-    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.clusteringIdentifier = "CateringStore"

@@ -8,8 +8,6 @@
 import MapKit
 
 final class HairCutAnnotationView: MKAnnotationView, ShopAnnotatable {
-    static let identifier = "HairCutAnnotationView"
-    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.clusteringIdentifier = "HairdressingShop"

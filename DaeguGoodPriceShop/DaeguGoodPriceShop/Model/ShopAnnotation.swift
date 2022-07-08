@@ -12,7 +12,7 @@ final class ShopAnnotation: NSObject, MKAnnotation {
     let latitude: Double
     let longitude: Double
     var coordinate: CLLocationCoordinate2D {
-        CLLocation(latitude: latitude, longitude: longitude).coordinate
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
     init(shopSubCategory: ShopSubCategory, latitude: Double, longitude: Double) {
