@@ -19,6 +19,19 @@ enum ShopSubCategory: String {
     case cleaning = "세탁"
     case skinCare = "피부미용"
     case bath = "목욕"
+    
+    var category: ShopCategory {
+        switch self {
+        case .koreanFood, .chineseFood, .westernFood, .japaneseFood, .flourBasedFood, .bakery, .cafe:
+            return .cateringStore
+        case .hairCut:
+            return .hairdressingShop
+        case .cleaning:
+            return .laundryShop
+        case .skinCare, .bath:
+            return .serviceShop
+        }
+    }
 }
 
 enum ShopCategory {
