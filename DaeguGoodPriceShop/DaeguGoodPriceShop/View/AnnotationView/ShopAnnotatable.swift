@@ -7,7 +7,9 @@
 
 import UIKit
 
-protocol ShopAnnotatable: AnyObject { }
+protocol ShopAnnotatable: AnyObject {
+    func selected()
+}
 
 extension ShopAnnotatable {
     static var identifier: String {

@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     let minimumHeight: CGFloat = 70
     let fullHeight: CGFloat = UIScreen.main.bounds.height - 70
     var currentHeight: CGFloat = 70
+    var selectedAnnotation: MKAnnotationView?
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
@@ -198,6 +199,13 @@ extension MapViewController: MKMapViewDelegate {
         case .bath:
             return mapView.dequeueReusableAnnotationView(withIdentifier: BathAnnotationView.identifier)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedAnnotation?.prepareForDisplay()
+        guard let shopAnnotatable = view as? ShopAnnotatable else { return }
+        shopAnnotatable.selected()
+        selectedAnnotation = view
     }
 }
 

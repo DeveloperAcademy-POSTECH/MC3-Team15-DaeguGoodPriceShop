@@ -79,6 +79,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A80AAF9C2877C71400795C87 /* AnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */,
+				A80AAF962876508400795C87 /* ShopAnnotatable.swift */,
+				A80AAF8028764F5C00795C87 /* KoreanFoodAnnotationView.swift */,
+				A80AAF8228764F6900795C87 /* ChineseFoodAnnotationView.swift */,
+				A80AAF8428764F7900795C87 /* WesternFoodAnnotationView.swift */,
+				A80AAF8628764F9500795C87 /* JapaneseFoodAnnotationView.swift */,
+				A80AAF8828764FA500795C87 /* FlourBasedFoodAnnotationView.swift */,
+				A80AAF8A28764FB000795C87 /* BakeryAnnotationView.swift */,
+				A80AAF8C28764FB600795C87 /* CafeAnnotationView.swift */,
+				A80AAF8E28764FBD00795C87 /* HairCutAnnotationView.swift */,
+				A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */,
+				A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */,
+				A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */,
+			);
+			path = AnnotationView;
+			sourceTree = "<group>";
+		};
 		A8E74E60286BFA8A000DB2B8 = {
 			isa = PBXGroup;
 			children = (
@@ -125,21 +145,9 @@
 		A8E74E81286BFAFD000DB2B8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A80AAF9C2877C71400795C87 /* AnnotationView */,
 				A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */,
 				DAD3888A28770F720085B877 /* HalfModalView.swift */,
-				A80AAF8028764F5C00795C87 /* KoreanFoodAnnotationView.swift */,
-				A80AAF8228764F6900795C87 /* ChineseFoodAnnotationView.swift */,
-				A80AAF8428764F7900795C87 /* WesternFoodAnnotationView.swift */,
-				A80AAF8628764F9500795C87 /* JapaneseFoodAnnotationView.swift */,
-				A80AAF8828764FA500795C87 /* FlourBasedFoodAnnotationView.swift */,
-				A80AAF8A28764FB000795C87 /* BakeryAnnotationView.swift */,
-				A80AAF8C28764FB600795C87 /* CafeAnnotationView.swift */,
-				A80AAF8E28764FBD00795C87 /* HairCutAnnotationView.swift */,
-				A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */,
-				A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */,
-				A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */,
-				A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */,
-				A80AAF962876508400795C87 /* ShopAnnotatable.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -427,7 +435,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZRTG6WMRW7;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -456,7 +464,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZRTG6WMRW7;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
