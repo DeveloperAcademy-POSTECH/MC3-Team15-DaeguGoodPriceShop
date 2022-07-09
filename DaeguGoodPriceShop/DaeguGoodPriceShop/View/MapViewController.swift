@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
             removeAnnotation()
             mapViewModel.setFavoriteShop()
             addAnnotation()
-            view.layoutIfNeeded()
+            view.setNeedsLayout()
         } else {
             //TODO: 카테고리 선택 모달 띄우기
         }
