@@ -8,6 +8,8 @@
 import UIKit
 
 class DetailModalViewController: ModalViewController {
+    lazy var defaultViewController = self.parent?.children.first(where: { $0 is DefaultModalViewController }) as! DefaultModalViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,38 +23,42 @@ class DetailModalViewController: ModalViewController {
         let translation = gesture.translation(in: view)
         let isDraggingDown = translation.y > 0
         let newHeight = currentHeight - translation.y
-        let defaultViewController = self.parent?.children.first(where: { $0 is DefaultModalViewController }) as! DefaultModalViewController
         
         switch gesture.state {
         case .changed:
-            if newHeight < ModalHeight.median.height {
+            if newHeight < ModalHeight.median.value {
                 modalHeight?.constant = newHeight
                 parent?.view.layoutIfNeeded()
                 defaultViewController.modalHeight?.constant = newHeight
                 parent?.view.layoutIfNeeded()
-            } else if newHeight < ModalHeight.maximum.height {
+            } else if newHeight < ModalHeight.maximum.value {
                 modalHeight?.constant = newHeight
                 parent?.view.layoutIfNeeded()
             }
         case .ended:
-            if newHeight < ModalHeight.median.height {
+            if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
-                    changeModalHeight(ModalHeight.minimum.height)
-                    defaultViewController.changeModalHeight(ModalHeight.minimum.height)
+                    changeModalHeight(.minimum)
+                    defaultViewController.changeModalHeight(.minimum)
                 } else {
-                    changeModalHeight(ModalHeight.median.height)
-                    defaultViewController.changeModalHeight(ModalHeight.median.height)
+                    changeModalHeight(.median)
+                    defaultViewController.changeModalHeight(.median)
                 }
             } else {
                 if isDraggingDown {
-                    changeModalHeight(ModalHeight.median.height)
+                    changeModalHeight(.median)
                 } else {
-                    changeModalHeight(ModalHeight.maximum.height)
+                    changeModalHeight(.maximum)
                 }
             }
         default:
             break
         }
+    }
+    
+    func initModal() {
+        changeModalHeight(.median)
+        defaultViewController.changeModalHeight(.median)
     }
 }
 

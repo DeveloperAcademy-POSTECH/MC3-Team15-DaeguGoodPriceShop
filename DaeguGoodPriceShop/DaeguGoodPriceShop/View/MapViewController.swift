@@ -72,20 +72,11 @@ class MapViewController: UIViewController {
             addAnnotation()
             
             // 테스트용, 실제로는 Annotation을 눌렀을 때 Action하는 로직
-            setDetailModal()
+            detailModalVC.initModal()
             view.setNeedsLayout()
         } else {
-            setCategoryModal()
+            categoryModalVC.initModal()
         }
-    }
-    
-    private func setDetailModal() {
-        defaultModalVC.changeModalHeight(ModalHeight.median.height)
-        detailModalVC.changeModalHeight(ModalHeight.median.height)
-    }
-    
-    private func setCategoryModal() {
-        categoryModalVC.changeModalHeight(ModalHeight.category.height)
     }
     
     private func configureView() {
@@ -123,9 +114,9 @@ class MapViewController: UIViewController {
             categoryModalVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-        defaultModalVC.modalHeight = defaultModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.minimum.height)
-        detailModalVC.modalHeight = detailModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.height)
-        categoryModalVC.modalHeight = categoryModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.height)
+        defaultModalVC.modalHeight = defaultModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.minimum.value)
+        detailModalVC.modalHeight = detailModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.value)
+        categoryModalVC.modalHeight = categoryModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.value)
         
         defaultModalVC.modalHeight?.isActive = true
         detailModalVC.modalHeight?.isActive = true
