@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
     let minimumHeight: CGFloat = 70
     let fullHeight: CGFloat = UIScreen.main.bounds.height - 70
     var currentHeight: CGFloat = 70
-    var selectedAnnotation: MKAnnotationView?
+    var selectedAnnotationView: MKAnnotationView?
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
@@ -154,16 +154,10 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
-    private func addAnnotation(category: ShopCategory? = nil) {
+    private func addAnnotation() {
         mapViewModel.getShops().forEach { shop in
-            guard let shopSubCategory = shop.shopSubCategory else { return }
-            mapView.addAnnotation(
-                ShopAnnotation(
-                    shopSubCategory: shopSubCategory,
-                    latitude: shop.latitude,
-                    longitude: shop.longitude
-                )
-            )
+            guard let annotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(annotation)
         }
     }
     
@@ -202,10 +196,10 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        selectedAnnotation?.prepareForDisplay()
-        guard let shopAnnotatable = view as? ShopAnnotatable else { return }
-        shopAnnotatable.selected()
-        selectedAnnotation = view
+        selectedAnnotationView?.prepareForDisplay()
+        guard let shopAnnotationView = view as? ShopAnnotationView else { return }
+        shopAnnotationView.selected()
+        selectedAnnotationView = view
     }
 }
 
