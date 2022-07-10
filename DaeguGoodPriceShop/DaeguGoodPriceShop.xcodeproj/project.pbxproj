@@ -18,7 +18,7 @@
 		A80AAF9128764FCB00795C87 /* CleaningAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */; };
 		A80AAF9328764FD500795C87 /* SkinCareAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */; };
 		A80AAF9528764FDC00795C87 /* BathAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */; };
-		A80AAF972876508400795C87 /* ShopAnnotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF962876508400795C87 /* ShopAnnotatable.swift */; };
+		A80AAF972876508400795C87 /* ShopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF962876508400795C87 /* ShopAnnotationView.swift */; };
 		A80AAF99287656D400795C87 /* ClusteringAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */; };
 		A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */; };
 		A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */; };
@@ -52,7 +52,7 @@
 		A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningAnnotationView.swift; sourceTree = "<group>"; };
 		A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCareAnnotationView.swift; sourceTree = "<group>"; };
 		A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathAnnotationView.swift; sourceTree = "<group>"; };
-		A80AAF962876508400795C87 /* ShopAnnotatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotatable.swift; sourceTree = "<group>"; };
+		A80AAF962876508400795C87 /* ShopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotationView.swift; sourceTree = "<group>"; };
 		A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusteringAnnotationView.swift; sourceTree = "<group>"; };
 		A8E74E69286BFA8A000DB2B8 /* DaeguGoodPriceShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaeguGoodPriceShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +87,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A80AAF9C2877C71400795C87 /* AnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				A80AAF98287656D400795C87 /* ClusteringAnnotationView.swift */,
+				A80AAF962876508400795C87 /* ShopAnnotationView.swift */,
+				A80AAF8028764F5C00795C87 /* KoreanFoodAnnotationView.swift */,
+				A80AAF8228764F6900795C87 /* ChineseFoodAnnotationView.swift */,
+				A80AAF8428764F7900795C87 /* WesternFoodAnnotationView.swift */,
+				A80AAF8628764F9500795C87 /* JapaneseFoodAnnotationView.swift */,
+				A80AAF8828764FA500795C87 /* FlourBasedFoodAnnotationView.swift */,
+				A80AAF8A28764FB000795C87 /* BakeryAnnotationView.swift */,
+				A80AAF8C28764FB600795C87 /* CafeAnnotationView.swift */,
+				A80AAF8E28764FBD00795C87 /* HairCutAnnotationView.swift */,
+				A80AAF9028764FCB00795C87 /* CleaningAnnotationView.swift */,
+				A80AAF9228764FD500795C87 /* SkinCareAnnotationView.swift */,
+				A80AAF9428764FDC00795C87 /* BathAnnotationView.swift */,
+			);
+			path = AnnotationView;
+			sourceTree = "<group>";
+		};
 		A8E74E60286BFA8A000DB2B8 = {
 			isa = PBXGroup;
 			children = (
@@ -293,7 +313,7 @@
 				DA4A198C287A95C4004E019F /* CategoryModalViewController.swift in Sources */,
 				A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */,
 				A80AAF8928764FA500795C87 /* FlourBasedFoodAnnotationView.swift in Sources */,
-				A80AAF972876508400795C87 /* ShopAnnotatable.swift in Sources */,
+				A80AAF972876508400795C87 /* ShopAnnotationView.swift in Sources */,
 				A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */,
 				DA4A1988287A9596004E019F /* DefaultModalViewController.swift in Sources */,
 				DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */,

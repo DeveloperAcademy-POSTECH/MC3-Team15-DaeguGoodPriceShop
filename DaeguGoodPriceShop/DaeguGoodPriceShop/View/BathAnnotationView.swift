@@ -7,7 +7,7 @@
 
 import MapKit
 
-final class BathAnnotationView: MKAnnotationView, ShopAnnotatable {
+final class BathAnnotationView: ShopAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.clusteringIdentifier = "ServiceShop"
@@ -26,5 +26,10 @@ final class BathAnnotationView: MKAnnotationView, ShopAnnotatable {
     override func prepareForDisplay() {
         super.prepareForDisplay()
         self.image = resizedImage(image: UIImage(named: "bath"), width: 40, height: 40)
+    }
+    
+    override func selected() {
+        super.selected()
+        self.image = resizedImage(image: UIImage(named: "bathSelected"), width: 40, height: 49.92)
     }
 }

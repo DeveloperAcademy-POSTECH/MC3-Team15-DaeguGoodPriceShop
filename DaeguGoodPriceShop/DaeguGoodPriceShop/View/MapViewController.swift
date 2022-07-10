@@ -12,6 +12,7 @@ class MapViewController: UIViewController {
     private let mapViewModel = MapViewModel()
     @IBOutlet private weak var mapView: MKMapView!
     private var observers: Set<AnyCancellable> = []
+    var selectedAnnotationView: MKAnnotationView?
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
@@ -203,14 +204,8 @@ class MapViewController: UIViewController {
     
     private func addAnnotation() {
         mapViewModel.getShops().forEach { shop in
-            guard let shopSubCategory = shop.shopSubCategory else { return }
-            mapView.addAnnotation(
-                ShopAnnotation(
-                    shopSubCategory: shopSubCategory,
-                    latitude: shop.latitude,
-                    longitude: shop.longitude
-                )
-            )
+            guard let annotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(annotation)
         }
     }
     
@@ -246,6 +241,13 @@ extension MapViewController: MKMapViewDelegate {
         case .bath:
             return mapView.dequeueReusableAnnotationView(withIdentifier: BathAnnotationView.identifier)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedAnnotationView?.prepareForDisplay()
+        guard let shopAnnotationView = view as? ShopAnnotationView else { return }
+        shopAnnotationView.selected()
+        selectedAnnotationView = view
     }
 }
 
