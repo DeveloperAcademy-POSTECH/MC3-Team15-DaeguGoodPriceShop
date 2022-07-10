@@ -63,7 +63,7 @@ class ModalViewController: UIViewController {
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowRadius = 4
         view.layer.masksToBounds = false
-        
+        view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
         
         view.addSubview(gestureView)
         gestureView.addSubview(gestureBarView)
