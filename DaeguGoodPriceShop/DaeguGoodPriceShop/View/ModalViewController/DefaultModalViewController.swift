@@ -10,7 +10,17 @@ import UIKit
 class DefaultModalViewController: ModalViewController {
     static let sectionHeaderElementKind = "section-header-element-kind"
     
-    private var collectionView: UICollectionView = UICollectionView()
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        return cv
+    }()
     
     enum StoreListSection: String, CaseIterable {
         case category = "카테고리"
@@ -70,6 +80,7 @@ class DefaultModalViewController: ModalViewController {
 }
 
 extension DefaultModalViewController {
+    
     private func configureDataSource() {
         datasource = UICollectionViewDiffableDataSource<Section, DataItem>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             let sectionType = Section.allCases[indexPath.section]
@@ -81,19 +92,23 @@ extension DefaultModalViewController {
                 cell.configure(item)
                 
                 return cell
-                
             case .favourite:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreListViewCell.identifier, for: indexPath) as? StoreListViewCell else { return nil }
                 
                 cell.configure(item)
                 
                 return cell
+                
             case .normal:
-                return UICollectionViewCell()
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreListViewCell.identifier, for: indexPath) as? StoreListViewCell else { return nil }
+                cell.configure(item)
+                
+                return cell
             }
         })
         
         datasource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            
             guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else {
                 fatalError("cannot create header view")
             }
@@ -113,14 +128,25 @@ extension DefaultModalViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        collectionView.register(DetailCategoryViewCell.self, forCellWithReuseIdentifier: DetailCategoryViewCell.identifier)
-        collectionView.register(StoreListViewCell.self, forCellWithReuseIdentifier: StoreListViewCell.identifier)
+        collectionView.register(
+            DetailCategoryViewCell.self,
+            forCellWithReuseIdentifier: DetailCategoryViewCell.identifier
+        )
         
-        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: DefaultModalViewController.sectionHeaderElementKind, withReuseIdentifier: HeaderView.reuseIdentifier)
+        collectionView.register(
+            StoreListViewCell.self,
+            forCellWithReuseIdentifier: StoreListViewCell.identifier
+        )
+        
+        collectionView.register(
+            HeaderView.self,
+            forSupplementaryViewOfKind: DefaultModalViewController.sectionHeaderElementKind,
+            withReuseIdentifier: HeaderView.reuseIdentifier
+        )
         
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
@@ -134,7 +160,7 @@ extension DefaultModalViewController {
             switch sectionLayoutKind {
             case .category: return self.generateCategoryLayout()
             case .favourite: return self.generateFavouriteLayout()
-            case .normal: return self.generateCategoryLayout()
+            case .normal: return self.generateNormalLayout()
             }
         }
         
@@ -150,7 +176,7 @@ extension DefaultModalViewController {
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .absolute(70),
             heightDimension: .absolute(60))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
         let headerSize = NSCollectionLayoutSize(
@@ -175,6 +201,23 @@ extension DefaultModalViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(StoreListViewCell.height))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: DefaultModalViewController.sectionHeaderElementKind, alignment: .top)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        section.interGroupSpacing = 10
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        return section
+    }
+    
+    private func generateNormalLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(160))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(160))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
