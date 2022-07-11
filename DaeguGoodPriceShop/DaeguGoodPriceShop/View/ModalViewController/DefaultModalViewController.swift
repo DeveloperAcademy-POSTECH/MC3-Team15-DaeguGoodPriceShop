@@ -14,7 +14,7 @@ class DefaultModalViewController: ModalViewController {
     
     enum StoreListSection: String, CaseIterable {
         case category = "카테고리"
-        case favorite = "즐겨찾기"
+        case favourite = "즐겨찾기"
         case normal = "목록"
     }
     
@@ -22,7 +22,7 @@ class DefaultModalViewController: ModalViewController {
     private var datasource: UICollectionViewDiffableDataSource<Section, DataItem>!
     
     private var detailCategories: [DataItem] = DataItem.categories
-    private var favoriteStores: [DataItem] = DataItem.favorites
+    private var favouriteStores: [DataItem] = DataItem.favourites
     private var normalStores: [DataItem] = DataItem.normals
     
     override func viewDidLoad() {
@@ -76,12 +76,18 @@ extension DefaultModalViewController {
             
             switch sectionType {
             case .category:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCategoryViewCell", for: indexPath) as? DetailCategoryViewCell else { return nil }
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCategoryViewCell.identifier, for: indexPath) as? DetailCategoryViewCell else { return nil }
+                
                 cell.configure(item)
                 
                 return cell
-            case .favorite:
-                return UICollectionViewCell()
+                
+            case .favourite:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreListViewCell.identifier, for: indexPath) as? StoreListViewCell else { return nil }
+                
+                cell.configure(item)
+                
+                return cell
             case .normal:
                 return UICollectionViewCell()
             }
@@ -108,6 +114,7 @@ extension DefaultModalViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.register(DetailCategoryViewCell.self, forCellWithReuseIdentifier: DetailCategoryViewCell.identifier)
+        collectionView.register(StoreListViewCell.self, forCellWithReuseIdentifier: StoreListViewCell.identifier)
         
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: DefaultModalViewController.sectionHeaderElementKind, withReuseIdentifier: HeaderView.reuseIdentifier)
         
@@ -126,7 +133,7 @@ extension DefaultModalViewController {
             
             switch sectionLayoutKind {
             case .category: return self.generateCategoryLayout()
-            case .favorite: return self.generateCategoryLayout()
+            case .favourite: return self.generateFavouriteLayout()
             case .normal: return self.generateCategoryLayout()
             }
         }
@@ -163,13 +170,30 @@ extension DefaultModalViewController {
         return section
     }
     
+    private func generateFavouriteLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(160))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(160))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: DefaultModalViewController.sectionHeaderElementKind, alignment: .top)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        section.interGroupSpacing = 10
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        return section
+    }
+    
     private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<Section, DataItem> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, DataItem>()
         snapshot.appendSections([.category])
         snapshot.appendItems(detailCategories, toSection: .category)
         
-        snapshot.appendSections([.favorite])
-        snapshot.appendItems(favoriteStores, toSection: .favorite)
+        snapshot.appendSections([.favourite])
+        snapshot.appendItems(favouriteStores, toSection: .favourite)
         
         snapshot.appendSections([.normal])
         snapshot.appendItems(normalStores, toSection: .normal)

@@ -52,7 +52,7 @@ extension DataItem {
         DataItem(categoryName: "일식", categoryColor: UIColor.black),
     ]
     
-    static let favorites: [DataItem] = [
+    static let favourites: [DataItem] = [
         DataItem(storeName: "착한가격식당11", storeAddress: "포항시 어디구 여기동 저기로 1", storeCallNumber: "07011111111"),
         DataItem(storeName: "착한가격식당12", storeAddress: "포항시 어디구 여기동 저기로 2", storeCallNumber: "07022222222")
     ]
