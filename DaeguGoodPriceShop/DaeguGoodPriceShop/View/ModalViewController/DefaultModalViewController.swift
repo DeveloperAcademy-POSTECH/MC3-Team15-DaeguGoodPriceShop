@@ -8,6 +8,19 @@
 import UIKit
 
 class DefaultModalViewController: ModalViewController {
+    static let sectionHeaderElementKind = "section-header-element-kind"
+    
+    private var collectionView: UICollectionView = UICollectionView()
+    
+    enum StoreListSection: String, CaseIterable {
+        case category = "카테고리"
+        case favorite = "즐겨찾기"
+        case normal = "목록"
+    }
+    
+    typealias Section = StoreListSection
+    private var datasource: UICollectionViewDiffableDataSource<Section, DataItem>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -44,5 +57,22 @@ class DefaultModalViewController: ModalViewController {
         default:
             break
         }
+    }
+}
+
+extension DefaultModalViewController {
+    private func configureDataSource() {
+        datasource = UICollectionViewDiffableDataSource<Section, DataItem>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
+            let sectionType = Section.allCases[indexPath.section]
+            
+            switch sectionType {
+            case .category:
+                return UICollectionViewCell()
+            case .favorite:
+                return UICollectionViewCell()
+            case .normal:
+                return UICollectionViewCell()
+            }
+        })
     }
 }
