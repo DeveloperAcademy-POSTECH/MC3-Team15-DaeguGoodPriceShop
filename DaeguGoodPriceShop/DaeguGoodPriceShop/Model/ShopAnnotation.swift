@@ -11,19 +11,14 @@ final class ShopAnnotation: NSObject, MKAnnotation {
     let shopSubCategory: ShopSubCategory
     let latitude: Double
     let longitude: Double
-    let title: String?
-    let subtitle: String?
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    init?(of shop: Shop) {
-        guard let shopSubCategory = shop.shopSubCategory else { return nil }
+    init(shopSubCategory: ShopSubCategory, latitude: Double, longitude: Double) {
         self.shopSubCategory = shopSubCategory
-        self.latitude = shop.latitude
-        self.longitude = shop.longitude
-        self.title = shop.shopName
-        self.subtitle = shop.menu
+        self.latitude = latitude
+        self.longitude = longitude
         super.init()
     }
 }
