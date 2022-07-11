@@ -11,7 +11,6 @@ import Combine
 class MapViewController: UIViewController {
     private let mapViewModel = MapViewModel()
     @IBOutlet private weak var mapView: MKMapView!
-    @IBOutlet weak var modalHeight: NSLayoutConstraint!
     private var observers: Set<AnyCancellable> = []
     
     @IBOutlet weak var modalView: UIView!
@@ -22,7 +21,7 @@ class MapViewController: UIViewController {
     let fullHeight: CGFloat = UIScreen.main.bounds.height - 70
     var currentHeight: CGFloat = 70
     var selectedAnnotationView: MKAnnotationView?
-    
+   
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
         button.isHidden = true
@@ -30,12 +29,41 @@ class MapViewController: UIViewController {
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        
         return button
     }()
     
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var buttonsContainerView: UIView!
+    
+    lazy var defaultModalVC: DefaultModalViewController = {
+        let defaultModalVC = DefaultModalViewController()
+        self.addChild(defaultModalVC)
+        view.addSubview(defaultModalVC.view)
+        defaultModalVC.willMove(toParent: self)
+        defaultModalVC.didMove(toParent: self)
+        defaultModalVC.view.translatesAutoresizingMaskIntoConstraints = false
+        return defaultModalVC
+    }()
+    
+    lazy var detailModalVC: DetailModalViewController = {
+        let detailModalVC = DetailModalViewController()
+        self.addChild(detailModalVC)
+        view.addSubview(detailModalVC.view)
+        detailModalVC.willMove(toParent: self)
+        detailModalVC.didMove(toParent: self)
+        detailModalVC.view.translatesAutoresizingMaskIntoConstraints = false
+        return detailModalVC
+    }()
+    
+    lazy var categoryModalVC: CategoryModalViewController = {
+        let categoryModalVC = CategoryModalViewController()
+        self.addChild(categoryModalVC)
+        view.addSubview(categoryModalVC.view)
+        categoryModalVC.willMove(toParent: self)
+        categoryModalVC.didMove(toParent: self)
+        categoryModalVC.view.translatesAutoresizingMaskIntoConstraints = false
+        return categoryModalVC
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +72,19 @@ class MapViewController: UIViewController {
         registerAnnotationViewClasses()
         configureBindings()
         addAnnotation()
-        setupPanGesture()
+    }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        if sender.tag == 0 {
+            removeAnnotation()
+            mapViewModel.setFavoriteShop()
+            addAnnotation()
+            // 테스트용, 실제로는 Annotation을 눌렀을 때 Action하는 로직
+            detailModalVC.initModal()
+            view.setNeedsLayout()
+        } else {
+            categoryModalVC.initModal()
+        }
     }
     
     private func configureView() {
@@ -59,20 +99,36 @@ class MapViewController: UIViewController {
         
         mapView.addSubview(userTrackingButton)
         
-        modalView.layer.cornerRadius = 20
-        modalView.layer.shadowRadius = 4
-        modalView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        modalView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.25)
-        modalHeight.constant = minimumHeight
-        gestureBarView.layer.cornerRadius = 2
-        
+        view.addSubview(defaultModalVC.view)
+        view.addSubview(detailModalVC.view)
+        view.addSubview(categoryModalVC.view)
         
         NSLayoutConstraint.activate([
             userTrackingButton.widthAnchor.constraint(equalToConstant: 50),
             userTrackingButton.heightAnchor.constraint(equalToConstant: 50),
             userTrackingButton.rightAnchor.constraint(equalTo: self.mapView.rightAnchor, constant: -20),
             userTrackingButton.topAnchor.constraint(equalTo: self.buttonsContainerView.bottomAnchor, constant: 10),
+            
+            defaultModalVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            defaultModalVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            defaultModalVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            detailModalVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            detailModalVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            detailModalVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            categoryModalVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            categoryModalVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoryModalVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+        
+        defaultModalVC.modalHeight = defaultModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.minimum.value)
+        detailModalVC.modalHeight = detailModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.value)
+        categoryModalVC.modalHeight = categoryModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.value)
+        
+        defaultModalVC.modalHeight?.isActive = true
+        detailModalVC.modalHeight?.isActive = true
+        categoryModalVC.modalHeight?.isActive = true
     }
     
     private func configureMapView() {

@@ -32,8 +32,12 @@
 		DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7052873C7630038EDE4 /* ShopCategory.swift */; };
 		DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7082873D9DD0038EDE4 /* LocationManager.swift */; };
 		DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */; };
+		DA4A1986287A9583004E019F /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A1985287A9583004E019F /* ModalViewController.swift */; };
+		DA4A1988287A9596004E019F /* DefaultModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A1987287A9596004E019F /* DefaultModalViewController.swift */; };
+		DA4A198A287A95B0004E019F /* DetailModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A1989287A95B0004E019F /* DetailModalViewController.swift */; };
+		DA4A198C287A95C4004E019F /* CategoryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */; };
+		DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198D287A95D9004E019F /* ModalHeight.swift */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
-		DAD3888B28770F720085B877 /* HalfModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD3888A28770F720085B877 /* HalfModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +68,12 @@
 		DA34E7052873C7630038EDE4 /* ShopCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategory.swift; sourceTree = "<group>"; };
 		DA34E7082873D9DD0038EDE4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotation.swift; sourceTree = "<group>"; };
+		DA4A1985287A9583004E019F /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		DA4A1987287A9596004E019F /* DefaultModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultModalViewController.swift; sourceTree = "<group>"; };
+		DA4A1989287A95B0004E019F /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
+		DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModalViewController.swift; sourceTree = "<group>"; };
+		DA4A198D287A95D9004E019F /* ModalHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHeight.swift; sourceTree = "<group>"; };
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
-		DAD3888A28770F720085B877 /* HalfModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +182,7 @@
 			children = (
 				A8E74E89286BFBB5000DB2B8 /* Shop.swift */,
 				DA34E7052873C7630038EDE4 /* ShopCategory.swift */,
+				DA4A198D287A95D9004E019F /* ModalHeight.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -184,6 +193,17 @@
 				DA34E7082873D9DD0038EDE4 /* LocationManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		DA4A1984287A956B004E019F /* ModalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA4A1985287A9583004E019F /* ModalViewController.swift */,
+				DA4A1987287A9596004E019F /* DefaultModalViewController.swift */,
+				DA4A1989287A95B0004E019F /* DetailModalViewController.swift */,
+				DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */,
+			);
+			path = ModalViewController;
 			sourceTree = "<group>";
 		};
 		DAB60438286C26C50039C969 /* Resource */ = {
@@ -270,21 +290,25 @@
 				A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */,
 				A80AAF8D28764FB600795C87 /* CafeAnnotationView.swift in Sources */,
 				DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */,
-				DAD3888B28770F720085B877 /* HalfModalView.swift in Sources */,
 				A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */,
 				A80AAF9328764FD500795C87 /* SkinCareAnnotationView.swift in Sources */,
 				A80AAF99287656D400795C87 /* ClusteringAnnotationView.swift in Sources */,
 				A80AAF8528764F7900795C87 /* WesternFoodAnnotationView.swift in Sources */,
 				A80AAF8328764F6900795C87 /* ChineseFoodAnnotationView.swift in Sources */,
 				A80AAF9528764FDC00795C87 /* BathAnnotationView.swift in Sources */,
+				DA4A1986287A9583004E019F /* ModalViewController.swift in Sources */,
 				A80AAF9128764FCB00795C87 /* CleaningAnnotationView.swift in Sources */,
+				DA4A198C287A95C4004E019F /* CategoryModalViewController.swift in Sources */,
 				A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */,
 				A80AAF8928764FA500795C87 /* FlourBasedFoodAnnotationView.swift in Sources */,
 				A80AAF972876508400795C87 /* ShopAnnotationView.swift in Sources */,
 				A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */,
+				DA4A1988287A9596004E019F /* DefaultModalViewController.swift in Sources */,
+				DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */,
 				A80AAF8B28764FB000795C87 /* BakeryAnnotationView.swift in Sources */,
 				A80AAF8728764F9500795C87 /* JapaneseFoodAnnotationView.swift in Sources */,
 				DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */,
+				DA4A198A287A95B0004E019F /* DetailModalViewController.swift in Sources */,
 				DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */,
 				A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */,
 				A8E74E86286BFB90000DB2B8 /* MapViewModel.swift in Sources */,

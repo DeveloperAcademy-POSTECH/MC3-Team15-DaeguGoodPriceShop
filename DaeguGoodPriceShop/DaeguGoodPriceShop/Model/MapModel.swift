@@ -16,6 +16,7 @@ struct MapModel {
     }
     
     var shops: [Shop] = []
+    var favoriteShopId: Set<Int> = Set(UserDefaults.standard.array(forKey: "favoriteShopId") as? [Int] ?? [])
     
     init() {
         shops = getShopData()
