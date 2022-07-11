@@ -33,7 +33,7 @@ class ModalViewController: UIViewController {
     }()
     
     var modalHeight: NSLayoutConstraint?
-    var currentHeight: CGFloat = ModalHeight.minimum.height
+    var currentHeight: CGFloat = ModalHeight.minimum.value
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +42,16 @@ class ModalViewController: UIViewController {
     }
     
     @objc func dismissModal() {
-        changeModalHeight(ModalHeight.zero.height)
+        changeModalHeight(.zero)
     }
     
-    func changeModalHeight(_ height: CGFloat) {
+    func changeModalHeight(_ height: ModalHeight) {
         UIView.animate(withDuration: 0.3) {
-            self.modalHeight?.constant = height
+            self.modalHeight?.constant = height.value
             self.parent?.view.layoutIfNeeded()
         }
         
-        currentHeight = height
+        currentHeight = height.value
     }
     
     func setupView() {
@@ -63,7 +63,7 @@ class ModalViewController: UIViewController {
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowRadius = 4
         view.layer.masksToBounds = false
-        
+        view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
         
         view.addSubview(gestureView)
         gestureView.addSubview(gestureBarView)
@@ -72,7 +72,7 @@ class ModalViewController: UIViewController {
             gestureView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             gestureView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             gestureView.topAnchor.constraint(equalTo: view.topAnchor),
-            gestureView.heightAnchor.constraint(equalToConstant: ModalHeight.minimum.height),
+            gestureView.heightAnchor.constraint(equalToConstant: ModalHeight.minimum.value),
             
             gestureBarView.topAnchor.constraint(equalTo: gestureView.topAnchor, constant: 5),
             gestureBarView.widthAnchor.constraint(equalToConstant: 63),

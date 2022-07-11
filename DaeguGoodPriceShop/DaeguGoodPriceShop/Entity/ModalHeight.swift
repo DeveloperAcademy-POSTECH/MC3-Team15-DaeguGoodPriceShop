@@ -14,7 +14,7 @@ enum ModalHeight{
     case maximum
     case category
     
-    var height: CGFloat {
+    var value: CGFloat {
         get {
             switch self {
             case .zero:

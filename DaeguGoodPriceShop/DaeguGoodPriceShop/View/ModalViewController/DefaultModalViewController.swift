@@ -23,22 +23,22 @@ class DefaultModalViewController: ModalViewController {
         
         switch gesture.state {
         case .changed:
-            if newHeight < ModalHeight.maximum.height {
+            if newHeight < ModalHeight.maximum.value {
                 modalHeight?.constant = newHeight
                 parent?.view.layoutIfNeeded()
             }
         case .ended:
-            if newHeight < ModalHeight.median.height {
+            if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
-                    changeModalHeight(ModalHeight.minimum.height)
+                    changeModalHeight(.minimum)
                 } else {
-                    changeModalHeight(ModalHeight.median.height)
+                    changeModalHeight(.median)
                 }
             } else {
                 if isDraggingDown {
-                    changeModalHeight(ModalHeight.median.height)
+                    changeModalHeight(.median)
                 } else {
-                    changeModalHeight(ModalHeight.maximum.height)
+                    changeModalHeight(.maximum)
                 }
             }
         default:
