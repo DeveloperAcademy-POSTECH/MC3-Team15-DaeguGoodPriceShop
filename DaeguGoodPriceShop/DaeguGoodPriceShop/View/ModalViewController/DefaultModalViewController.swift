@@ -30,6 +30,7 @@ class DefaultModalViewController: ModalViewController {
     
         configureDataSource()
         
+        collectionView.collectionViewLayout = generateLayout()
         configureCollectionViewLayout()
     }
     
@@ -75,7 +76,10 @@ extension DefaultModalViewController {
             
             switch sectionType {
             case .category:
-                return UICollectionViewCell()
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCategoryViewCell", for: indexPath) as? DetailCategoryViewCell else { return nil }
+                cell.configure(item)
+                
+                return cell
             case .favorite:
                 return UICollectionViewCell()
             case .normal:
@@ -103,6 +107,8 @@ extension DefaultModalViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
+        collectionView.register(DetailCategoryViewCell.self, forCellWithReuseIdentifier: DetailCategoryViewCell.identifier)
+        
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: DefaultModalViewController.sectionHeaderElementKind, withReuseIdentifier: HeaderView.reuseIdentifier)
         
         view.addSubview(collectionView)
@@ -112,6 +118,49 @@ extension DefaultModalViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
+    }
+    
+    private func generateLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout{ (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let sectionLayoutKind = Section.allCases[sectionIndex]
+            
+            switch sectionLayoutKind {
+            case .category: return self.generateCategoryLayout()
+            case .favorite: return self.generateCategoryLayout()
+            case .normal: return self.generateCategoryLayout()
+            }
+        }
+        
+        return layout
+    }
+    
+    private func generateCategoryLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(70),
+            heightDimension: .absolute(60))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: DefaultModalViewController.sectionHeaderElementKind,
+            alignment: .top)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .groupPaging
+        
+        return section
     }
     
     private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<Section, DataItem> {

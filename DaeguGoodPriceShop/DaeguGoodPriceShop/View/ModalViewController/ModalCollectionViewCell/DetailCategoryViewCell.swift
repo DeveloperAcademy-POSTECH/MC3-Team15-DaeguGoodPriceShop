@@ -8,6 +8,8 @@
 import UIKit
 
 class DetailCategoryViewCell: UICollectionViewCell {
+    static let identifier = "detail-category-view-cell"
+    
     private lazy var categoryItemButton: UIButton = {
         let button = UIButton()
         
