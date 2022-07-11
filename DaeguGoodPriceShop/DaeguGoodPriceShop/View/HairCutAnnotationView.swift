@@ -1,5 +1,5 @@
 //
-//  CafeAnnotationView.swift
+//  HairCutAnnotationView.swift
 //  DaeguGoodPriceShop
 //
 //  Created by Shin Jae Ung on 2022/07/07.
@@ -7,10 +7,10 @@
 
 import MapKit
 
-final class CafeAnnotationView: ShopAnnotationView {
+final class HairCutAnnotationView: MKAnnotationView, ShopAnnotatable {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        self.clusteringIdentifier = "CateringStore"
+        self.clusteringIdentifier = "HairdressingShop"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -19,17 +19,12 @@ final class CafeAnnotationView: ShopAnnotationView {
     
     override var annotation: MKAnnotation? {
         willSet {
-            self.clusteringIdentifier = "CateringStore"
+            self.clusteringIdentifier = "HairdressingShop"
         }
     }
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        self.image = resizedImage(image: UIImage(named: "cafe"), width: 40, height: 40)
-    }
-    
-    override func selected() {
-        super.selected()
-        self.image = resizedImage(image: UIImage(named: "cafeSelected"), width: 40, height: 49.92)
+        self.image = resizedImage(image: UIImage(named: "hairCut"), width: 40, height: 40)
     }
 }
