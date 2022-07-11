@@ -70,7 +70,6 @@ class MapViewController: UIViewController {
             removeAnnotation()
             mapViewModel.setFavoriteShop()
             addAnnotation()
-            
             // 테스트용, 실제로는 Annotation을 눌렀을 때 Action하는 로직
             setDetailModal()
             view.setNeedsLayout()

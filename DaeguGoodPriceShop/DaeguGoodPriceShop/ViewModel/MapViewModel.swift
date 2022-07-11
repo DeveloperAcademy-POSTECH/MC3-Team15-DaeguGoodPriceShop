@@ -58,9 +58,23 @@ final class MapViewModel {
 //        }
 //    }
     
-    func addFavoriteShop(shopId: Int) {
+    func toggleFavoriteShop(shopId: Int) {
+        if model.favoriteShopId.contains(shopId) {
+            removeFavoriteShop(shopId: shopId)
+        } else {
+            addFavoriteShop(shopId: shopId)
+        }
+    }
+    
+    private func addFavoriteShop(shopId: Int) {
         model.favoriteShopId.insert(shopId)
         //TODO: Add 할 때마다 UserDefault에 올라가게 되어있지만 그럴 필요가 없다.
+        UserDefaults.standard.set(model.favoriteShopId, forKey: "favoriteShopId")
+    }
+    
+    private func removeFavoriteShop(shopId: Int) {
+        model.favoriteShopId.remove(shopId)
+        //TODO: Remove 할 때마다 UserDefault에 올라가게 되어있지만 그럴 필요가 없다.
         UserDefaults.standard.set(model.favoriteShopId, forKey: "favoriteShopId")
     }
     
