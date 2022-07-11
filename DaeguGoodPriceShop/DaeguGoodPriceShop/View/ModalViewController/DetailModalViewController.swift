@@ -8,12 +8,16 @@
 import UIKit
 
 class DetailModalViewController: ModalViewController {
-    lazy var defaultViewController = self.parent?.children.first(where: { $0 is DefaultModalViewController }) as! DefaultModalViewController
-    let mapViewModel = MapViewModel()
-    private var selectedShop: Shop?
+    lazy var defaultViewController = parent?.children.first(where: { $0 is DefaultModalViewController }) as! DefaultModalViewController
+    lazy var mapViewModel = (parent as? MapViewController)?.mapViewModel
+    private var selectedShop: Shop? {
+        didSet {
+            setFavoriteButtonImage()
+        }
+    }
     
     lazy var favoriteButton: UIButton = {
-        var isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
+        var isFavoriteShop = mapViewModel?.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
@@ -31,15 +35,15 @@ class DetailModalViewController: ModalViewController {
             return
         }
 
-        mapViewModel.toggleFavoriteShop(shopId: shop.serialNumber)
+        mapViewModel?.toggleFavoriteShop(shopId: shop.serialNumber)
         setFavoriteButtonImage()
+        (parent as? MapViewController)?.updateAnnotation()
     }
     
     func setFavoriteButtonImage() {
-        
-        let isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
-        favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-        favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
+        let isFavoriteShop = mapViewModel?.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
+        favoriteButton.setImage(isFavoriteShop ?? false ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        favoriteButton.tintColor = (isFavoriteShop ?? false) ? UIColor.red : UIColor.gray
     }
     
     override func setupView() {
@@ -104,7 +108,7 @@ class DetailModalViewController: ModalViewController {
     }
     
     func setData(shopId id: Int) {
-        selectedShop = mapViewModel.findShop(shopId: id)
+        selectedShop = mapViewModel?.findShop(shopId: id)
     }
     
     @objc override func dismissModal() {
