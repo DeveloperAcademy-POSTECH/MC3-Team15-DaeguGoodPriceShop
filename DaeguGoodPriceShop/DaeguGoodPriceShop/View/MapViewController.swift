@@ -9,7 +9,7 @@ import MapKit
 import Combine
 
 class MapViewController: UIViewController {
-    private let mapViewModel = MapViewModel()
+    let mapViewModel = MapViewModel()
     @IBOutlet private weak var mapView: MKMapView!
     private var observers: Set<AnyCancellable> = []
     var selectedAnnotationView: MKAnnotationView?
@@ -72,9 +72,6 @@ class MapViewController: UIViewController {
             removeAnnotation()
             mapViewModel.setFavoriteShop()
             addAnnotation()
-            // 테스트용, 실제로는 Annotation을 눌렀을 때 Action하는 로직
-            detailModalVC.initModal()
-            view.setNeedsLayout()
         } else {
             categoryModalVC.initModal()
         }
@@ -249,6 +246,15 @@ extension MapViewController: MKMapViewDelegate {
         guard let shopAnnotationView = view as? ShopAnnotationView else { return }
         shopAnnotationView.selected()
         selectedAnnotationView = view
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let selectedShopData = view.annotation as? ShopAnnotation else {
+            return
+        }
+        
+        detailModalVC.setData(shopId: selectedShopData.serialNumber)
+        detailModalVC.initModal()
     }
 }
 

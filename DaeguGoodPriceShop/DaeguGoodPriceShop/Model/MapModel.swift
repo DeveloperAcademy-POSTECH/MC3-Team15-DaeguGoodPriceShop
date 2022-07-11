@@ -42,5 +42,9 @@ struct MapModel {
         os_log(.debug, log: .default, "Successfully Get Json Data")
         return shops
     }
+    
+    func findById(shopId id: Int) -> Shop? {
+        return shops.first(where: {$0.serialNumber == id })
+    }
 }
 
