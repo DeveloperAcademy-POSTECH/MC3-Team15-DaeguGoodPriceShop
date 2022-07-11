@@ -13,6 +13,15 @@ class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     private var observers: Set<AnyCancellable> = []
     
+    @IBOutlet weak var modalView: UIView!
+    @IBOutlet weak var gestureView: UIView!
+    @IBOutlet weak var gestureBarView: UIView!
+    let defaultHeight: CGFloat = 250
+    let minimumHeight: CGFloat = 70
+    let fullHeight: CGFloat = UIScreen.main.bounds.height - 70
+    var currentHeight: CGFloat = 70
+    var selectedAnnotationView: MKAnnotationView?
+   
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
         button.isHidden = true
@@ -203,14 +212,8 @@ class MapViewController: UIViewController {
     
     private func addAnnotation() {
         mapViewModel.getShops().forEach { shop in
-            guard let shopSubCategory = shop.shopSubCategory else { return }
-            mapView.addAnnotation(
-                ShopAnnotation(
-                    shopSubCategory: shopSubCategory,
-                    latitude: shop.latitude,
-                    longitude: shop.longitude
-                )
-            )
+            guard let annotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(annotation)
         }
     }
     
@@ -246,6 +249,13 @@ extension MapViewController: MKMapViewDelegate {
         case .bath:
             return mapView.dequeueReusableAnnotationView(withIdentifier: BathAnnotationView.identifier)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedAnnotationView?.prepareForDisplay()
+        guard let shopAnnotationView = view as? ShopAnnotationView else { return }
+        shopAnnotationView.selected()
+        selectedAnnotationView = view
     }
 }
 

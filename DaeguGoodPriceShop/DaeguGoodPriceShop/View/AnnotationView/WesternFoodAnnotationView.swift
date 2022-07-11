@@ -1,5 +1,5 @@
 //
-//  FlourBasedFoodAnnotationView.swift
+//  WesternFoodAnnotationView.swift
 //  DaeguGoodPriceShop
 //
 //  Created by Shin Jae Ung on 2022/07/07.
@@ -7,7 +7,7 @@
 
 import MapKit
 
-final class FlourBasedFoodAnnotationView: MKAnnotationView, ShopAnnotatable {
+final class WesternFoodAnnotationView: ShopAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.clusteringIdentifier = "CateringStore"
@@ -25,6 +25,11 @@ final class FlourBasedFoodAnnotationView: MKAnnotationView, ShopAnnotatable {
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        self.image = resizedImage(image: UIImage(named: "flourBasedFood"), width: 40, height: 40)
+        self.image = resizedImage(image: UIImage(named: "westernFood"), width: 40, height: 40)
+    }
+    
+    override func selected() {
+        super.selected()
+        self.image = resizedImage(image: UIImage(named: "westernFoodSelected"), width: 40, height: 49.92)
     }
 }
