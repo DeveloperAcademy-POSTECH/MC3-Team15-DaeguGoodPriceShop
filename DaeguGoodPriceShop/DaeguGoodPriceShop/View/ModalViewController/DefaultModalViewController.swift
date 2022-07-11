@@ -27,6 +27,10 @@ class DefaultModalViewController: ModalViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        configureDataSource()
+        
+        configureCollectionViewLayout()
     }
     
     override func setupView() {
@@ -79,8 +83,35 @@ extension DefaultModalViewController {
             }
         })
         
+        datasource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else {
+                fatalError("cannot create header view")
+            }
+            
+            supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
+            
+            return supplementaryView
+        }
+        
         let snapshot = snapshotCurrentState()
         datasource.apply(snapshot)
+    }
+    
+    private func configureCollectionViewLayout() {
+        collectionView.isPrefetchingEnabled = false
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: DefaultModalViewController.sectionHeaderElementKind, withReuseIdentifier: HeaderView.reuseIdentifier)
+        
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+        ])
     }
     
     private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<Section, DataItem> {
