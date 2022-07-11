@@ -46,6 +46,17 @@ class MapViewController: UIViewController {
         setupPanGesture()
     }
     
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        if sender.tag == 0 {
+            removeAnnotation()
+            mapViewModel.setFavoriteShop()
+            addAnnotation()
+            view.setNeedsLayout()
+        } else {
+            //TODO: 카테고리 선택 모달 띄우기
+        }
+    }
+    
     private func configureView() {
         buttonsContainerView.layer.cornerRadius = 10
         buttonsContainerView.layer.shadowRadius = 4
@@ -153,7 +164,7 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
-    private func addAnnotation(category: ShopCategory? = nil) {
+    private func addAnnotation() {
         mapViewModel.getShops().forEach { shop in
             guard let shopSubCategory = shop.shopSubCategory else { return }
             mapView.addAnnotation(

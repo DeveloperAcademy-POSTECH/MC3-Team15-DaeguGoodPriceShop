@@ -42,9 +42,10 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bIQ-eY-XdO"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eE1-Y0-Bv9"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-yD-N7y" userLabel="CategoryButton">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-yD-N7y" userLabel="CategoryButton">
                                                 <rect key="frame" x="0.0" y="50" width="50" height="50"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal">
@@ -59,6 +60,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mxN-fS-re3"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qvg-3L-0J8"/>
                                                 </connections>
                                             </button>
                                         </subviews>
