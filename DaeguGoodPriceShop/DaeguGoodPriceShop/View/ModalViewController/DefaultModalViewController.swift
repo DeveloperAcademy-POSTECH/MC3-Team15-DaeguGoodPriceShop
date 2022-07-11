@@ -21,6 +21,10 @@ class DefaultModalViewController: ModalViewController {
     typealias Section = StoreListSection
     private var datasource: UICollectionViewDiffableDataSource<Section, DataItem>!
     
+    private var detailCategories: [DataItem] = DataItem.categories
+    private var favoriteStores: [DataItem] = DataItem.favorites
+    private var normalStores: [DataItem] = DataItem.normals
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -74,5 +78,22 @@ extension DefaultModalViewController {
                 return UICollectionViewCell()
             }
         })
+        
+        let snapshot = snapshotCurrentState()
+        datasource.apply(snapshot)
+    }
+    
+    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<Section, DataItem> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, DataItem>()
+        snapshot.appendSections([.category])
+        snapshot.appendItems(detailCategories, toSection: .category)
+        
+        snapshot.appendSections([.favorite])
+        snapshot.appendItems(favoriteStores, toSection: .favorite)
+        
+        snapshot.appendSections([.normal])
+        snapshot.appendItems(normalStores, toSection: .normal)
+        
+        return snapshot
     }
 }
