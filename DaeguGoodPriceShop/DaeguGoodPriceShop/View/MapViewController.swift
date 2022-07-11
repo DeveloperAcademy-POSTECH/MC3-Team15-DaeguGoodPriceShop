@@ -96,6 +96,8 @@ class MapViewController: UIViewController {
         view.addSubview(detailModalVC.view)
         view.addSubview(categoryModalVC.view)
         
+        categoryModalVC.delegate = self
+        
         NSLayoutConstraint.activate([
             userTrackingButton.widthAnchor.constraint(equalToConstant: 50),
             userTrackingButton.heightAnchor.constraint(equalToConstant: 50),
@@ -252,3 +254,13 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
+extension MapViewController: CategoryFilterable {
+    func categoryTouched(_ category: ShopCategory) {
+        removeAnnotation()
+        mapViewModel.getShops().forEach { shop in
+            guard let shopSubCategory = shop.shopSubCategory, category.subCategories.contains(shopSubCategory) else { return }
+            guard let annotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(annotation)
+        }
+    }
+}
