@@ -10,13 +10,13 @@ import UIKit
 class DetailModalViewController: ModalViewController {
     lazy var defaultViewController = parent?.children.first(where: { $0 is DefaultModalViewController }) as! DefaultModalViewController
     lazy var mapViewModel = (parent as? MapViewController)?.mapViewModel
+    
     private var selectedShop: Shop? {
         didSet {
             setFavoriteButtonImage()
         }
     }
     
-<<<<<<< HEAD
     lazy var favoriteButton: UIButton = {
         var isFavoriteShop = mapViewModel?.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
         let button = UIButton()
@@ -25,8 +25,6 @@ class DetailModalViewController: ModalViewController {
         return button
     }()
     
-=======
->>>>>>> e1ff8c984918f46fcb79b7f2502b1e00e9b805c9
     var modalDetailView: UIStackView = {
         var modalTitleView: UIStackView = {
             let label = UILabel()
@@ -201,7 +199,6 @@ class DetailModalViewController: ModalViewController {
             favoriteButton.topAnchor.constraint(equalTo: dismissButton.topAnchor),
             favoriteButton.trailingAnchor.constraint(equalTo: dismissButton.leadingAnchor),
         
-            modalDetailView.translatesAutoresizingMaskIntoConstraints = false,
             modalDetailView.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
             modalDetailView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             modalDetailView.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30)
