@@ -178,6 +178,7 @@
 			children = (
 				A8E74E87286BFBA5000DB2B8 /* MapModel.swift */,
 				DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */,
+				F2806FE0287BCAC1005EA0CD /* DataItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,7 +189,6 @@
 				A8E74E89286BFBB5000DB2B8 /* Shop.swift */,
 				DA34E7052873C7630038EDE4 /* ShopCategory.swift */,
 				DA4A198D287A95D9004E019F /* ModalHeight.swift */,
-				F2806FE0287BCAC1005EA0CD /* DataItem.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
