@@ -31,15 +31,9 @@ class DetailModalViewController: ModalViewController {
             label.text = "착한 짜장"
             label.font = .boldSystemFont(ofSize: 24)
             
-            let textView = UITextView(frame: .zero)
-            textView.font = UIFont.systemFont(ofSize: 15)
-            textView.isEditable = false
-            textView.text = "❤️"
-            //textView.trailingAnchor.constraint(equalTo: modalTitleView.leadingAnchor).isActive = true
-            
             let spacer = UIView()
             
-            let titleStack = UIStackView(arrangedSubviews: [label, spacer, textView])
+            let titleStack = UIStackView(arrangedSubviews: [label, spacer])
             titleStack.axis = .horizontal
             titleStack.spacing = 16.0
             return titleStack
@@ -146,15 +140,6 @@ class DetailModalViewController: ModalViewController {
         detailStack.spacing = 16.0
         detailStack.axis = .vertical
         
-        
-        /*        NSLayoutConstraint.activate([
-            modalTitleView.heightAnchor.constraint(equalToConstant: 40.0),
-            modalMenuView.leadingAnchor.constraint(equalTo: modalTitleView.leadingAnchor),
-            modalInfoView.leadingAnchor.constraint(equalTo: modalTitleView.leadingAnchor),
-            subTitleMenu.leadingAnchor.constraint(equalTo: modalTitleView.leadingAnchor),
-            subTitleInfo.leadingAnchor.constraint(equalTo: modalTitleView.leadingAnchor)
-        ])
-        */
         return detailStack
     }()
 
