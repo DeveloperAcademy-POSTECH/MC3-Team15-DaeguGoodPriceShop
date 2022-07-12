@@ -25,8 +25,8 @@ class DetailCategoryViewCell: UICollectionViewCell {
     func configure(_ item: DataItem) {
         configureView()
         
-        categoryItemButton.setTitle(item.categoryName, for: .normal)
-        categoryItemButton.backgroundColor = item.categoryColor
+        categoryItemButton.backgroundColor = item.categoryColor ?? .black
+        categoryItemButton.setTitle(item.categoryName ?? "", for: .normal)
     }
 }
 
