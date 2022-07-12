@@ -69,12 +69,16 @@ class MapViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender.tag == 0 {
-            removeAnnotation()
             mapViewModel.setFavoriteShop()
-            addAnnotation()
+            updateAnnotation()
         } else {
             categoryModalVC.initModal()
         }
+    }
+    
+    func updateAnnotation() {
+        removeAnnotation()
+        addAnnotation()
     }
     
     private func configureView() {
