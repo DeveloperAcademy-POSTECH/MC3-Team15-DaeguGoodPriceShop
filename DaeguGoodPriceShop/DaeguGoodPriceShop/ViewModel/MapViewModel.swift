@@ -40,23 +40,6 @@ final class MapViewModel {
     private func getDistanceFromUser(_ shop: Shop) -> CLLocationDistance {
         return initialLocation?.distance(from: CLLocation(latitude: shop.latitude, longitude: shop.longitude)) ?? CLLocationDistance.infinity
     }
-//
-//    private func getDistanceString(_ distance: Double) -> String {
-//        return distance < 1000 ? String(format: "%.1f", distance) + "m" : String(format: "%.1f", distance / 1000) + "km"
-//    }
-//
-//    func getNearShopsFromUser() -> [Shop] {
-//        return model.shops
-//                .filter{ getDistanceFromUser($0) < 1000 }
-//                .sorted{ getDistanceFromUser($0) < getDistanceFromUser($1) }
-//    }
-    
-//    func getShops() -> [Shop] {
-//        return self.model.shops.filter { shop in
-//            guard shop.shopSubCategory != nil else { return false }
-//            return true
-//        }
-//    }
     
     func toggleFavoriteShop(shopId: Int) {
         if model.favoriteShopId.contains(shopId) {
@@ -68,14 +51,16 @@ final class MapViewModel {
     
     private func addFavoriteShop(shopId: Int) {
         model.favoriteShopId.insert(shopId)
-        //TODO: Add 할 때마다 UserDefault에 올라가게 되어있지만 그럴 필요가 없다.
-        UserDefaults.standard.set(model.favoriteShopId, forKey: "favoriteShopId")
+        UserDefaults.standard.set(Array(model.favoriteShopId), forKey: "favoriteShopId")
     }
     
     private func removeFavoriteShop(shopId: Int) {
         model.favoriteShopId.remove(shopId)
-        //TODO: Remove 할 때마다 UserDefault에 올라가게 되어있지만 그럴 필요가 없다.
-        UserDefaults.standard.set(model.favoriteShopId, forKey: "favoriteShopId")
+        UserDefaults.standard.set(Array(model.favoriteShopId), forKey: "favoriteShopId")
+    }
+    
+    func isFavoriteShop(shopId id: Int) -> Bool {
+        return model.favoriteShopId.contains(id)
     }
     
     func setFavoriteShop() {
@@ -128,5 +113,9 @@ final class MapViewModel {
         }
         
         return filterdShop.filter{ $0.shopSubCategory == subcategory }
+    }
+    
+    func findShop(shopId id: Int) -> Shop? {
+        return model.findById(shopId: id)
     }
 }
