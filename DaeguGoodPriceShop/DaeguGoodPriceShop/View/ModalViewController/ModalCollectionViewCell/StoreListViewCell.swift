@@ -8,7 +8,7 @@
 import UIKit
 
 class StoreListViewCell: UICollectionViewCell {
-    static let identifier = "store-list-view-cell"
+    static let identifier = String(describing: StoreListViewCell.self)
     static var height: CGFloat { 160 }
     
     private lazy var titleLabel: UILabel = {
