@@ -141,7 +141,6 @@ class CategoryModalViewController: ModalViewController {
     override func setupView() {
         super.setupView()
         view.addSubview(dismissButton)
-        
         view.addSubview(textLabel)
         view.addSubview(totalStackView)
         
@@ -160,6 +159,14 @@ class CategoryModalViewController: ModalViewController {
             totalStackView.topAnchor.constraint(equalTo: self.textLabel.bottomAnchor, constant: 30),
             totalStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50),
             totalStackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30)
+        ])
+            
+            
+        NSLayoutConstraint.activate([
+            dismissButton.widthAnchor.constraint(equalToConstant: 30),
+            dismissButton.heightAnchor.constraint(equalToConstant: 30),
+            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
     }
     

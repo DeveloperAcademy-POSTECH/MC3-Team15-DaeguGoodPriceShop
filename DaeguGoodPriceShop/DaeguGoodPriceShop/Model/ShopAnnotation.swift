@@ -11,6 +11,7 @@ final class ShopAnnotation: NSObject, MKAnnotation {
     let shopSubCategory: ShopSubCategory
     let latitude: Double
     let longitude: Double
+    let serialNumber: Int
     let title: String?
     let subtitle: String?
     var coordinate: CLLocationCoordinate2D {
@@ -22,6 +23,7 @@ final class ShopAnnotation: NSObject, MKAnnotation {
         self.shopSubCategory = shopSubCategory
         self.latitude = shop.latitude
         self.longitude = shop.longitude
+        self.serialNumber = shop.serialNumber
         self.title = shop.shopName
         self.subtitle = shop.menu
         super.init()

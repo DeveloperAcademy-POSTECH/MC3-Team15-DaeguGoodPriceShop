@@ -24,8 +24,8 @@ class ModalViewController: UIViewController {
     }()
     
     lazy var dismissButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 50, y: 0, width: 50, height: 50))
-        view.translatesAutoresizingMaskIntoConstraints = false
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(dismissModal), for: .touchUpInside)
         button.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
         button.tintColor = .gray
