@@ -134,6 +134,7 @@ class DetailModalViewController: ModalViewController {
         modalInfoView.addArrangedSubview(modalPhoneView)
         modalInfoView.axis = .vertical
         modalInfoView.spacing = 16.0
+        modalInfoView.customizeBackground(color: .systemGray6, radiusSize: 10.0)
         return modalInfoView
     }()
     
@@ -144,6 +145,7 @@ class DetailModalViewController: ModalViewController {
         modalMenuView.addArrangedSubview(menuPrice)
         modalMenuView.axis = .horizontal
         modalMenuView.spacing = 16.0
+        modalMenuView.customizeBackground(color: .systemGray6, radiusSize: 5.0)
         return modalMenuView
     }()
     
