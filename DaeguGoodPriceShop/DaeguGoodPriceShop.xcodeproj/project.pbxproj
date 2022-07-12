@@ -38,6 +38,7 @@
 		DA4A198C287A95C4004E019F /* CategoryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */; };
 		DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198D287A95D9004E019F /* ModalHeight.swift */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
+		F240E3FD287C55850033A8FA /* DetailCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240E3FC287C55850033A8FA /* DetailCategoryViewCell.swift */; };
 		F2806FE1287BCAC1005EA0CD /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2806FE0287BCAC1005EA0CD /* DataItem.swift */; };
 		F2806FE4287BCAFF005EA0CD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2806FE3287BCAFF005EA0CD /* HeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModalViewController.swift; sourceTree = "<group>"; };
 		DA4A198D287A95D9004E019F /* ModalHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHeight.swift; sourceTree = "<group>"; };
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
+		F240E3FC287C55850033A8FA /* DetailCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewCell.swift; sourceTree = "<group>"; };
 		F2806FE0287BCAC1005EA0CD /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
 		F2806FE3287BCAFF005EA0CD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				DA4A1985287A9583004E019F /* ModalViewController.swift */,
+				F240E3F9287C54A00033A8FA /* ModalCollectionViewCell */,
 				DA4A1987287A9596004E019F /* DefaultModalViewController.swift */,
 				DA4A1989287A95B0004E019F /* DetailModalViewController.swift */,
 				DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */,
@@ -218,6 +221,14 @@
 				DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		F240E3F9287C54A00033A8FA /* ModalCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F240E3FC287C55850033A8FA /* DetailCategoryViewCell.swift */,
+			);
+			path = ModalCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		F2806FE2287BCAF2005EA0CD /* Shared */ = {
@@ -315,6 +326,7 @@
 				A80AAF972876508400795C87 /* ShopAnnotationView.swift in Sources */,
 				A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */,
 				DA4A1988287A9596004E019F /* DefaultModalViewController.swift in Sources */,
+				F240E3FD287C55850033A8FA /* DetailCategoryViewCell.swift in Sources */,
 				A8CBA582287BAF3800BC2DC1 /* HairCutAnnotationView.swift in Sources */,
 				A8CBA57E287BAF3800BC2DC1 /* KoreanFoodAnnotationView.swift in Sources */,
 				A8CBA576287BAF3800BC2DC1 /* BakeryAnnotationView.swift in Sources */,
