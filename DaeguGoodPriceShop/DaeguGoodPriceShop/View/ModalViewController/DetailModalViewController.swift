@@ -153,6 +153,7 @@ class DetailModalViewController: ModalViewController {
         var modalTitleView = UIStackView()
         modalTitleView.addArrangedSubview(titleLabel)
         modalTitleView.addArrangedSubview(spacer)
+        modalTitleView.addArrangedSubview(favoriteButton)
         modalTitleView.axis = .horizontal
         modalTitleView.spacing = 16.0
         return modalTitleView
@@ -194,7 +195,7 @@ class DetailModalViewController: ModalViewController {
     override func setupView() {
         super.setupView()
         view.addSubview(dismissButton)
-        view.addSubview(favoriteButton)
+        //view.addSubview(favoriteButton)
         view.addSubview(modalDetailView)
         setFavoriteButtonImage()
         modalDetailView.translatesAutoresizingMaskIntoConstraints = false
@@ -205,10 +206,10 @@ class DetailModalViewController: ModalViewController {
             dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
-            favoriteButton.widthAnchor.constraint(equalToConstant: 30),
-            favoriteButton.heightAnchor.constraint(equalToConstant: 30),
-            favoriteButton.topAnchor.constraint(equalTo: dismissButton.topAnchor),
-            favoriteButton.trailingAnchor.constraint(equalTo: dismissButton.leadingAnchor),
+            //favoriteButton.widthAnchor.constraint(equalToConstant: 30),
+            //favoriteButton.heightAnchor.constraint(equalToConstant: 30),
+            //favoriteButton.topAnchor.constraint(equalTo: dismissButton.topAnchor),
+            //favoriteButton.trailingAnchor.constraint(equalTo: dismissButton.leadingAnchor),
         
             modalDetailView.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
             modalDetailView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
