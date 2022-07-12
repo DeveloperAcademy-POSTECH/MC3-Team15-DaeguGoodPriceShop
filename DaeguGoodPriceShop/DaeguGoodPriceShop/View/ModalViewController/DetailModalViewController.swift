@@ -28,7 +28,7 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var titleLabel: UILabel = {
-        let label = UILabel()
+        var label = UILabel()
         label.text = selectedShop?.shopName
         label.font = .boldSystemFont(ofSize: 24)
         return label
@@ -49,20 +49,20 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var menuName: UITextView = {
-        let menuName = UITextView(frame: .zero)
+        var menuName = UITextView(frame: .zero)
         menuName.font = UIFont.systemFont(ofSize: 15)
         menuName.isEditable = false
-        menuName.text = selectedShop?.menu // TODO: Data
+        menuName.text = selectedShop?.menu
         menuName.isScrollEnabled = false
         menuName.backgroundColor = .clear
         return menuName
     }()
     
     lazy var menuPrice: UITextView = {
-        let menuPrice = UITextView(frame: .zero)
+        var menuPrice = UITextView(frame: .zero)
         menuPrice.font = UIFont.systemFont(ofSize: 15)
         menuPrice.isEditable = false
-        menuPrice.text = selectedShop?.price // TODO: Data
+        menuPrice.text = selectedShop?.price
         menuPrice.isScrollEnabled = false
         menuPrice.backgroundColor = .clear
         return menuPrice
@@ -89,80 +89,80 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var infoAddress: UITextView = {
-        let infoAddress = UITextView(frame: .zero)
+        var infoAddress = UITextView(frame: .zero)
         infoAddress.font = UIFont.systemFont(ofSize: 15)
         infoAddress.isEditable = false
-        infoAddress.text = selectedShop?.address // TODO: Data
+        infoAddress.text = selectedShop?.address
         infoAddress.isScrollEnabled = false
         infoAddress.backgroundColor = .clear
         return infoAddress
     }()
     
     lazy var infoPhoneNumber: UITextView = {
-        let infoPhoneNumber = UITextView(frame: .zero)
+        var infoPhoneNumber = UITextView(frame: .zero)
         infoPhoneNumber.font = UIFont.systemFont(ofSize: 15)
         infoPhoneNumber.isEditable = false
-        infoPhoneNumber.text = selectedShop?.phoneNumber // TODO: Data
+        infoPhoneNumber.text = selectedShop?.phoneNumber
         infoPhoneNumber.isScrollEnabled = false
         infoPhoneNumber.backgroundColor = .clear
         return infoPhoneNumber
     }()
     
     lazy var modalPhoneView: UIStackView = {
-        let modalPhoneView = UIStackView()
-        modalPhoneView.addSubview(infoPhoneNumber)
-        modalPhoneView.addSubview(spacer)
+        var modalPhoneView = UIStackView()
+        modalPhoneView.addArrangedSubview(infoPhoneNumber)
+        modalPhoneView.addArrangedSubview(spacer)
         modalPhoneView.axis = .horizontal
         modalPhoneView.spacing = 16.0
         return modalPhoneView
     }()
     
     lazy var modalAddressView: UIStackView = {
-        let modalAddressView = UIStackView()
-        modalAddressView.addSubview(infoAddress)
-        modalAddressView.addSubview(spacer)
+        var modalAddressView = UIStackView()
+        modalAddressView.addArrangedSubview(infoAddress)
+        modalAddressView.addArrangedSubview(spacer)
         modalAddressView.axis = .horizontal
         modalAddressView.spacing = 16.0
         return modalAddressView
     }()
     
     lazy var modalInfoView: UIStackView = {
-        let modalInfoView = UIStackView()
-        modalInfoView.addSubview(infoSubTitleAddress)
-        modalInfoView.addSubview(modalAddressView)
-        modalInfoView.addSubview(infoSubTitlePhone)
-        modalInfoView.addSubview(modalPhoneView)
+        var modalInfoView = UIStackView()
+        modalInfoView.addArrangedSubview(infoSubTitleAddress)
+        modalInfoView.addArrangedSubview(modalAddressView)
+        modalInfoView.addArrangedSubview(infoSubTitlePhone)
+        modalInfoView.addArrangedSubview(modalPhoneView)
         modalInfoView.axis = .vertical
         modalInfoView.spacing = 16.0
         return modalInfoView
     }()
     
     lazy var modalMenuView: UIStackView = {
-        let modalMenuView = UIStackView()
-        modalMenuView.addSubview(menuName)
-        modalMenuView.addSubview(spacer)
-        modalMenuView.addSubview(menuPrice)
+        var modalMenuView = UIStackView()
+        modalMenuView.addArrangedSubview(menuName)
+        modalMenuView.addArrangedSubview(spacer)
+        modalMenuView.addArrangedSubview(menuPrice)
         modalMenuView.axis = .horizontal
         modalMenuView.spacing = 16.0
         return modalMenuView
     }()
     
     lazy var modalTitleView: UIStackView = {
-        let modalTitleView = UIStackView()
-        modalTitleView.addSubview(titleLabel)
-        modalTitleView.addSubview(spacer)
+        var modalTitleView = UIStackView()
+        modalTitleView.addArrangedSubview(titleLabel)
+        modalTitleView.addArrangedSubview(spacer)
         modalTitleView.axis = .horizontal
         modalTitleView.spacing = 16.0
         return modalTitleView
     }()
     
     lazy var modalDetailView: UIStackView = {
-        let modalDetailView = UIStackView()
-        modalDetailView.addSubview(modalTitleView)
-        modalDetailView.addSubview(subTitleMenu)
-        modalDetailView.addSubview(modalMenuView)
-        modalDetailView.addSubview(subTitleInfo)
-        modalDetailView.addSubview(modalInfoView)
+        var modalDetailView = UIStackView()
+        modalDetailView.addArrangedSubview(modalTitleView)
+        modalDetailView.addArrangedSubview(subTitleMenu)
+        modalDetailView.addArrangedSubview(modalMenuView)
+        modalDetailView.addArrangedSubview(subTitleInfo)
+        modalDetailView.addArrangedSubview(modalInfoView)
         modalDetailView.axis = .vertical
         modalDetailView.spacing = 16.0
         return modalDetailView
