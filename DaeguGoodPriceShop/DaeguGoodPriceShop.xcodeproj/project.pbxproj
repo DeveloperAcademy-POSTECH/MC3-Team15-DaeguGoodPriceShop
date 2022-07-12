@@ -38,6 +38,8 @@
 		DA4A198C287A95C4004E019F /* CategoryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */; };
 		DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198D287A95D9004E019F /* ModalHeight.swift */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
+		F2806FE1287BCAC1005EA0CD /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2806FE0287BCAC1005EA0CD /* DataItem.swift */; };
+		F2806FE4287BCAFF005EA0CD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2806FE3287BCAFF005EA0CD /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModalViewController.swift; sourceTree = "<group>"; };
 		DA4A198D287A95D9004E019F /* ModalHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHeight.swift; sourceTree = "<group>"; };
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
+		F2806FE0287BCAC1005EA0CD /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
+		F2806FE3287BCAFF005EA0CD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 		A8E74E81286BFAFD000DB2B8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F2806FE2287BCAF2005EA0CD /* Shared */,
 				DA4A1984287A956B004E019F /* ModalViewController */,
 				A80AAF9C2877C71400795C87 /* AnnotationView */,
 				A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */,
@@ -173,6 +178,7 @@
 			children = (
 				A8E74E87286BFBA5000DB2B8 /* MapModel.swift */,
 				DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */,
+				F2806FE0287BCAC1005EA0CD /* DataItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +218,14 @@
 				DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		F2806FE2287BCAF2005EA0CD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F2806FE3287BCAFF005EA0CD /* HeaderView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,8 +320,10 @@
 				A8CBA576287BAF3800BC2DC1 /* BakeryAnnotationView.swift in Sources */,
 				DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */,
 				A8CBA580287BAF3800BC2DC1 /* CleaningAnnotationView.swift in Sources */,
+				F2806FE4287BCAFF005EA0CD /* HeaderView.swift in Sources */,
 				DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */,
 				A8CBA579287BAF3800BC2DC1 /* BathAnnotationView.swift in Sources */,
+				F2806FE1287BCAC1005EA0CD /* DataItem.swift in Sources */,
 				A8CBA57F287BAF3800BC2DC1 /* ClusteringAnnotationView.swift in Sources */,
 				DA4A198A287A95B0004E019F /* DetailModalViewController.swift in Sources */,
 				DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */,
