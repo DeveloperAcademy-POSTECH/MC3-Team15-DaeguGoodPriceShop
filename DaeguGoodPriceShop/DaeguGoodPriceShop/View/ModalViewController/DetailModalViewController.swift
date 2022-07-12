@@ -17,6 +17,8 @@ class DetailModalViewController: ModalViewController {
         }
     }
     
+    let spacer = UIView()
+    
     lazy var favoriteButton: UIButton = {
         var isFavoriteShop = mapViewModel?.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
         let button = UIButton()
@@ -25,124 +27,147 @@ class DetailModalViewController: ModalViewController {
         return button
     }()
     
-    var modalDetailView: UIStackView = {
-        var modalTitleView: UIStackView = {
-            let label = UILabel()
-            label.text = "착한 짜장"
-            label.font = .boldSystemFont(ofSize: 24)
-            
-            let spacer = UIView()
-            
-            let titleStack = UIStackView(arrangedSubviews: [label, spacer])
-            titleStack.axis = .horizontal
-            titleStack.spacing = 16.0
-            return titleStack
-        }()
-        
-        var modalMenuView: UIStackView = {
-            let menuName = UITextView(frame: .zero)
-            menuName.font = UIFont.systemFont(ofSize: 15)
-            menuName.isEditable = false
-            menuName.text = "짜장면" // TODO: Data
-            menuName.isScrollEnabled = false
-            menuName.backgroundColor = .clear
-            
-            let menuPrice = UITextView(frame: .zero)
-            menuPrice.font = UIFont.systemFont(ofSize: 15)
-            menuPrice.isEditable = false
-            menuPrice.text = "5000원" // TODO: Data
-            menuPrice.isScrollEnabled = false
-            menuPrice.backgroundColor = .clear
-            
-            let spacer = UIView()
-            
-            let menuStack = UIStackView(arrangedSubviews: [menuName, spacer, menuPrice])
-            menuStack.axis = .horizontal
-            menuStack.spacing = 16.0
-            menuStack.customizeBackground(color: .systemGray6, radiusSize: 5)
-            return menuStack
-        }()
-        var modalInfoView: UIStackView = {
-            var modalAddressView: UIStackView = {
-                let infoAddress = UITextView(frame: .zero)
-                infoAddress.font = UIFont.systemFont(ofSize: 15)
-                infoAddress.isEditable = false
-                infoAddress.text = "대구광역시 주소구 주소로 123" // TODO: Data
-                infoAddress.isScrollEnabled = false
-                infoAddress.backgroundColor = .clear
-                
-                let infoSymbolCopy = UIImageView()
-                infoSymbolCopy.image = UIImage(systemName: "doc.on.doc.fill")
-                
-                let spacer = UIView()
-                
-                let infoAddressStack = UIStackView(arrangedSubviews: [infoAddress, spacer, infoSymbolCopy])
-                infoAddressStack.axis = .horizontal
-                infoAddressStack.spacing = 16.0
-                
-                return infoAddressStack
-            }()
-            var modalPhoneView: UIStackView = {
-                let infoPhoneNumber = UITextView(frame: .zero)
-                infoPhoneNumber.font = UIFont.systemFont(ofSize: 15)
-                infoPhoneNumber.isEditable = false
-                infoPhoneNumber.text = "010-0000-0000" // TODO: Data
-                infoPhoneNumber.textAlignment = .center
-                infoPhoneNumber.isScrollEnabled = false
-                infoPhoneNumber.backgroundColor = .clear
-                
-                let infoSymbolPhone = UIImageView()
-                infoSymbolPhone.image = UIImage(systemName: "phone.fill")
-                
-                let spacer = UIView()
-                
-                let infoPhoneStack = UIStackView(arrangedSubviews: [infoPhoneNumber, spacer, infoSymbolPhone])
-                infoPhoneStack.axis = .horizontal
-                infoPhoneStack.spacing = 16.0
-                
-                return infoPhoneStack
-            }()
-            let infoSubTitleAddress = UITextView(frame: .zero)
-            infoSubTitleAddress.font = UIFont.systemFont(ofSize: 15)
-            infoSubTitleAddress.isEditable = false
-            infoSubTitleAddress.text = "주소"
-            infoSubTitleAddress.isScrollEnabled = false
-            infoSubTitleAddress.backgroundColor = .clear
-            
-            let divider = UIView()
-            divider.backgroundColor = .systemGray3
-            divider.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
-            divider.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
-            
-            let infoSubTitlePhone = UITextView(frame: .zero)
-            infoSubTitlePhone.font = UIFont.systemFont(ofSize: 15)
-            infoSubTitlePhone.isEditable = false
-            infoSubTitlePhone.text = "전화번호"
-            infoSubTitlePhone.isScrollEnabled = false
-            infoSubTitlePhone.backgroundColor = .clear
-            
-            let infoStack = UIStackView(arrangedSubviews: [infoSubTitleAddress, modalAddressView, divider ,infoSubTitlePhone, modalPhoneView])
-            infoStack.axis = .vertical
-            infoStack.spacing = 0
-            infoStack.customizeBackground(color: .systemGray6, radiusSize: 10.0)
-            
-            return infoStack
-        }()
-        let subTitleMenu = UILabel()
-        subTitleMenu.text = "대표 메뉴"
-        subTitleMenu.font = .boldSystemFont(ofSize: 15)
-        
-        let subTitleInfo = UILabel()
-        subTitleInfo.text = "가게 정보"
-        subTitleInfo.font = .boldSystemFont(ofSize: 15)
-        
-        let detailStack = UIStackView(arrangedSubviews: [modalTitleView, subTitleMenu, modalMenuView, subTitleInfo, modalInfoView])
-        detailStack.spacing = 16.0
-        detailStack.axis = .vertical
-        
-        return detailStack
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = selectedShop?.shopName
+        label.font = .boldSystemFont(ofSize: 24)
+        return label
     }()
-
+    
+    lazy var subTitleMenu: UILabel = {
+        let label = UILabel()
+        label.text = "메뉴"
+        label.font = .boldSystemFont(ofSize: 15)
+        return label
+    }()
+    
+    lazy var subTitleInfo: UILabel = {
+        let label = UILabel()
+        label.text = "가게 정보"
+        label.font = .boldSystemFont(ofSize: 15)
+        return label
+    }()
+    
+    lazy var menuName: UITextView = {
+        let menuName = UITextView(frame: .zero)
+        menuName.font = UIFont.systemFont(ofSize: 15)
+        menuName.isEditable = false
+        menuName.text = selectedShop?.menu // TODO: Data
+        menuName.isScrollEnabled = false
+        menuName.backgroundColor = .clear
+        return menuName
+    }()
+    
+    lazy var menuPrice: UITextView = {
+        let menuPrice = UITextView(frame: .zero)
+        menuPrice.font = UIFont.systemFont(ofSize: 15)
+        menuPrice.isEditable = false
+        menuPrice.text = selectedShop?.price // TODO: Data
+        menuPrice.isScrollEnabled = false
+        menuPrice.backgroundColor = .clear
+        return menuPrice
+    }()
+    
+    lazy var infoSubTitleAddress : UITextView = {
+        let infoSubTitleAddress = UITextView(frame: .zero)
+        infoSubTitleAddress.font = UIFont.systemFont(ofSize: 15)
+        infoSubTitleAddress.isEditable = false
+        infoSubTitleAddress.text = "주소"
+        infoSubTitleAddress.isScrollEnabled = false
+        infoSubTitleAddress.backgroundColor = .clear
+        return infoSubTitleAddress
+    }()
+    
+    lazy var infoSubTitlePhone: UITextView = {
+        let infoSubTitlePhone = UITextView(frame: .zero)
+        infoSubTitlePhone.font = UIFont.systemFont(ofSize: 15)
+        infoSubTitlePhone.isEditable = false
+        infoSubTitlePhone.text = "전화 번호"
+        infoSubTitlePhone.isScrollEnabled = false
+        infoSubTitlePhone.backgroundColor = .clear
+        return infoSubTitlePhone
+    }()
+    
+    lazy var infoAddress: UITextView = {
+        let infoAddress = UITextView(frame: .zero)
+        infoAddress.font = UIFont.systemFont(ofSize: 15)
+        infoAddress.isEditable = false
+        infoAddress.text = selectedShop?.address // TODO: Data
+        infoAddress.isScrollEnabled = false
+        infoAddress.backgroundColor = .clear
+        return infoAddress
+    }()
+    
+    lazy var infoPhoneNumber: UITextView = {
+        let infoPhoneNumber = UITextView(frame: .zero)
+        infoPhoneNumber.font = UIFont.systemFont(ofSize: 15)
+        infoPhoneNumber.isEditable = false
+        infoPhoneNumber.text = selectedShop?.phoneNumber // TODO: Data
+        infoPhoneNumber.isScrollEnabled = false
+        infoPhoneNumber.backgroundColor = .clear
+        return infoPhoneNumber
+    }()
+    
+    lazy var modalPhoneView: UIStackView = {
+        let modalPhoneView = UIStackView()
+        modalPhoneView.addSubview(infoPhoneNumber)
+        modalPhoneView.addSubview(spacer)
+        modalPhoneView.axis = .horizontal
+        modalPhoneView.spacing = 16.0
+        return modalPhoneView
+    }()
+    
+    lazy var modalAddressView: UIStackView = {
+        let modalAddressView = UIStackView()
+        modalAddressView.addSubview(infoAddress)
+        modalAddressView.addSubview(spacer)
+        modalAddressView.axis = .horizontal
+        modalAddressView.spacing = 16.0
+        return modalAddressView
+    }()
+    
+    lazy var modalInfoView: UIStackView = {
+        let modalInfoView = UIStackView()
+        modalInfoView.addSubview(infoSubTitleAddress)
+        modalInfoView.addSubview(modalAddressView)
+        modalInfoView.addSubview(infoSubTitlePhone)
+        modalInfoView.addSubview(modalPhoneView)
+        modalInfoView.axis = .vertical
+        modalInfoView.spacing = 16.0
+        return modalInfoView
+    }()
+    
+    lazy var modalMenuView: UIStackView = {
+        let modalMenuView = UIStackView()
+        modalMenuView.addSubview(menuName)
+        modalMenuView.addSubview(spacer)
+        modalMenuView.addSubview(menuPrice)
+        modalMenuView.axis = .horizontal
+        modalMenuView.spacing = 16.0
+        return modalMenuView
+    }()
+    
+    lazy var modalTitleView: UIStackView = {
+        let modalTitleView = UIStackView()
+        modalTitleView.addSubview(titleLabel)
+        modalTitleView.addSubview(spacer)
+        modalTitleView.axis = .horizontal
+        modalTitleView.spacing = 16.0
+        return modalTitleView
+    }()
+    
+    lazy var modalDetailView: UIStackView = {
+        let modalDetailView = UIStackView()
+        modalDetailView.addSubview(modalTitleView)
+        modalDetailView.addSubview(subTitleMenu)
+        modalDetailView.addSubview(modalMenuView)
+        modalDetailView.addSubview(subTitleInfo)
+        modalDetailView.addSubview(modalInfoView)
+        modalDetailView.axis = .vertical
+        modalDetailView.spacing = 16.0
+        return modalDetailView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -153,7 +178,6 @@ class DetailModalViewController: ModalViewController {
         guard let shop = selectedShop else {
             return
         }
-
         mapViewModel?.toggleFavoriteShop(shopId: shop.serialNumber)
         setFavoriteButtonImage()
         (parent as? MapViewController)?.updateAnnotation()
@@ -254,8 +278,3 @@ extension UIStackView {
         subView.clipsToBounds = true
     }
 }
-/*
-extension UIColor {
-    class var Gray
-}
-*/
