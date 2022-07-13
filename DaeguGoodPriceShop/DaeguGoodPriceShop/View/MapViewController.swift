@@ -219,7 +219,7 @@ class MapViewController: UIViewController {
     }
     
     private func zoomTo(shop: Shop) {
-        let center = CLLocationCoordinate2D(latitude: shop.latitude, longitude: shop.longitude)
+        let center = CLLocationCoordinate2D(latitude: shop.latitude - 0.002, longitude: shop.longitude)
         let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         let region = MKCoordinateRegion(center: center, span: span)
         mapView.setRegion(region, animated: true)
