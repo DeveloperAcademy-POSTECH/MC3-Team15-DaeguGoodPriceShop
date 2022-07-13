@@ -14,7 +14,7 @@ final class MapViewModel {
     @Published private(set) var initialLocation: CLLocation?
     private let locationManager = LocationManager()
     private var model = MapModel()
-    private var isFavorite = false
+    private(set) var isShowingFavorite = false
     private var category: ShopCategory?
     private var subcategory: ShopSubCategory?
     private var distance: CLLocationDistance?
@@ -63,8 +63,8 @@ final class MapViewModel {
         return model.favoriteShopId.contains(id)
     }
     
-    func setFavoriteShop() {
-        isFavorite.toggle()
+    func favoriteShopButtonTouched() {
+        isShowingFavorite.toggle()
     }
     
     func setCategory(category: ShopCategory?) {
