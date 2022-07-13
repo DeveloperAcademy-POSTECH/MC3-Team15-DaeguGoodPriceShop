@@ -26,7 +26,7 @@ enum ModalHeight{
             case .maximum:
                 return UIScreen.main.bounds.height - 70
             case .category:
-                return UIScreen.main.bounds.height / 2 - 30
+                return UIScreen.main.bounds.height / 2
             }
         }
     }
