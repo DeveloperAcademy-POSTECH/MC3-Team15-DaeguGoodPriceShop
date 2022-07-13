@@ -17,7 +17,6 @@ class StoreListViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         return label
     }()
     
@@ -26,7 +25,6 @@ class StoreListViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 15)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         return label
     }()
     
@@ -68,7 +66,7 @@ extension StoreListViewCell {
     private func configureView() {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 10
-        contentView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        contentView.backgroundColor = .systemGray6
         
         [
             titleLabel,
