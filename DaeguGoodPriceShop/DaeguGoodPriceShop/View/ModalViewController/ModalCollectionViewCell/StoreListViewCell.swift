@@ -11,7 +11,7 @@ class StoreListViewCell: UICollectionViewCell {
     static let identifier = String(describing: StoreListViewCell.self)
     static var height: CGFloat { 160 }
     
-    private var callNumber = ""
+    private var shopCallNumber = ""
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -47,11 +47,11 @@ class StoreListViewCell: UICollectionViewCell {
         
         titleLabel.text = item.storeName
         addressLabel.text = item.storeAddress
-        callNumber = item.storeCallNumber ?? ""
+        shopCallNumber = item.storeCallNumber ?? ""
     }
     
     @objc func phoneCall() {
-           guard let url = URL(string: "tel://\(callNumber)"),UIApplication.shared.canOpenURL(url)
+           guard let url = URL(string: "tel://\(shopCallNumber)"),UIApplication.shared.canOpenURL(url)
            else {
                return
            }
