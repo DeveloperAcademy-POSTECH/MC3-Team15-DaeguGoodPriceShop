@@ -257,6 +257,13 @@ class DetailModalViewController: ModalViewController {
     func initModal() {
         changeModalHeight(.median)
         defaultViewController.changeModalHeight(.median)
+        
+        titleLabel.text = selectedShop?.shopName
+        menuName.text = selectedShop?.menu
+        menuPrice.text = selectedShop?.price
+        infoAddress.text = selectedShop?.address
+        infoPhoneNumber.text = selectedShop?.phoneNumber
+        
     }
     
     func setData(shopId id: Int) {
