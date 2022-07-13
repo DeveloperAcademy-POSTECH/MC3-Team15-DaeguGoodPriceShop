@@ -33,7 +33,7 @@ class ModalViewController: UIViewController {
     }()
     
     var modalHeight: NSLayoutConstraint?
-    var currentHeight: CGFloat = ModalHeight.minimum.value
+    var currentHeight: CGFloat = ModalHeight.zero.value
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class ModalViewController: UIViewController {
     }
     
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
@@ -72,7 +72,7 @@ class ModalViewController: UIViewController {
             gestureView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             gestureView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             gestureView.topAnchor.constraint(equalTo: view.topAnchor),
-            gestureView.heightAnchor.constraint(equalToConstant: ModalHeight.minimum.value),
+            gestureView.heightAnchor.constraint(equalToConstant: 70),
             
             gestureBarView.topAnchor.constraint(equalTo: gestureView.topAnchor, constant: 5),
             gestureBarView.widthAnchor.constraint(equalToConstant: 63),

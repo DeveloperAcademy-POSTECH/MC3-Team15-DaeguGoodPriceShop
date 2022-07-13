@@ -273,7 +273,7 @@ class DetailModalViewController: ModalViewController {
         case .ended:
             if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
-                    changeModalHeight(.minimum)
+                    changeModalHeight(.zero)
                 } else {
                     changeModalHeight(.median)
                 }

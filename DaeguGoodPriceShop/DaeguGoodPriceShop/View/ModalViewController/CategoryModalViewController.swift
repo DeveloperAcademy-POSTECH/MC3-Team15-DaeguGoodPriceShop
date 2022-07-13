@@ -199,7 +199,7 @@ class CategoryModalViewController: ModalViewController {
         
         switch gesture.state {
         case .changed:
-            if newHeight < ModalHeight.category.value {
+            if newHeight < ModalHeight.median.value {
                 modalHeight?.constant = newHeight
                 parent?.view.layoutIfNeeded()
             }
@@ -207,7 +207,7 @@ class CategoryModalViewController: ModalViewController {
             if isDraggingDown {
                 changeModalHeight(.zero)
             } else {
-                changeModalHeight(.category)
+                changeModalHeight(.median)
             }
         default:
             break
@@ -220,7 +220,7 @@ class CategoryModalViewController: ModalViewController {
     }
     
     func initModal() {
-        changeModalHeight(.category)
+        changeModalHeight(.median)
     }
 }
 
