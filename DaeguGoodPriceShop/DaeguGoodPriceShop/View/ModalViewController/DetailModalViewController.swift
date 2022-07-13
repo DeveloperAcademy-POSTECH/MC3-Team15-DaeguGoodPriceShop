@@ -31,7 +31,6 @@ class DetailModalViewController: ModalViewController {
     let spacer = UIView()
     
     lazy var favoriteButton: UIButton = {
-        var isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
@@ -191,6 +190,7 @@ class DetailModalViewController: ModalViewController {
         guard let shop = selectedShop else {
             return
         }
+        
         mapViewModel.toggleFavoriteShop(shopId: shop.serialNumber)
         setFavoriteButtonImage()
     }
@@ -198,6 +198,7 @@ class DetailModalViewController: ModalViewController {
     func setFavoriteButtonImage() {
         let isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
         favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        
         favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
     }
     
@@ -290,7 +291,6 @@ class DetailModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.median)
-        
         titleLabel.text = selectedShop?.shopName
         menuName.text = selectedShop?.menu
         menuPrice.text = selectedShop?.price
