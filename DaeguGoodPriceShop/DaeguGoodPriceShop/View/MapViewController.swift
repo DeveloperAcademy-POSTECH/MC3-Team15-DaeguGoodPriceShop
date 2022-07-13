@@ -19,7 +19,7 @@ class MapViewController: UIViewController {
         let button = MKUserTrackingButton(mapView: mapView)
         button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .white
+        button.backgroundColor = .systemBackground
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         return button
