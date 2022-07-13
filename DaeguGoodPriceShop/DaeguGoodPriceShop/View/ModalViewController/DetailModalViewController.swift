@@ -240,17 +240,11 @@ class DetailModalViewController: ModalViewController {
     
     override func setupView() {
         super.setupView()
-        view.addSubview(dismissButton)
         view.addSubview(modalDetailView)
         setFavoriteButtonImage()
         modalDetailView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            dismissButton.widthAnchor.constraint(equalToConstant: 30),
-            dismissButton.heightAnchor.constraint(equalToConstant: 30),
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-
             menuPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolCopy.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolPhone.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),

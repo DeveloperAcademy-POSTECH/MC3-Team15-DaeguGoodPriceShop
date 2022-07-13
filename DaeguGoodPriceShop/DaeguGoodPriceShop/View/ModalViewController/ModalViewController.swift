@@ -23,15 +23,6 @@ class ModalViewController: UIViewController {
         return view
     }()
     
-    lazy var dismissButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(dismissModal), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
-        button.tintColor = .gray
-        return button
-    }()
-    
     var modalHeight: NSLayoutConstraint?
     var currentHeight: CGFloat = ModalHeight.minimum.value
     
