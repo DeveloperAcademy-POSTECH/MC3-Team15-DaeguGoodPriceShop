@@ -10,11 +10,12 @@ import UIKit
 protocol SubCategoryFilterable: AnyObject {
     func categoryTouched(_ category: ShopSubCategory)
     func shopTouched(ofSerialNumber number: Int)
+    func removeFiltering()
 }
 
 class StoreListModalViewController: ModalViewController {
+    weak var delegate: SubCategoryFilterable?
     var mapViewModel: MapViewModel
-    var delegate: SubCategoryFilterable?
     var category: ShopCategory?
     
     static let sectionHeaderElementKind = "section-header-element-kind"
@@ -133,6 +134,7 @@ class StoreListModalViewController: ModalViewController {
             if newHeight < ModalHeight.category.value {
                 if isDraggingDown {
                     changeModalHeight(.zero)
+                    delegate?.removeFiltering()
                 } else {
                     changeModalHeight(.category)
                 }
@@ -165,7 +167,11 @@ extension StoreListModalViewController: UICollectionViewDelegate {
             configureNormalStores(ofSubCategory: category.subCategories[indexPath.item])
             configureFavoriteStores(ofSubCategory: category.subCategories[indexPath.item])
             configureDataSource()
-        case 1: Void()
+        case 1:
+            if case let .favourite(store) = favouriteStores[indexPath.item] {
+                guard let serialNumber = store.storeSerialNumber else { return }
+                delegate?.shopTouched(ofSerialNumber: serialNumber)
+            }
         case 2:
             if case let .normal(store) = normalStores[indexPath.item] {
                 guard let serialNumber = store.storeSerialNumber else { return }
