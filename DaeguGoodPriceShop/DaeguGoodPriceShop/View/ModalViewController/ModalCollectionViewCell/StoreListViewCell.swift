@@ -11,6 +11,8 @@ class StoreListViewCell: UICollectionViewCell {
     static let identifier = String(describing: StoreListViewCell.self)
     static var height: CGFloat { 160 }
     
+    private var shopCallNumber = ""
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .semibold)
@@ -31,6 +33,7 @@ class StoreListViewCell: UICollectionViewCell {
     private lazy var callButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "phone"), for: .normal)
+        button.addTarget(self, action: #selector(phoneCall), for: .touchUpInside)
         button.tintColor = UIColor(displayP3Red: 50/255, green: 105/255, blue: 217/255, alpha: 1.0)
         button.backgroundColor = .systemBackground
         button.layer.cornerRadius = 10
@@ -44,7 +47,21 @@ class StoreListViewCell: UICollectionViewCell {
         
         titleLabel.text = item.storeName
         addressLabel.text = item.storeAddress
+        shopCallNumber = item.storeCallNumber ?? ""
     }
+    
+    @objc func phoneCall() {
+           guard let url = URL(string: "tel://\(shopCallNumber)"),UIApplication.shared.canOpenURL(url)
+           else {
+               return
+           }
+           if #available(iOS 14, *) {
+               UIApplication.shared.open(url)
+           }
+           else {
+               UIApplication.shared.openURL(url)
+           }
+       }
 }
 
 extension StoreListViewCell {
