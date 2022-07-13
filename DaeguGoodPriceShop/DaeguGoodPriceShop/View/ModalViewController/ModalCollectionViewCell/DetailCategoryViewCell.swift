@@ -23,7 +23,7 @@ class DetailCategoryViewCell: UICollectionViewCell {
         return button
     }()
         
-    func configure(_ item: DataItem) {
+    func configure(_ item: SubCategory) {
         configureView()
         
         categoryItemButton.backgroundColor = item.categoryColor ?? .black
