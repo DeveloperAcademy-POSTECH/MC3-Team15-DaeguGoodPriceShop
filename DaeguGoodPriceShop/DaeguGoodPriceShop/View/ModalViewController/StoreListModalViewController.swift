@@ -167,7 +167,11 @@ extension StoreListModalViewController: UICollectionViewDelegate {
             configureNormalStores(ofSubCategory: category.subCategories[indexPath.item])
             configureFavoriteStores(ofSubCategory: category.subCategories[indexPath.item])
             configureDataSource()
-        case 1: Void()
+        case 1:
+            if case let .favourite(store) = favouriteStores[indexPath.item] {
+                guard let serialNumber = store.storeSerialNumber else { return }
+                delegate?.shopTouched(ofSerialNumber: serialNumber)
+            }
         case 2:
             if case let .normal(store) = normalStores[indexPath.item] {
                 guard let serialNumber = store.storeSerialNumber else { return }
