@@ -61,17 +61,6 @@ class DetailModalViewController: ModalViewController {
         menuName.backgroundColor = .clear
         return menuName
     }()
-    /*
-    lazy var menuPrice: UITextView = {
-        var menuPrice = UITextView(frame: .zero)
-        menuPrice.font = UIFont.systemFont(ofSize: 15)
-        menuPrice.isEditable = false
-        menuPrice.text = selectedShop?.price
-        menuPrice.isScrollEnabled = false
-        menuPrice.backgroundColor = .clear
-        return menuPrice
-    }()
-     */
     
     lazy var menuPrice: UILabel = {
         var price = UILabel()
@@ -135,18 +124,14 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var modalPhoneView: UIStackView = {
-        var modalPhoneView = UIStackView()
-        modalPhoneView.addArrangedSubview(infoPhoneNumber)
-        modalPhoneView.addArrangedSubview(infoSymbolPhone)
+        var modalPhoneView = UIStackView(arrangedSubviews: [infoPhoneNumber, infoSymbolPhone])
         modalPhoneView.axis = .horizontal
         modalPhoneView.spacing = 16.0
         return modalPhoneView
     }()
     
     lazy var modalAddressView: UIStackView = {
-        var modalAddressView = UIStackView()
-        modalAddressView.addArrangedSubview(infoAddress)
-        modalAddressView.addArrangedSubview(infoSymbolCopy)
+        var modalAddressView = UIStackView(arrangedSubviews: [infoAddress, infoSymbolCopy])
         modalAddressView.axis = .horizontal
         modalAddressView.spacing = 16.0
         return modalAddressView
@@ -156,12 +141,7 @@ class DetailModalViewController: ModalViewController {
         let divider = UIView()
         divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
         divider.backgroundColor = .systemGray3
-        var modalInfoView = UIStackView()
-        modalInfoView.addArrangedSubview(infoSubTitleAddress)
-        modalInfoView.addArrangedSubview(modalAddressView)
-        modalInfoView.addArrangedSubview(divider)
-        modalInfoView.addArrangedSubview(infoSubTitlePhone)
-        modalInfoView.addArrangedSubview(modalPhoneView)
+        var modalInfoView = UIStackView(arrangedSubviews: [infoSubTitleAddress, modalAddressView, divider, infoSubTitlePhone, modalPhoneView])
         modalInfoView.axis = .vertical
         modalInfoView.spacing = -5.0
         modalInfoView.setCustomSpacing(8, after: modalAddressView)
@@ -171,9 +151,7 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var modalMenuView: UIStackView = {
-        var modalMenuView = UIStackView()
-        modalMenuView.addArrangedSubview(menuName)
-        modalMenuView.addArrangedSubview(menuPrice)
+        var modalMenuView = UIStackView(arrangedSubviews: [menuName, menuPrice])
         modalMenuView.axis = .horizontal
         modalMenuView.spacing = 16.0
         modalMenuView.customizeBackground(color: .systemGray6, radiusSize: 5.0)
@@ -181,22 +159,14 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var modalTitleView: UIStackView = {
-        var modalTitleView = UIStackView()
-        modalTitleView.addArrangedSubview(titleLabel)
-        modalTitleView.addArrangedSubview(spacer)
-        modalTitleView.addArrangedSubview(favoriteButton)
+        var modalTitleView = UIStackView(arrangedSubviews: [titleLabel, spacer, favoriteButton])
         modalTitleView.axis = .horizontal
         modalTitleView.spacing = 16.0
         return modalTitleView
     }()
     
     lazy var modalDetailView: UIStackView = {
-        var modalDetailView = UIStackView()
-        modalDetailView.addArrangedSubview(modalTitleView)
-        modalDetailView.addArrangedSubview(subTitleMenu)
-        modalDetailView.addArrangedSubview(modalMenuView)
-        modalDetailView.addArrangedSubview(subTitleInfo)
-        modalDetailView.addArrangedSubview(modalInfoView)
+        var modalDetailView = UIStackView(arrangedSubviews: [modalTitleView, subTitleMenu, modalMenuView, subTitleInfo, modalInfoView])
         modalDetailView.axis = .vertical
         modalDetailView.spacing = 10.0
         modalDetailView.setCustomSpacing(20.0, after: modalTitleView)
@@ -264,7 +234,6 @@ class DetailModalViewController: ModalViewController {
     override func setupView() {
         super.setupView()
         view.addSubview(dismissButton)
-        //view.addSubview(favoriteButton)
         view.addSubview(modalDetailView)
         setFavoriteButtonImage()
         modalDetailView.translatesAutoresizingMaskIntoConstraints = false
@@ -274,15 +243,11 @@ class DetailModalViewController: ModalViewController {
             dismissButton.heightAnchor.constraint(equalToConstant: 30),
             dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            
-            //favoriteButton.widthAnchor.constraint(equalToConstant: 30),
-            //favoriteButton.heightAnchor.constraint(equalToConstant: 30),
-            //favoriteButton.topAnchor.constraint(equalTo: dismissButton.topAnchor),
-            //favoriteButton.trailingAnchor.constraint(equalTo: dismissButton.leadingAnchor),
+
             menuPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolCopy.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolPhone.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
-        
+            
             modalDetailView.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
             modalDetailView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             modalDetailView.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30)
@@ -329,7 +294,6 @@ class DetailModalViewController: ModalViewController {
     func initModal() {
         changeModalHeight(.median)
         defaultViewController.changeModalHeight(.median)
-        
         titleLabel.text = selectedShop?.shopName
         menuName.text = selectedShop?.menu
         menuPrice.text = selectedShop?.price
@@ -355,7 +319,6 @@ extension UIStackView {
         subView.backgroundColor = color
         subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         insertSubview(subView, at: 0)
-        
         subView.layer.cornerRadius = radiusSize
         subView.layer.masksToBounds = true
         subView.clipsToBounds = true
