@@ -22,6 +22,27 @@ struct MapModel {
         shops = getShopData()
     }
     
+    func filteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, favorite: Bool? = nil) -> [Shop] {
+        var result = shops
+        
+        if let shopCategory = shopCategory {
+            result = result.filter{
+                guard let shopSubCategory = $0.shopSubCategory else { return false }
+                return shopCategory.subCategories.contains(shopSubCategory)
+            }
+        }
+        
+        if let shopSubCategory = shopSubCategory {
+            result = result.filter{ $0.shopSubCategory == shopSubCategory }
+        }
+        
+        if let _ = favorite {
+            result = result.filter{ favoriteShopId.contains($0.serialNumber) }
+        }
+        
+        return result
+    }
+    
     private func getShopData() -> [Shop] {
         let fileName = "DaeguGoodPriceShop"
         guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: "json") else {
