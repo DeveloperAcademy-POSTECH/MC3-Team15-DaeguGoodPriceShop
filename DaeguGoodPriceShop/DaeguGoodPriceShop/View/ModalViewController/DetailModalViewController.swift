@@ -17,6 +17,10 @@ class DetailModalViewController: ModalViewController {
         }
     }
     
+    private var shopCallAddress = ""
+    private var shopCallNumber = ""
+ 
+    
     let spacer = UIView()
     
     lazy var favoriteButton: UIButton = {
@@ -98,6 +102,13 @@ class DetailModalViewController: ModalViewController {
         return infoAddress
     }()
     
+    lazy var infoSymbolCopy: UIButton = {
+        let infoSymbolCopy = UIButton()
+        infoSymbolCopy.setImage(UIImage(systemName: "doc.on.doc.fill"), for: .normal)
+        infoSymbolCopy.addTarget(self, action: #selector(copyAddress), for: .touchUpInside)
+        return infoSymbolCopy
+    }()
+    
     lazy var infoPhoneNumber: UITextView = {
         var infoPhoneNumber = UITextView(frame: .zero)
         infoPhoneNumber.font = UIFont.systemFont(ofSize: 15)
@@ -108,10 +119,18 @@ class DetailModalViewController: ModalViewController {
         return infoPhoneNumber
     }()
     
+    lazy var infoSymbolPhone: UIButton = {
+        let infoSymbolPhone = UIButton()
+        infoSymbolPhone.setImage(UIImage(systemName: "phone.fill"), for: .normal)
+                      infoSymbolPhone.addTarget(self, action: #selector(phoneCall), for: .touchUpInside)
+        return infoSymbolPhone
+    }()
+    
     lazy var modalPhoneView: UIStackView = {
         var modalPhoneView = UIStackView()
         modalPhoneView.addArrangedSubview(infoPhoneNumber)
         modalPhoneView.addArrangedSubview(spacer)
+        modalPhoneView.addArrangedSubview(infoSymbolPhone)
         modalPhoneView.axis = .horizontal
         modalPhoneView.spacing = 16.0
         return modalPhoneView
@@ -121,6 +140,7 @@ class DetailModalViewController: ModalViewController {
         var modalAddressView = UIStackView()
         modalAddressView.addArrangedSubview(infoAddress)
         modalAddressView.addArrangedSubview(spacer)
+        modalAddressView.addArrangedSubview(infoSymbolCopy)
         modalAddressView.axis = .horizontal
         modalAddressView.spacing = 16.0
         return modalAddressView
@@ -191,6 +211,42 @@ class DetailModalViewController: ModalViewController {
         favoriteButton.setImage(isFavoriteShop ?? false ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
         favoriteButton.tintColor = (isFavoriteShop ?? false) ? UIColor.red : UIColor.gray
     }
+    
+    @objc func copyAddress() {
+        UIPasteboard.general.string = shopCallAddress
+        self.showToast(message: "주소 복사완료!")
+       }
+    
+    func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
+            let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-350, width: 150, height: 35))
+            toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            toastLabel.textColor = UIColor.white
+            toastLabel.font = font
+            toastLabel.textAlignment = .center;
+            toastLabel.text = message
+            toastLabel.alpha = 1.0
+            toastLabel.layer.cornerRadius = 10;
+            toastLabel.clipsToBounds  =  true
+            self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut, animations: {
+                 toastLabel.alpha = 0.0
+            }, completion: {(isCompleted) in
+                toastLabel.removeFromSuperview()
+            })
+        }
+    
+    @objc func phoneCall() {
+           guard let url = URL(string: "tel://\(shopCallNumber)"),UIApplication.shared.canOpenURL(url)
+           else {
+               return
+           }
+           if #available(iOS 14, *) {
+               UIApplication.shared.open(url)
+           }
+           else {
+               UIApplication.shared.openURL(url)
+           }
+       }
     
     override func setupView() {
         super.setupView()
@@ -263,7 +319,8 @@ class DetailModalViewController: ModalViewController {
         menuPrice.text = selectedShop?.price
         infoAddress.text = selectedShop?.address
         infoPhoneNumber.text = selectedShop?.phoneNumber
-        
+        shopCallAddress = selectedShop?.address ?? ""
+        shopCallNumber = selectedShop?.phoneNumber ?? ""
     }
     
     func setData(shopId id: Int) {
