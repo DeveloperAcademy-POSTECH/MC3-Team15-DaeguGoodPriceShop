@@ -23,11 +23,11 @@ class DetailCategoryViewCell: UICollectionViewCell {
         return button
     }()
         
-    func configure(_ item: SubCategory) {
+    func configure(_ item: ShopSubCategory) {
         configureView()
         
-        categoryItemButton.backgroundColor = item.categoryColor ?? .black
-        categoryItemButton.setTitle(item.shopSubCategory?.rawValue ?? "", for: .normal)
+        categoryItemButton.backgroundColor = item.categoryColor ?? UIColor.systemBackground
+        categoryItemButton.setTitle(item.rawValue, for: .normal)
     }
 }
 

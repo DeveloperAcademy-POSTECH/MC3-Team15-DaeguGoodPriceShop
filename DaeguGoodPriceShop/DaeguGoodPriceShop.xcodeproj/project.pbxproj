@@ -40,7 +40,6 @@
 		DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198D287A95D9004E019F /* ModalHeight.swift */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
 		F2277F79287EA1EA00FAB0B0 /* StoreListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2277F78287EA1EA00FAB0B0 /* StoreListItem.swift */; };
-		F2277F7B287EA1FB00FAB0B0 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2277F7A287EA1FB00FAB0B0 /* SubCategory.swift */; };
 		F240E3FD287C55850033A8FA /* DetailCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240E3FC287C55850033A8FA /* DetailCategoryViewCell.swift */; };
 		F240E3FF287C58920033A8FA /* StoreListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240E3FE287C58920033A8FA /* StoreListViewCell.swift */; };
 		F2806FE4287BCAFF005EA0CD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2806FE3287BCAFF005EA0CD /* HeaderView.swift */; };
@@ -82,7 +81,6 @@
 		DA4A198D287A95D9004E019F /* ModalHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHeight.swift; sourceTree = "<group>"; };
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
 		F2277F78287EA1EA00FAB0B0 /* StoreListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItem.swift; sourceTree = "<group>"; };
-		F2277F7A287EA1FB00FAB0B0 /* SubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		F240E3FC287C55850033A8FA /* DetailCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewCell.swift; sourceTree = "<group>"; };
 		F240E3FE287C58920033A8FA /* StoreListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListViewCell.swift; sourceTree = "<group>"; };
 		F2806FE3287BCAFF005EA0CD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				A8E74E87286BFBA5000DB2B8 /* MapModel.swift */,
 				DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */,
 				F2277F78287EA1EA00FAB0B0 /* StoreListItem.swift */,
-				F2277F7A287EA1FB00FAB0B0 /* SubCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2277F7B287EA1FB00FAB0B0 /* SubCategory.swift in Sources */,
 				A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */,
 				DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */,
 				A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */,

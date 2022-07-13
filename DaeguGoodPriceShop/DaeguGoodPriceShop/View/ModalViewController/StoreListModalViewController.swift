@@ -38,7 +38,7 @@ class StoreListModalViewController: ModalViewController {
     }
     
     enum DataItemType: Hashable {
-        case category(SubCategory)
+        case category(ShopSubCategory)
         case favourite(StoreListItem)
         case normal(StoreListItem)
     }
@@ -51,7 +51,7 @@ class StoreListModalViewController: ModalViewController {
         guard let category = self.category else { return [] }
         var dataItems: [Item] = []
         category.subCategories.forEach {
-            let dataItem = Item.category(SubCategory(shopSubCategory: $0))
+            let dataItem = Item.category($0)
             dataItems.append(dataItem)
         }
         return dataItems
