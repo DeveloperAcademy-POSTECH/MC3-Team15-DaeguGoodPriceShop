@@ -312,4 +312,9 @@ extension MapViewController: SubCategoryFilterable {
         let touchedShop = mapViewModel.getShops()[touchedShopIndex]
         zoomTo(shop: touchedShop)
     }
+    
+    func removeFiltering() {
+        removeAnnotations()
+        addAnnotations()
+    }
 }

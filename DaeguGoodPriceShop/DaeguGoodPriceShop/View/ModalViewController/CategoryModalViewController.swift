@@ -16,7 +16,7 @@ class CategoryTapGestureRecognizer: UITapGestureRecognizer {
 }
 
 class CategoryModalViewController: ModalViewController {
-    var delegate: CategoryFilterable?
+    weak var delegate: CategoryFilterable?
     
     var textLabel: UILabel = {
         let label = UILabel()
