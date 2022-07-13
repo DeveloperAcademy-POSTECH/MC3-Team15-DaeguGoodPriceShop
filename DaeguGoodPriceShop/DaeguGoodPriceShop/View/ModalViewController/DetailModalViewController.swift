@@ -186,7 +186,6 @@ class DetailModalViewController: ModalViewController {
         }
         mapViewModel?.toggleFavoriteShop(shopId: shop.serialNumber)
         setFavoriteButtonImage()
-        (parent as? MapViewController)?.updateAnnotation()
     }
     
     func setFavoriteButtonImage() {
