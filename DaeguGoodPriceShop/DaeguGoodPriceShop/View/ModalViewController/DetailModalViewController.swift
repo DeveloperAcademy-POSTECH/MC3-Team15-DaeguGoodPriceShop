@@ -247,8 +247,9 @@ class DetailModalViewController: ModalViewController {
         NSLayoutConstraint.activate([
             menuPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolCopy.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
+            infoSymbolCopy.widthAnchor.constraint(equalToConstant: 30),
             infoSymbolPhone.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
-            
+            infoSymbolPhone.widthAnchor.constraint(equalToConstant: 30),
             modalDetailView.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
             modalDetailView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             modalDetailView.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30)
