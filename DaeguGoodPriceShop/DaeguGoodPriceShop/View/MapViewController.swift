@@ -13,7 +13,7 @@ class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     private var observers: Set<AnyCancellable> = []
     var selectedAnnotationView: MKAnnotationView?
-    var selectedAnnotation: MKAnnotationView?
+    var selectedAnnotation: MKAnnotation?
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
@@ -39,7 +39,7 @@ class MapViewController: UIViewController {
     }()
     
     lazy var detailModalVC: DetailModalViewController = {
-        let detailModalVC = DetailModalViewController()
+        let detailModalVC = DetailModalViewController(mapViewModel: self.mapViewModel)
         self.addChild(detailModalVC)
         view.addSubview(detailModalVC.view)
         detailModalVC.willMove(toParent: self)
@@ -64,18 +64,20 @@ class MapViewController: UIViewController {
         configureMapView()
         registerAnnotationViewClasses()
         configureBindings()
-        addAnnotation()
+        addAnnotations()
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender.tag == 0 {
             mapViewModel.favoriteShopButtonTouched()
-            removeAnnotation()
+            removeAnnotations()
             mapViewModel.getFilteredShops(favorite: mapViewModel.isShowingFavorite ? true : nil).forEach { shop in
                 guard let annotation = ShopAnnotation(of: shop) else { return }
                 mapView.addAnnotation(annotation)
             }
+            categoryModalVC.changeModalHeight(ModalHeight.zero)
         } else {
+            detailModalVC.changeModalHeight(ModalHeight.zero)
             categoryModalVC.initModal()
         }
     }
@@ -206,14 +208,14 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
-    private func addAnnotation() {
+    private func addAnnotations() {
         mapViewModel.getShops().forEach { shop in
             guard let annotation = ShopAnnotation(of: shop) else { return }
             mapView.addAnnotation(annotation)
         }
     }
     
-    private func removeAnnotation() {
+    private func removeAnnotations() {
         mapView.removeAnnotations(mapView.annotations)
     }
     
@@ -259,21 +261,32 @@ extension MapViewController: MKMapViewDelegate {
         guard let shopAnnotationView = view as? ShopAnnotationView else { return }
         shopAnnotationView.selected()
         selectedAnnotationView = view
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        selectedAnnotation = selectedAnnotationView?.annotation
+        
         guard let selectedShopData = view.annotation as? ShopAnnotation else {
             return
         }
         
         detailModalVC.setData(shopId: selectedShopData.serialNumber)
         detailModalVC.initModal()
+        categoryModalVC.changeModalHeight(.zero)
+        categoryModalVC.changeModalHeight(.zero)
+//        zoomTo(shop: mapViewModel.findShop(shopId: selectedShopData.serialNumber)!)
     }
+    
+    //    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    //        guard let selectedShopData = view.annotation as? ShopAnnotation else {
+    //            return
+    //        }
+    //
+    //        detailModalVC.setData(shopId: selectedShopData.serialNumber)
+    //        detailModalVC.initModal()
+    //    }
 }
 
 extension MapViewController: CategoryFilterable {
     func categoryTouched(_ category: ShopCategory) {
-        removeAnnotation()
+        removeAnnotations()
         mapViewModel.getShops().forEach { shop in
             guard let shopSubCategory = shop.shopSubCategory, category.subCategories.contains(shopSubCategory) else { return }
             guard let annotation = ShopAnnotation(of: shop) else { return }
@@ -286,7 +299,7 @@ extension MapViewController: CategoryFilterable {
 
 extension MapViewController: SubCategoryFilterable {
     func categoryTouched(_ category: ShopSubCategory) {
-        removeAnnotation()
+        removeAnnotations()
         mapViewModel.getShops().forEach { shop in
             guard let shopSubCategory = shop.shopSubCategory, category == shopSubCategory else { return }
             guard let annotation = ShopAnnotation(of: shop) else { return }

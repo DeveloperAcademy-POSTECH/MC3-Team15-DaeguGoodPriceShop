@@ -8,8 +8,7 @@
 import UIKit
 
 class DetailModalViewController: ModalViewController {
-    lazy var defaultViewController = parent?.children.first(where: { $0 is StoreListModalViewController }) as! StoreListModalViewController
-    lazy var mapViewModel = (parent as? MapViewController)?.mapViewModel
+    let mapViewModel: MapViewModel
     
     private var selectedShop: Shop? {
         didSet {
@@ -20,11 +19,19 @@ class DetailModalViewController: ModalViewController {
     private var shopCallAddress = ""
     private var shopCallNumber = ""
  
+    init(mapViewModel: MapViewModel) {
+        self.mapViewModel = mapViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let spacer = UIView()
     
     lazy var favoriteButton: UIButton = {
-        var isFavoriteShop = mapViewModel?.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
+        var isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
@@ -184,14 +191,14 @@ class DetailModalViewController: ModalViewController {
         guard let shop = selectedShop else {
             return
         }
-        mapViewModel?.toggleFavoriteShop(shopId: shop.serialNumber)
+        mapViewModel.toggleFavoriteShop(shopId: shop.serialNumber)
         setFavoriteButtonImage()
     }
     
     func setFavoriteButtonImage() {
-        let isFavoriteShop = mapViewModel?.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
-        favoriteButton.setImage(isFavoriteShop ?? false ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-        favoriteButton.tintColor = (isFavoriteShop ?? false) ? UIColor.red : UIColor.gray
+        let isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
+        favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
     }
     
     @objc func copyAddress() {
@@ -260,23 +267,14 @@ class DetailModalViewController: ModalViewController {
         
         switch gesture.state {
         case .changed:
-            if newHeight < ModalHeight.median.value {
-                modalHeight?.constant = newHeight
-                parent?.view.layoutIfNeeded()
-                defaultViewController.modalHeight?.constant = newHeight
-                parent?.view.layoutIfNeeded()
-            } else if newHeight < ModalHeight.maximum.value {
-                modalHeight?.constant = newHeight
-                parent?.view.layoutIfNeeded()
-            }
+            modalHeight?.constant = newHeight
+            parent?.view.layoutIfNeeded()
         case .ended:
             if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
                     changeModalHeight(.minimum)
-                    defaultViewController.changeModalHeight(.minimum)
                 } else {
                     changeModalHeight(.median)
-                    defaultViewController.changeModalHeight(.median)
                 }
             } else {
                 if isDraggingDown {
@@ -292,7 +290,6 @@ class DetailModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.median)
-        defaultViewController.changeModalHeight(.median)
         
         titleLabel.text = selectedShop?.shopName
         menuName.text = selectedShop?.menu
@@ -304,7 +301,7 @@ class DetailModalViewController: ModalViewController {
     }
     
     func setData(shopId id: Int) {
-        selectedShop = mapViewModel?.findShop(shopId: id)
+        selectedShop = mapViewModel.findShop(shopId: id)
     }
     
     @objc override func dismissModal() {
