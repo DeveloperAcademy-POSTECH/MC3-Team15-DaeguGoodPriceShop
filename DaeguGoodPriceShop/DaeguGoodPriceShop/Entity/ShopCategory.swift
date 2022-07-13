@@ -5,7 +5,7 @@
 //  Created by Yeongwoo Kim on 2022/07/05.
 //
 
-import Foundation
+import UIKit
 
 enum ShopSubCategory: String {
     case koreanFood = "한식"
@@ -30,6 +30,19 @@ enum ShopSubCategory: String {
             return .laundryShop
         case .skinCare, .bath:
             return .serviceShop
+        }
+    }
+    
+    var categoryColor: UIColor? {
+        switch self {
+        case .koreanFood, .chineseFood, .westernFood, .japaneseFood, .flourBasedFood, .bakery, .cafe:
+            return UIColor(named: "CateringStore")
+        case .hairCut:
+            return UIColor(named: "HairdressingShop")
+        case .cleaning:
+            return UIColor(named: "LaundryShop")
+        case .skinCare, .bath:
+            return UIColor(named: "ServiceShop")
         }
     }
 }

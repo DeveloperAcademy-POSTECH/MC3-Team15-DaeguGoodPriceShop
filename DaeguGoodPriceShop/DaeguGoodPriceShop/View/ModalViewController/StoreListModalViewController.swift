@@ -37,53 +37,61 @@ class StoreListModalViewController: ModalViewController {
         case normal = "목록"
     }
     
-    typealias Section = StoreListSection
-    private var datasource: UICollectionViewDiffableDataSource<Section, DataItem>!
+    enum DataItemType: Hashable {
+        case category(ShopSubCategory)
+        case favourite(StoreListItem)
+        case normal(StoreListItem)
+    }
     
-    private var detailCategories: [DataItem] {
+    typealias Section = StoreListSection
+    typealias Item = DataItemType
+    private var datasource: UICollectionViewDiffableDataSource<Section, Item>!
+    
+    private var detailCategories: [Item] {
         guard let category = self.category else { return [] }
-        var dataItems: [DataItem] = []
+        var dataItems: [Item] = []
         category.subCategories.forEach {
-            let dataItem = DataItem(shopSubCategory: $0)
+            let dataItem = Item.category($0)
             dataItems.append(dataItem)
         }
         return dataItems
     }
-    private var favouriteStores: [DataItem] = []
-    private var normalStores: [DataItem] = []
+    
+    private var favouriteStores: [Item] = []
+    private var normalStores: [Item] = []
     
     private func configureNormalStores(ofCategory category: ShopCategory?) {
         guard let category = self.category else { return }
-        var dataItems: [DataItem] = []
+        var dataItems: [Item] = []
         mapViewModel.getFilteredShops(shopCategory: category).forEach { shop in
-            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            let dataItem = Item.normal(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
             dataItems.append(dataItem)
         }
         self.normalStores = dataItems
     }
     
     private func configureNormalStores(ofSubCategory category: ShopSubCategory) {
-        var dataItems: [DataItem] = []
+        var dataItems: [Item] = []
         mapViewModel.getFilteredShops(shopSubCategory: category).forEach { shop in
-            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            let dataItem = Item.normal(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
             dataItems.append(dataItem)
         }
         self.normalStores = dataItems
     }
     
     private func configureFavoriteStores(ofCategory category: ShopCategory?) {
-        var dataItems: [DataItem] = []
+        var dataItems: [Item] = []
         mapViewModel.getFilteredShops(shopCategory: category, favorite: true).forEach { shop in
-            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            let dataItem = Item.favourite(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
             dataItems.append(dataItem)
         }
         self.favouriteStores = dataItems
     }
     
     private func configureFavoriteStores(ofSubCategory category: ShopSubCategory?) {
-        var dataItems: [DataItem] = []
+        var dataItems: [Item] = []
         mapViewModel.getFilteredShops(shopSubCategory: category, favorite: true).forEach { shop in
-            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            let dataItem = Item.favourite(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
             dataItems.append(dataItem)
         }
         self.favouriteStores = dataItems
@@ -159,8 +167,10 @@ extension StoreListModalViewController: UICollectionViewDelegate {
             configureDataSource()
         case 1: Void()
         case 2:
-            guard let serialNumber = normalStores[indexPath.item].storeSerialNumber else { return }
-            delegate?.shopTouched(ofSerialNumber: serialNumber)
+            if case let .normal(store) = normalStores[indexPath.item] {
+                guard let serialNumber = store.storeSerialNumber else { return }
+                delegate?.shopTouched(ofSerialNumber: serialNumber)
+            }
         default: break
         }
     }
@@ -169,26 +179,25 @@ extension StoreListModalViewController: UICollectionViewDelegate {
 extension StoreListModalViewController {
     
     private func configureDataSource() {
-        datasource = UICollectionViewDiffableDataSource<Section, DataItem>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
-            let sectionType = Section.allCases[indexPath.section]
+        datasource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             
-            switch sectionType {
-            case .category:
+            switch item {
+            case .category(let category):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCategoryViewCell.identifier, for: indexPath) as? DetailCategoryViewCell else { return nil }
                 
-                cell.configure(item)
+                cell.configure(category)
                 
                 return cell
-            case .favourite:
+            case .favourite(let favourite):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreListViewCell.identifier, for: indexPath) as? StoreListViewCell else { return nil }
                 
-                cell.configure(item)
+                cell.configure(favourite)
                 
                 return cell
                 
-            case .normal:
+            case .normal(let normal):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreListViewCell.identifier, for: indexPath) as? StoreListViewCell else { return nil }
-                cell.configure(item)
+                cell.configure(normal)
                 
                 return cell
             }
@@ -317,8 +326,8 @@ extension StoreListModalViewController {
         return section
     }
     
-    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<Section, DataItem> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DataItem>()
+    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<Section, Item> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.category])
         snapshot.appendItems(detailCategories, toSection: .category)
         

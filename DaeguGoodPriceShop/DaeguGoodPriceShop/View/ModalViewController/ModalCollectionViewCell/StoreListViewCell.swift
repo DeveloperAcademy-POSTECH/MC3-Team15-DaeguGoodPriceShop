@@ -42,7 +42,7 @@ class StoreListViewCell: UICollectionViewCell {
         return button
     }()
     
-    func configure(_ item: DataItem) {
+    func configure(_ item: StoreListItem) {
         configureView()
         
         titleLabel.text = item.storeName
