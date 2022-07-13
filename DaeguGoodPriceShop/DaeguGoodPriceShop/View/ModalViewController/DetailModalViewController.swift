@@ -143,7 +143,7 @@ class DetailModalViewController: ModalViewController {
         divider.backgroundColor = .systemGray3
         var modalInfoView = UIStackView(arrangedSubviews: [infoSubTitleAddress, modalAddressView, divider, infoSubTitlePhone, modalPhoneView])
         modalInfoView.axis = .vertical
-        modalInfoView.spacing = -5.0
+        modalInfoView.spacing = 0.0
         modalInfoView.setCustomSpacing(8, after: modalAddressView)
         modalInfoView.setCustomSpacing(8, after: divider)
         modalInfoView.customizeBackground(color: .systemGray6, radiusSize: 10.0)
@@ -294,6 +294,7 @@ class DetailModalViewController: ModalViewController {
     func initModal() {
         changeModalHeight(.median)
         defaultViewController.changeModalHeight(.median)
+        
         titleLabel.text = selectedShop?.shopName
         menuName.text = selectedShop?.menu
         menuPrice.text = selectedShop?.price
@@ -319,6 +320,7 @@ extension UIStackView {
         subView.backgroundColor = color
         subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         insertSubview(subView, at: 0)
+        
         subView.layer.cornerRadius = radiusSize
         subView.layer.masksToBounds = true
         subView.clipsToBounds = true
