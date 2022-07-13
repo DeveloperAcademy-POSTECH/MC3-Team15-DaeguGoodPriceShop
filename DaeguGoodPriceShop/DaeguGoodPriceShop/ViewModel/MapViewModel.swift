@@ -76,43 +76,11 @@ final class MapViewModel {
     }
     
     func getShops() -> [Shop] {
-        var filteredShop = model.shops
-
-        filteredShop = filterByDistance(shops: filteredShop)
-        filteredShop = filterByFavorite(shops: filteredShop)
-        filteredShop = filterByCategory(shops: filteredShop)
-
-        return filteredShop
+        return model.shops
     }
     
-    private func filterByDistance(shops: [Shop]) -> [Shop] {
-        if let distance = distance {
-            return shops.filter{ getDistanceFromUser($0) < distance }
-        }
-        
-        return shops
-    }
-    
-    private func filterByFavorite(shops: [Shop]) -> [Shop] {
-        if isFavorite {
-            return shops.filter{ model.favoriteShopId.contains($0.serialNumber) }
-        }
-        
-        return shops
-    }
-    
-    private func filterByCategory(shops: [Shop]) -> [Shop] {
-        guard let category = category else {
-            return shops
-        }
-        
-        let filterdShop = shops.filter{ $0.shopSubCategory?.category == category }
-        
-        guard let subcategory = subcategory else {
-            return filterdShop
-        }
-        
-        return filterdShop.filter{ $0.shopSubCategory == subcategory }
+    func getFilteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, favorite: Bool? = nil) -> [Shop] {
+        return model.filteredShops(shopCategory: shopCategory, shopSubCategory: shopSubCategory, favorite: favorite)
     }
     
     func findShop(shopId id: Int) -> Shop? {

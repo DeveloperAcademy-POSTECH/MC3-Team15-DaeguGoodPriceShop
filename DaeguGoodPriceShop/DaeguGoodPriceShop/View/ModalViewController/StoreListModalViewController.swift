@@ -15,6 +15,7 @@ protocol SubCategoryFilterable: AnyObject {
 class StoreListModalViewController: ModalViewController {
     var mapViewModel: MapViewModel
     var delegate: SubCategoryFilterable?
+    var category: ShopCategory?
     
     static let sectionHeaderElementKind = "section-header-element-kind"
     
@@ -48,23 +49,45 @@ class StoreListModalViewController: ModalViewController {
         }
         return dataItems
     }
-    private var favouriteStores: [DataItem] = DataItem.favourites
-    private var normalStores: [DataItem] {
-        guard let category = self.category else { return [] }
+    private var favouriteStores: [DataItem] = []
+    private var normalStores: [DataItem] = []
+    
+    private func configureNormalStores(ofCategory category: ShopCategory?) {
+        guard let category = self.category else { return }
         var dataItems: [DataItem] = []
-        mapViewModel.getShops().filter { shop in
-            if let shopSubCategory = shop.shopSubCategory, category.subCategories.contains(shopSubCategory) {
-                return true
-            }
-            return false
-        }.forEach { shop in
+        mapViewModel.getFilteredShops(shopCategory: category).forEach { shop in
             let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
             dataItems.append(dataItem)
         }
-        return dataItems
+        self.normalStores = dataItems
     }
     
-    var category: ShopCategory?
+    private func configureNormalStores(ofSubCategory category: ShopSubCategory) {
+        var dataItems: [DataItem] = []
+        mapViewModel.getFilteredShops(shopSubCategory: category).forEach { shop in
+            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            dataItems.append(dataItem)
+        }
+        self.normalStores = dataItems
+    }
+    
+    private func configureFavoriteStores(ofCategory category: ShopCategory?) {
+        var dataItems: [DataItem] = []
+        mapViewModel.getFilteredShops(shopCategory: category, favorite: true).forEach { shop in
+            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            dataItems.append(dataItem)
+        }
+        self.favouriteStores = dataItems
+    }
+    
+    private func configureFavoriteStores(ofSubCategory category: ShopSubCategory?) {
+        var dataItems: [DataItem] = []
+        mapViewModel.getFilteredShops(shopSubCategory: category, favorite: true).forEach { shop in
+            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            dataItems.append(dataItem)
+        }
+        self.favouriteStores = dataItems
+    }
     
     init(category: ShopCategory? = nil, mapViewModel: MapViewModel) {
         self.category = category
@@ -119,6 +142,8 @@ class StoreListModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.category)
+        configureNormalStores(ofCategory: category)
+        configureFavoriteStores(ofCategory: category)
         configureDataSource()
     }
 }
@@ -129,6 +154,9 @@ extension StoreListModalViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case 0:
             delegate?.categoryTouched(category.subCategories[indexPath.item])
+            configureNormalStores(ofSubCategory: category.subCategories[indexPath.item])
+            configureFavoriteStores(ofSubCategory: category.subCategories[indexPath.item])
+            configureDataSource()
         case 1: Void()
         case 2:
             guard let serialNumber = normalStores[indexPath.item].storeSerialNumber else { return }
