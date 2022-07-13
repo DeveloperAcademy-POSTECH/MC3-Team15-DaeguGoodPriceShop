@@ -131,16 +131,16 @@ class StoreListModalViewController: ModalViewController {
                 parent?.view.layoutIfNeeded()
             }
         case .ended:
-            if newHeight < ModalHeight.category.value {
+            if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
                     changeModalHeight(.zero)
                     delegate?.removeFiltering()
                 } else {
-                    changeModalHeight(.category)
+                    changeModalHeight(.median)
                 }
             } else {
                 if isDraggingDown {
-                    changeModalHeight(.category)
+                    changeModalHeight(.median)
                 } else {
                     changeModalHeight(.maximum)
                 }
@@ -151,7 +151,7 @@ class StoreListModalViewController: ModalViewController {
     }
     
     func initModal() {
-        changeModalHeight(.category)
+        changeModalHeight(.median)
         configureNormalStores(ofCategory: category)
         configureFavoriteStores(ofCategory: category)
         configureDataSource()

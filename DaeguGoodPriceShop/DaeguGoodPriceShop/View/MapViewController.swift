@@ -76,7 +76,9 @@ class MapViewController: UIViewController {
                 mapView.addAnnotation(annotation)
             }
             categoryModalVC.changeModalHeight(ModalHeight.zero)
+            storeListModalVC.changeModalHeight(.zero)
         } else {
+            storeListModalVC.changeModalHeight(.zero)
             detailModalVC.changeModalHeight(ModalHeight.zero)
             categoryModalVC.initModal()
         }
@@ -270,7 +272,7 @@ extension MapViewController: MKMapViewDelegate {
         detailModalVC.setData(shopId: selectedShopData.serialNumber)
         detailModalVC.initModal()
         categoryModalVC.changeModalHeight(.zero)
-        categoryModalVC.changeModalHeight(.zero)
+        storeListModalVC.changeModalHeight(.zero)
 //        zoomTo(shop: mapViewModel.findShop(shopId: selectedShopData.serialNumber)!)
     }
     
