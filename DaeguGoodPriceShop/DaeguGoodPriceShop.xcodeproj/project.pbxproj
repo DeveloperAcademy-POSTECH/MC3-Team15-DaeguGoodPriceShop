@@ -39,9 +39,10 @@
 		DA4A198C287A95C4004E019F /* CategoryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */; };
 		DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198D287A95D9004E019F /* ModalHeight.swift */; };
 		DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */ = {isa = PBXBuildFile; fileRef = DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */; };
+		F2277F79287EA1EA00FAB0B0 /* StoreListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2277F78287EA1EA00FAB0B0 /* StoreListItem.swift */; };
+		F2277F7B287EA1FB00FAB0B0 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2277F7A287EA1FB00FAB0B0 /* SubCategory.swift */; };
 		F240E3FD287C55850033A8FA /* DetailCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240E3FC287C55850033A8FA /* DetailCategoryViewCell.swift */; };
 		F240E3FF287C58920033A8FA /* StoreListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240E3FE287C58920033A8FA /* StoreListViewCell.swift */; };
-		F2806FE1287BCAC1005EA0CD /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2806FE0287BCAC1005EA0CD /* DataItem.swift */; };
 		F2806FE4287BCAFF005EA0CD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2806FE3287BCAFF005EA0CD /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,9 +81,10 @@
 		DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModalViewController.swift; sourceTree = "<group>"; };
 		DA4A198D287A95D9004E019F /* ModalHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHeight.swift; sourceTree = "<group>"; };
 		DAB60439286C26D20039C969 /* DaeguGoodPriceShop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DaeguGoodPriceShop.json; sourceTree = "<group>"; };
+		F2277F78287EA1EA00FAB0B0 /* StoreListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItem.swift; sourceTree = "<group>"; };
+		F2277F7A287EA1FB00FAB0B0 /* SubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		F240E3FC287C55850033A8FA /* DetailCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewCell.swift; sourceTree = "<group>"; };
 		F240E3FE287C58920033A8FA /* StoreListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListViewCell.swift; sourceTree = "<group>"; };
-		F2806FE0287BCAC1005EA0CD /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
 		F2806FE3287BCAFF005EA0CD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,7 +187,8 @@
 			children = (
 				A8E74E87286BFBA5000DB2B8 /* MapModel.swift */,
 				DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */,
-				F2806FE0287BCAC1005EA0CD /* DataItem.swift */,
+				F2277F78287EA1EA00FAB0B0 /* StoreListItem.swift */,
+				F2277F7A287EA1FB00FAB0B0 /* SubCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2277F7B287EA1FB00FAB0B0 /* SubCategory.swift in Sources */,
 				A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */,
 				DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */,
 				A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */,
@@ -343,10 +347,10 @@
 				F2806FE4287BCAFF005EA0CD /* HeaderView.swift in Sources */,
 				DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */,
 				A8CBA579287BAF3800BC2DC1 /* BathAnnotationView.swift in Sources */,
-				F2806FE1287BCAC1005EA0CD /* DataItem.swift in Sources */,
 				A8CBA57F287BAF3800BC2DC1 /* ClusteringAnnotationView.swift in Sources */,
 				DA4A198A287A95B0004E019F /* DetailModalViewController.swift in Sources */,
 				DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */,
+				F2277F79287EA1EA00FAB0B0 /* StoreListItem.swift in Sources */,
 				A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */,
 				A8E74E86286BFB90000DB2B8 /* MapViewModel.swift in Sources */,
 			);
@@ -495,7 +499,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZRTG6WMRW7;
+				DEVELOPMENT_TEAM = G3PA8G576S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -524,7 +528,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZRTG6WMRW7;
+				DEVELOPMENT_TEAM = G3PA8G576S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
