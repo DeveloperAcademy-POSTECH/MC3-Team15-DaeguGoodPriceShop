@@ -21,7 +21,8 @@ class CategoryModalViewController: ModalViewController {
     var textLabel: UILabel = {
         let label = UILabel()
         label.text = "업종 선택"
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)
+        label.font = .preferredFont(for: .body, weight: .bold)
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -29,7 +30,7 @@ class CategoryModalViewController: ModalViewController {
     lazy var innerScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.isScrollEnabled = false
+        scrollView.isScrollEnabled = true
         return scrollView
     }()
     
@@ -45,7 +46,8 @@ class CategoryModalViewController: ModalViewController {
         imageView.contentMode = .scaleAspectFill
         label.text = "요식업"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)
+        label.font = UIFont.preferredFont(for: .body, weight: .bold)
+        label.adjustsFontForContentSizeCategory = true
         stackView.backgroundColor = UIColor(named: "CateringStore")
         stackView.clipsToBounds = true
         let tabGesture = CategoryTapGestureRecognizer(target: self, action: #selector(buttonViewTouched(gesture:)))
@@ -66,7 +68,8 @@ class CategoryModalViewController: ModalViewController {
         imageView.contentMode = .scaleAspectFill
         label.text = "미용"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)
+        label.font = UIFont.preferredFont(for: .body, weight: .bold)
+        label.adjustsFontForContentSizeCategory = true
         stackView.backgroundColor = UIColor(named: "HairdressingShop")
         stackView.clipsToBounds = true
         let tabGesture = CategoryTapGestureRecognizer(target: self, action: #selector(buttonViewTouched(gesture:)))
@@ -87,7 +90,8 @@ class CategoryModalViewController: ModalViewController {
         imageView.contentMode = .scaleAspectFill
         label.text = "세탁"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)
+        label.font = UIFont.preferredFont(for: .body, weight: .bold)
+        label.adjustsFontForContentSizeCategory = true
         stackView.backgroundColor = UIColor(named: "LaundryShop")
         stackView.clipsToBounds = true
         let tabGesture = CategoryTapGestureRecognizer(target: self, action: #selector(buttonViewTouched(gesture:)))
@@ -108,7 +112,8 @@ class CategoryModalViewController: ModalViewController {
         imageView.contentMode = .scaleAspectFill
         label.text = "서비스"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)
+        label.font = UIFont.preferredFont(for: .body, weight: .bold)
+        label.adjustsFontForContentSizeCategory = true
         stackView.backgroundColor = UIColor(named: "ServiceShop")
         stackView.clipsToBounds = true
         let tabGesture = CategoryTapGestureRecognizer(target: self, action: #selector(buttonViewTouched(gesture:)))
@@ -160,7 +165,7 @@ class CategoryModalViewController: ModalViewController {
         
         NSLayoutConstraint.activate([
             innerScrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            innerScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            innerScrollView.topAnchor.constraint(equalTo: gestureBarView.bottomAnchor),
             innerScrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
             innerScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
@@ -171,6 +176,7 @@ class CategoryModalViewController: ModalViewController {
         ])
         
         NSLayoutConstraint.activate([
+            totalStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 60),
             totalStackView.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 30),
             totalStackView.topAnchor.constraint(equalTo: self.textLabel.bottomAnchor, constant: 30),
             totalStackView.bottomAnchor.constraint(equalTo: innerScrollView.bottomAnchor, constant: -50),
