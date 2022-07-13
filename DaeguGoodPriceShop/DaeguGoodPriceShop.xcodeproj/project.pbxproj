@@ -33,7 +33,7 @@
 		DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7082873D9DD0038EDE4 /* LocationManager.swift */; };
 		DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */; };
 		DA4A1986287A9583004E019F /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A1985287A9583004E019F /* ModalViewController.swift */; };
-		DA4A1988287A9596004E019F /* DefaultModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A1987287A9596004E019F /* DefaultModalViewController.swift */; };
+		DA4A1988287A9596004E019F /* StoreListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A1987287A9596004E019F /* StoreListModalViewController.swift */; };
 		DA4A198A287A95B0004E019F /* DetailModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A1989287A95B0004E019F /* DetailModalViewController.swift */; };
 		DA4A198C287A95C4004E019F /* CategoryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */; };
 		DA4A198E287A95D9004E019F /* ModalHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4A198D287A95D9004E019F /* ModalHeight.swift */; };
@@ -73,7 +73,7 @@
 		DA34E7082873D9DD0038EDE4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotation.swift; sourceTree = "<group>"; };
 		DA4A1985287A9583004E019F /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
-		DA4A1987287A9596004E019F /* DefaultModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultModalViewController.swift; sourceTree = "<group>"; };
+		DA4A1987287A9596004E019F /* StoreListModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListModalViewController.swift; sourceTree = "<group>"; };
 		DA4A1989287A95B0004E019F /* DetailModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewController.swift; sourceTree = "<group>"; };
 		DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModalViewController.swift; sourceTree = "<group>"; };
 		DA4A198D287A95D9004E019F /* ModalHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHeight.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				DA4A1985287A9583004E019F /* ModalViewController.swift */,
-				DA4A1987287A9596004E019F /* DefaultModalViewController.swift */,
+				DA4A1987287A9596004E019F /* StoreListModalViewController.swift */,
 				F240E3F9287C54A00033A8FA /* ModalCollectionViewCell */,
 				DA4A1989287A95B0004E019F /* DetailModalViewController.swift */,
 				DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */,
@@ -329,7 +329,7 @@
 				A8CBA577287BAF3800BC2DC1 /* ChineseFoodAnnotationView.swift in Sources */,
 				A80AAF972876508400795C87 /* ShopAnnotationView.swift in Sources */,
 				A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */,
-				DA4A1988287A9596004E019F /* DefaultModalViewController.swift in Sources */,
+				DA4A1988287A9596004E019F /* StoreListModalViewController.swift in Sources */,
 				F240E3FD287C55850033A8FA /* DetailCategoryViewCell.swift in Sources */,
 				A8CBA582287BAF3800BC2DC1 /* HairCutAnnotationView.swift in Sources */,
 				A8CBA57E287BAF3800BC2DC1 /* KoreanFoodAnnotationView.swift in Sources */,

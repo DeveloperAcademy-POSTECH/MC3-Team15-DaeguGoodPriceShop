@@ -26,6 +26,13 @@ class CategoryModalViewController: ModalViewController {
         return label
     }()
     
+    lazy var innerScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isScrollEnabled = false
+        return scrollView
+    }()
+    
     lazy var cateringStoreButtonView: UIStackView = {
         let imageView = UIImageView()
         let label = UILabel()
@@ -140,9 +147,11 @@ class CategoryModalViewController: ModalViewController {
     
     override func setupView() {
         super.setupView()
-        view.addSubview(dismissButton)
-        view.addSubview(textLabel)
-        view.addSubview(totalStackView)
+        view.addSubview(innerScrollView)
+        innerScrollView.addSubview(dismissButton)
+        innerScrollView.addSubview(textLabel)
+        innerScrollView.addSubview(totalStackView)
+        
         
         cateringStoreButtonView.layer.cornerRadius = 5
         hairdressingShop.layer.cornerRadius = 5
@@ -150,23 +159,30 @@ class CategoryModalViewController: ModalViewController {
         serviceShop.layer.cornerRadius = 5
         
         NSLayoutConstraint.activate([
-            textLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 30),
-            textLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30)
+            innerScrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            innerScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            innerScrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            innerScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            totalStackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 30),
+            textLabel.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 30),
+            textLabel.topAnchor.constraint(equalTo: innerScrollView.topAnchor, constant: 30)
+        ])
+        
+        NSLayoutConstraint.activate([
+            totalStackView.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 30),
             totalStackView.topAnchor.constraint(equalTo: self.textLabel.bottomAnchor, constant: 30),
-            totalStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50),
-            totalStackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30)
+            totalStackView.bottomAnchor.constraint(equalTo: innerScrollView.bottomAnchor, constant: -50),
+            totalStackView.rightAnchor.constraint(equalTo: innerScrollView.rightAnchor, constant: -30)
         ])
             
             
         NSLayoutConstraint.activate([
-            dismissButton.widthAnchor.constraint(equalToConstant: 30),
-            dismissButton.heightAnchor.constraint(equalToConstant: 30),
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            dismissButton.widthAnchor.constraint(equalToConstant: 50),
+            dismissButton.heightAnchor.constraint(equalToConstant: 50),
+            dismissButton.topAnchor.constraint(equalTo: innerScrollView.topAnchor, constant: 10),
+            dismissButton.trailingAnchor.constraint(equalTo: innerScrollView.trailingAnchor, constant: -10),
         ])
     }
     

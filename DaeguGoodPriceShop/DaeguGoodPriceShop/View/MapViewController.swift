@@ -28,8 +28,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var buttonsContainerView: UIView!
     
-    lazy var defaultModalVC: DefaultModalViewController = {
-        let defaultModalVC = DefaultModalViewController()
+    lazy var storeListModalVC: StoreListModalViewController = {
+        let defaultModalVC = StoreListModalViewController(mapViewModel: self.mapViewModel)
         self.addChild(defaultModalVC)
         view.addSubview(defaultModalVC.view)
         defaultModalVC.willMove(toParent: self)
@@ -93,11 +93,12 @@ class MapViewController: UIViewController {
         
         mapView.addSubview(userTrackingButton)
         
-        view.addSubview(defaultModalVC.view)
-        view.addSubview(detailModalVC.view)
         view.addSubview(categoryModalVC.view)
+        view.addSubview(storeListModalVC.view)
+        view.addSubview(detailModalVC.view)
         
         categoryModalVC.delegate = self
+        storeListModalVC.delegate = self
         
         NSLayoutConstraint.activate([
             userTrackingButton.widthAnchor.constraint(equalToConstant: 50),
@@ -105,9 +106,9 @@ class MapViewController: UIViewController {
             userTrackingButton.rightAnchor.constraint(equalTo: self.mapView.rightAnchor, constant: -20),
             userTrackingButton.topAnchor.constraint(equalTo: self.buttonsContainerView.bottomAnchor, constant: 10),
             
-            defaultModalVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            defaultModalVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            defaultModalVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            storeListModalVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            storeListModalVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            storeListModalVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             detailModalVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             detailModalVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -118,11 +119,11 @@ class MapViewController: UIViewController {
             categoryModalVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-        defaultModalVC.modalHeight = defaultModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.minimum.value)
+        storeListModalVC.modalHeight = storeListModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.value)
         detailModalVC.modalHeight = detailModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.value)
         categoryModalVC.modalHeight = categoryModalVC.view.heightAnchor.constraint(equalToConstant: ModalHeight.zero.value)
         
-        defaultModalVC.modalHeight?.isActive = true
+        storeListModalVC.modalHeight?.isActive = true
         detailModalVC.modalHeight?.isActive = true
         categoryModalVC.modalHeight?.isActive = true
     }
@@ -216,6 +217,13 @@ class MapViewController: UIViewController {
     private func removeAnnotation() {
         mapView.removeAnnotations(mapView.annotations)
     }
+    
+    private func zoomTo(shop: Shop) {
+        let center = CLLocationCoordinate2D(latitude: shop.latitude, longitude: shop.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.setRegion(region, animated: true)
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -272,5 +280,24 @@ extension MapViewController: CategoryFilterable {
             guard let annotation = ShopAnnotation(of: shop) else { return }
             mapView.addAnnotation(annotation)
         }
+        storeListModalVC.category = category
+        storeListModalVC.initModal()
+    }
+}
+
+extension MapViewController: SubCategoryFilterable {
+    func categoryTouched(_ category: ShopSubCategory) {
+        removeAnnotation()
+        mapViewModel.getShops().forEach { shop in
+            guard let shopSubCategory = shop.shopSubCategory, category == shopSubCategory else { return }
+            guard let annotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(annotation)
+        }
+    }
+    
+    func shopTouched(ofSerialNumber number: Int) {
+        guard let touchedShopIndex = mapViewModel.getShops().firstIndex(where: { $0.serialNumber == number }) else { return }
+        let touchedShop = mapViewModel.getShops()[touchedShopIndex]
+        zoomTo(shop: touchedShop)
     }
 }

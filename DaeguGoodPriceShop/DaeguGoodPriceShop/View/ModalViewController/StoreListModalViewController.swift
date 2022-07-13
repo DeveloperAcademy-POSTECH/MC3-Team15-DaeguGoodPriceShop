@@ -1,5 +1,5 @@
 //
-//  DefaultModalViewController.swift
+//  StoreListModalViewController.swift
 //  DaeguGoodPriceShop
 //
 //  Created by Yeongwoo Kim on 2022/07/10.
@@ -7,7 +7,15 @@
 
 import UIKit
 
-class DefaultModalViewController: ModalViewController {
+protocol SubCategoryFilterable: AnyObject {
+    func categoryTouched(_ category: ShopSubCategory)
+    func shopTouched(ofSerialNumber number: Int)
+}
+
+class StoreListModalViewController: ModalViewController {
+    var mapViewModel: MapViewModel
+    var delegate: SubCategoryFilterable?
+    
     static let sectionHeaderElementKind = "section-header-element-kind"
     
     private lazy var collectionView: UICollectionView = {
@@ -31,15 +39,46 @@ class DefaultModalViewController: ModalViewController {
     typealias Section = StoreListSection
     private var datasource: UICollectionViewDiffableDataSource<Section, DataItem>!
     
-    private var detailCategories: [DataItem] = DataItem.categories
+    private var detailCategories: [DataItem] {
+        guard let category = self.category else { return [] }
+        var dataItems: [DataItem] = []
+        category.subCategories.forEach {
+            let dataItem = DataItem(shopSubCategory: $0)
+            dataItems.append(dataItem)
+        }
+        return dataItems
+    }
     private var favouriteStores: [DataItem] = DataItem.favourites
-    private var normalStores: [DataItem] = DataItem.normals
+    private var normalStores: [DataItem] {
+        guard let category = self.category else { return [] }
+        var dataItems: [DataItem] = []
+        mapViewModel.getShops().filter { shop in
+            if let shopSubCategory = shop.shopSubCategory, category.subCategories.contains(shopSubCategory) {
+                return true
+            }
+            return false
+        }.forEach { shop in
+            let dataItem = DataItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber)
+            dataItems.append(dataItem)
+        }
+        return dataItems
+    }
+    
+    var category: ShopCategory?
+    
+    init(category: ShopCategory? = nil, mapViewModel: MapViewModel) {
+        self.category = category
+        self.mapViewModel = mapViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        configureDataSource()
-        
+        collectionView.delegate = self
         collectionView.collectionViewLayout = generateLayout()
         configureCollectionViewLayout()
     }
@@ -60,15 +99,15 @@ class DefaultModalViewController: ModalViewController {
                 parent?.view.layoutIfNeeded()
             }
         case .ended:
-            if newHeight < ModalHeight.median.value {
+            if newHeight < ModalHeight.category.value {
                 if isDraggingDown {
-                    changeModalHeight(.minimum)
+                    changeModalHeight(.zero)
                 } else {
-                    changeModalHeight(.median)
+                    changeModalHeight(.category)
                 }
             } else {
                 if isDraggingDown {
-                    changeModalHeight(.median)
+                    changeModalHeight(.category)
                 } else {
                     changeModalHeight(.maximum)
                 }
@@ -77,9 +116,29 @@ class DefaultModalViewController: ModalViewController {
             break
         }
     }
+    
+    func initModal() {
+        changeModalHeight(.category)
+        configureDataSource()
+    }
 }
 
-extension DefaultModalViewController {
+extension StoreListModalViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let category = category else { return }
+        switch indexPath.section {
+        case 0:
+            delegate?.categoryTouched(category.subCategories[indexPath.item])
+        case 1: Void()
+        case 2:
+            guard let serialNumber = normalStores[indexPath.item].storeSerialNumber else { return }
+            delegate?.shopTouched(ofSerialNumber: serialNumber)
+        default: break
+        }
+    }
+}
+
+extension StoreListModalViewController {
     
     private func configureDataSource() {
         datasource = UICollectionViewDiffableDataSource<Section, DataItem>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
@@ -140,7 +199,7 @@ extension DefaultModalViewController {
         
         collectionView.register(
             HeaderView.self,
-            forSupplementaryViewOfKind: DefaultModalViewController.sectionHeaderElementKind,
+            forSupplementaryViewOfKind: StoreListModalViewController.sectionHeaderElementKind,
             withReuseIdentifier: HeaderView.reuseIdentifier
         )
         
@@ -184,7 +243,7 @@ extension DefaultModalViewController {
             heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
-            elementKind: DefaultModalViewController.sectionHeaderElementKind,
+            elementKind: StoreListModalViewController.sectionHeaderElementKind,
             alignment: .top)
         
         let section = NSCollectionLayoutSection(group: group)
@@ -204,7 +263,7 @@ extension DefaultModalViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: DefaultModalViewController.sectionHeaderElementKind, alignment: .top)
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: StoreListModalViewController.sectionHeaderElementKind, alignment: .top)
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
         section.interGroupSpacing = 10
@@ -221,7 +280,7 @@ extension DefaultModalViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: DefaultModalViewController.sectionHeaderElementKind, alignment: .top)
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: StoreListModalViewController.sectionHeaderElementKind, alignment: .top)
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
         section.interGroupSpacing = 10

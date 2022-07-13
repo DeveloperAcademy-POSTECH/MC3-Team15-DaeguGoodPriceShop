@@ -7,29 +7,41 @@
 
 import UIKit
 
-
 class DataItem: Hashable {
-    let categoryName: String?
-    let categoryColor: UIColor?
-    
+    let shopSubCategory: ShopSubCategory?
+    var categoryColor: UIColor? {
+        switch self.shopSubCategory {
+        case .koreanFood, .chineseFood, .westernFood, .japaneseFood, .flourBasedFood, .bakery, .cafe:
+            return UIColor(named: "CateringStore")
+        case .hairCut:
+            return UIColor(named: "HairCut")
+        case .cleaning:
+            return UIColor(named: "LaundryShop")
+        case .skinCare, .bath:
+            return UIColor(named: "ServiceShop")
+        case .none:
+            return .black
+        }
+    }
     let storeName: String?
     let storeAddress: String?
     let storeCallNumber: String?
+    let storeSerialNumber: Int?
     
-    init(categoryName: String?, categoryColor: UIColor?, storeName: String?, storeAddress: String?, storeCallNumber: String?) {
-        self.categoryName = categoryName
-        self.categoryColor = categoryColor
+    init(shopSubCategory: ShopSubCategory?, storeName: String?, storeAddress: String?, storeCallNumber: String?, storeSerialNumber: Int?) {
+        self.shopSubCategory = shopSubCategory
         self.storeName = storeName
         self.storeAddress = storeAddress
         self.storeCallNumber = storeCallNumber
+        self.storeSerialNumber = storeSerialNumber
     }
     
-    convenience init(categoryName: String, categoryColor: UIColor?) {
-        self.init(categoryName: categoryName, categoryColor: categoryColor, storeName: nil, storeAddress: nil, storeCallNumber: nil)
+    convenience init(shopSubCategory: ShopSubCategory?) {
+        self.init(shopSubCategory: shopSubCategory, storeName: nil, storeAddress: nil, storeCallNumber: nil, storeSerialNumber: nil)
     }
     
-    convenience init(storeName: String?, storeAddress: String?, storeCallNumber: String?) {
-        self.init(categoryName: nil, categoryColor: nil, storeName: storeName, storeAddress: storeAddress, storeCallNumber: storeCallNumber)
+    convenience init(storeName: String?, storeAddress: String?, storeCallNumber: String?, storeSerialNumber: Int?) {
+        self.init(shopSubCategory: nil, storeName: storeName, storeAddress: storeAddress, storeCallNumber: storeCallNumber, storeSerialNumber: storeSerialNumber)
     }
     
     func hash(into hasher: inout Hasher) {
@@ -44,28 +56,8 @@ class DataItem: Hashable {
 }
 
 extension DataItem {
-    static let categories: [DataItem] = [
-        DataItem(categoryName: "한식", categoryColor: UIColor.black),
-        DataItem(categoryName: "분식", categoryColor: UIColor.black),
-        DataItem(categoryName: "중식", categoryColor: UIColor.black),
-        DataItem(categoryName: "양식", categoryColor: UIColor.black),
-        DataItem(categoryName: "일식", categoryColor: UIColor.black),
-    ]
-    
     static let favourites: [DataItem] = [
-        DataItem(storeName: "착한가격식당11", storeAddress: "포항시 어디구 여기동 저기로 1", storeCallNumber: "07011111111"),
-        DataItem(storeName: "착한가격식당12", storeAddress: "포항시 어디구 여기동 저기로 2", storeCallNumber: "07022222222")
-    ]
-    
-    static let normals: [DataItem] = [
-        DataItem(storeName:  "착한가격식당1", storeAddress: "포항시 어디구 여기동 저기로 1", storeCallNumber: "07011111111"),
-        DataItem(storeName: "착한가격식당2", storeAddress: "포항시 어디구 여기동 저기로 2", storeCallNumber: "07022222222"),
-        DataItem(storeName: "착한가격식당3", storeAddress: "포항시 어디구 여기동 저기로 3", storeCallNumber: "07033333333"),
-        DataItem(storeName: "착한가격식당4", storeAddress: "포항시 어디구 여기동 저기로 4", storeCallNumber: "07044444444"),
-        DataItem(storeName: "착한가격식당5", storeAddress: "포항시 어디구 여기동 저기로 5", storeCallNumber: "07055555555"),
-        DataItem(storeName: "착한가격식당7", storeAddress: "포항시 어디구 여기동 저기로 3", storeCallNumber: "07033333333"),
-        DataItem(storeName: "착한가격식당8", storeAddress: "포항시 어디구 여기동 저기로 4", storeCallNumber: "07044444444"),
-        DataItem(storeName: "착한가격식당9", storeAddress: "포항시 어디구 여기동 저기로 5", storeCallNumber: "07055555555"),
-        DataItem(storeName: "착한가격식당10", storeAddress: "포항시 어디구 여기동 저기로 6", storeCallNumber: "07066666666")
+        DataItem(storeName: "착한가격식당11", storeAddress: "포항시 어디구 여기동 저기로 1", storeCallNumber: "07011111111", storeSerialNumber: 1),
+        DataItem(storeName: "착한가격식당12", storeAddress: "포항시 어디구 여기동 저기로 2", storeCallNumber: "07022222222", storeSerialNumber: 1)
     ]
 }

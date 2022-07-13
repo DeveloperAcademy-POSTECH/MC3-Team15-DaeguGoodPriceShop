@@ -18,6 +18,7 @@ class DetailCategoryViewCell: UICollectionViewCell {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.titleLabel?.textColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled = false
         
         return button
     }()
@@ -26,15 +27,13 @@ class DetailCategoryViewCell: UICollectionViewCell {
         configureView()
         
         categoryItemButton.backgroundColor = item.categoryColor ?? .black
-        categoryItemButton.setTitle(item.categoryName ?? "", for: .normal)
+        categoryItemButton.setTitle(item.shopSubCategory?.rawValue ?? "", for: .normal)
     }
 }
 
 extension DetailCategoryViewCell {
     private func configureView() {
-        [
-            categoryItemButton
-        ].forEach { addSubview($0) }
+        addSubview(categoryItemButton)
         
         NSLayoutConstraint.activate([
             categoryItemButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),

@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailModalViewController: ModalViewController {
-    lazy var defaultViewController = parent?.children.first(where: { $0 is DefaultModalViewController }) as! DefaultModalViewController
+    lazy var defaultViewController = parent?.children.first(where: { $0 is StoreListModalViewController }) as! StoreListModalViewController
     lazy var mapViewModel = (parent as? MapViewController)?.mapViewModel
     private var selectedShop: Shop? {
         didSet {
