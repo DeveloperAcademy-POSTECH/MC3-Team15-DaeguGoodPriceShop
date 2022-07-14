@@ -29,13 +29,14 @@ class ShopAnnotationView: MKAnnotationView {
     }
     
     func resizedImage(image: UIImage?, width: CGFloat, height: CGFloat) -> UIImage? {
-        guard let image = image else { return nil }
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
-    }
+         guard let image = image else { return nil }
+         let newSize = CGSize(width: width, height: height)
+         UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
+         image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+         let newImage = UIGraphicsGetImageFromCurrentImageContext()
+         UIGraphicsEndImageContext()
+         return newImage
+     }
     
     func selected() {
         self.centerOffset = CGPoint(x: 0, y: -24.96)
