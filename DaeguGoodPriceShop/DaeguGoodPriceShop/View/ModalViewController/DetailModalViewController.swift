@@ -37,147 +37,137 @@ class DetailModalViewController: ModalViewController {
         return button
     }()
     
-    lazy var titleLabel: UILabel = {
-        var label = UILabel()
-        label.text = selectedShop?.shopName
-        label.font = .boldSystemFont(ofSize: 24)
-        return label
+    lazy var titleView: UILabel = {
+        var title = UILabel()
+        title.text = selectedShop?.shopName
+        title.font = .boldSystemFont(ofSize: 24)
+        return title
     }()
     
-    lazy var subTitleMenu: UILabel = {
-        let label = UILabel()
-        label.text = "메뉴"
-        label.font = .boldSystemFont(ofSize: 15)
-        return label
+    lazy var subTitleMenuView: UILabel = {
+        let subTitleMenu = UILabel()
+        subTitleMenu.text = "메뉴"
+        subTitleMenu.font = .boldSystemFont(ofSize: 15)
+        return subTitleMenu
     }()
     
-    lazy var subTitleInfo: UILabel = {
-        let label = UILabel()
-        label.text = "가게 정보"
-        label.font = .boldSystemFont(ofSize: 15)
-        return label
+    lazy var subTitleInfoView: UILabel = {
+        let subTitleInfo = UILabel()
+        subTitleInfo.text = "가게 정보"
+        subTitleInfo.font = .boldSystemFont(ofSize: 15)
+        return subTitleInfo
     }()
     
-    lazy var menuName: UITextView = {
-        var menuName = UITextView(frame: .zero)
+    lazy var menuNameView: UILabel = {
+        var menuName = UILabel()
         menuName.font = UIFont.systemFont(ofSize: 15)
-        menuName.isEditable = false
         menuName.text = selectedShop?.menu
-        menuName.isScrollEnabled = false
         menuName.backgroundColor = .clear
         return menuName
     }()
     
-    lazy var menuPrice: UILabel = {
-        var price = UILabel()
-        price.text = "1500"
-        price.font = UIFont.systemFont(ofSize: 15)
-        return price
+    lazy var menuPriceView: UILabel = {
+        var menuPrice = UILabel()
+        menuPrice.text = "1500"
+        menuPrice.font = UIFont.systemFont(ofSize: 15)
+        return menuPrice
     }()
     
-    lazy var infoSubTitleAddress : UITextView = {
-        let infoSubTitleAddress = UITextView(frame: .zero)
+    lazy var infoSubTitleAddressView : UILabel = {
+        let infoSubTitleAddress = UILabel()
         infoSubTitleAddress.font = UIFont.systemFont(ofSize: 15)
-        infoSubTitleAddress.isEditable = false
         infoSubTitleAddress.text = "주소"
-        infoSubTitleAddress.isScrollEnabled = false
         infoSubTitleAddress.backgroundColor = .clear
         return infoSubTitleAddress
     }()
     
-    lazy var infoSubTitlePhone: UITextView = {
-        let infoSubTitlePhone = UITextView(frame: .zero)
+    lazy var infoSubTitlePhoneView: UILabel = {
+        let infoSubTitlePhone = UILabel()
         infoSubTitlePhone.font = UIFont.systemFont(ofSize: 15)
-        infoSubTitlePhone.isEditable = false
         infoSubTitlePhone.text = "전화번호"
-        infoSubTitlePhone.isScrollEnabled = false
         infoSubTitlePhone.backgroundColor = .clear
         return infoSubTitlePhone
     }()
     
-    lazy var infoAddress: UITextView = {
-        var infoAddress = UITextView(frame: .zero)
+    lazy var infoAddressView: UILabel = {
+        var infoAddress = UILabel()
         infoAddress.font = UIFont.systemFont(ofSize: 15)
-        infoAddress.isEditable = false
         infoAddress.text = selectedShop?.address
-        infoAddress.isScrollEnabled = false
         infoAddress.backgroundColor = .clear
         return infoAddress
     }()
     
-    lazy var infoSymbolCopy: UIButton = {
+    lazy var infoSymbolCopyButton: UIButton = {
         let infoSymbolCopy = UIButton()
         infoSymbolCopy.setImage(UIImage(systemName: "doc.on.doc.fill"), for: .normal)
         infoSymbolCopy.addTarget(self, action: #selector(copyAddress), for: .touchUpInside)
         return infoSymbolCopy
     }()
     
-    lazy var infoPhoneNumber: UITextView = {
-        var infoPhoneNumber = UITextView(frame: .zero)
+    lazy var infoPhoneNumberView: UILabel = {
+        var infoPhoneNumber = UILabel()
         infoPhoneNumber.font = UIFont.systemFont(ofSize: 15)
-        infoPhoneNumber.isEditable = false
         infoPhoneNumber.text = selectedShop?.phoneNumber
-        infoPhoneNumber.isScrollEnabled = false
         infoPhoneNumber.backgroundColor = .clear
         return infoPhoneNumber
     }()
     
-    lazy var infoSymbolPhone: UIButton = {
+    lazy var infoSymbolPhoneButton: UIButton = {
         let infoSymbolPhone = UIButton()
         infoSymbolPhone.setImage(UIImage(systemName: "phone.fill"), for: .normal)
         infoSymbolPhone.addTarget(self, action: #selector(phoneCall), for: .touchUpInside)
         return infoSymbolPhone
     }()
     
-    lazy var modalPhoneView: UIStackView = {
-        var modalPhoneView = UIStackView(arrangedSubviews: [infoPhoneNumber, infoSymbolPhone])
-        modalPhoneView.axis = .horizontal
-        modalPhoneView.spacing = 16.0
-        return modalPhoneView
+    lazy var modalPhoneStack: UIStackView = {
+        var modalPhone = UIStackView(arrangedSubviews: [infoPhoneNumberView, infoSymbolPhoneButton])
+        modalPhone.axis = .horizontal
+        modalPhone.spacing = 16.0
+        return modalPhone
     }()
     
-    lazy var modalAddressView: UIStackView = {
-        var modalAddressView = UIStackView(arrangedSubviews: [infoAddress, infoSymbolCopy])
-        modalAddressView.axis = .horizontal
-        modalAddressView.spacing = 16.0
-        return modalAddressView
+    lazy var modalAddressStack: UIStackView = {
+        var modalAddress = UIStackView(arrangedSubviews: [infoAddressView, infoSymbolCopyButton])
+        modalAddress.axis = .horizontal
+        modalAddress.spacing = 16.0
+        return modalAddress
     }()
     
-    lazy var modalInfoView: UIStackView = {
+    lazy var modalInfoStack: UIStackView = {
         let divider = UIView()
         divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
         divider.backgroundColor = .systemGray3
-        var modalInfoView = UIStackView(arrangedSubviews: [infoSubTitleAddress, modalAddressView, divider, infoSubTitlePhone, modalPhoneView])
-        modalInfoView.axis = .vertical
-        modalInfoView.spacing = 0.0
-        modalInfoView.setCustomSpacing(8, after: modalAddressView)
-        modalInfoView.setCustomSpacing(8, after: divider)
-        modalInfoView.customizeBackground(color: .systemGray6, radiusSize: 10.0)
-        return modalInfoView
+        var modalInfo = UIStackView(arrangedSubviews: [infoSubTitleAddressView, modalAddressStack, divider, infoSubTitlePhoneView, modalPhoneStack])
+        modalInfo.axis = .vertical
+        modalInfo.spacing = 0.0
+        modalInfo.setCustomSpacing(8, after: modalAddressStack)
+        modalInfo.setCustomSpacing(8, after: divider)
+        modalInfo.customizeBackground(color: .systemGray6, radiusSize: 10.0)
+        return modalInfo
     }()
     
-    lazy var modalMenuView: UIStackView = {
-        var modalMenuView = UIStackView(arrangedSubviews: [menuName, menuPrice])
-        modalMenuView.axis = .horizontal
-        modalMenuView.spacing = 16.0
-        modalMenuView.customizeBackground(color: .systemGray6, radiusSize: 5.0)
-        return modalMenuView
+    lazy var modalMenuStack: UIStackView = {
+        var modalMenu = UIStackView(arrangedSubviews: [menuNameView, menuPriceView])
+        modalMenu.axis = .horizontal
+        modalMenu.spacing = 16.0
+        modalMenu.customizeBackground(color: .systemGray6, radiusSize: 5.0)
+        return modalMenu
     }()
     
-    lazy var modalTitleView: UIStackView = {
-        var modalTitleView = UIStackView(arrangedSubviews: [titleLabel, spacer, favoriteButton])
-        modalTitleView.axis = .horizontal
-        modalTitleView.spacing = 16.0
-        return modalTitleView
+    lazy var modalTitleStack: UIStackView = {
+        var modalTitle = UIStackView(arrangedSubviews: [titleView, spacer, favoriteButton])
+        modalTitle.axis = .horizontal
+        modalTitle.spacing = 16.0
+        return modalTitle
     }()
     
-    lazy var modalDetailView: UIStackView = {
-        var modalDetailView = UIStackView(arrangedSubviews: [modalTitleView, subTitleMenu, modalMenuView, subTitleInfo, modalInfoView])
-        modalDetailView.axis = .vertical
-        modalDetailView.spacing = 10.0
-        modalDetailView.setCustomSpacing(20.0, after: modalTitleView)
-        modalDetailView.setCustomSpacing(20.0, after: modalMenuView)
-        return modalDetailView
+    lazy var modalDetailStack: UIStackView = {
+        var modalDetail = UIStackView(arrangedSubviews: [modalTitleStack, subTitleMenuView, modalMenuStack, subTitleInfoView, modalInfoStack])
+        modalDetail.axis = .vertical
+        modalDetail.spacing = 10.0
+        modalDetail.setCustomSpacing(20.0, after: modalTitleStack)
+        modalDetail.setCustomSpacing(20.0, after: modalMenuStack)
+        return modalDetail
     }()
     
     override func viewDidLoad() {
@@ -240,19 +230,22 @@ class DetailModalViewController: ModalViewController {
     
     override func setupView() {
         super.setupView()
-        view.addSubview(modalDetailView)
+        view.addSubview(modalDetailStack)
         setFavoriteButtonImage()
-        modalDetailView.translatesAutoresizingMaskIntoConstraints = false
+        modalDetailStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            menuPrice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
-            infoSymbolCopy.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
-            infoSymbolCopy.widthAnchor.constraint(equalToConstant: 30),
-            infoSymbolPhone.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
-            infoSymbolPhone.widthAnchor.constraint(equalToConstant: 30),
-            modalDetailView.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
-            modalDetailView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            modalDetailView.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30)
+            menuPriceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
+            infoSymbolCopyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
+            infoSymbolCopyButton.widthAnchor.constraint(equalToConstant: 30),
+            infoSymbolPhoneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
+            infoSymbolPhoneButton.widthAnchor.constraint(equalToConstant: 30),
+            menuNameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            modalAddressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            modalPhoneStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            modalDetailStack.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
+            modalDetailStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            modalDetailStack.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30)
         ])
     }
     
@@ -286,19 +279,22 @@ class DetailModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.median)
-        titleLabel.text = selectedShop?.shopName
-        menuName.text = selectedShop?.menu
-        menuPrice.text = selectedShop?.price
-        infoAddress.text = selectedShop?.address
-        infoPhoneNumber.text = selectedShop?.phoneNumber
-        shopCallAddress = selectedShop?.address ?? ""
-        shopCallNumber = selectedShop?.phoneNumber ?? ""
+        titleView.text = selectedShop?.shopName
+        updateDetailModalView()
     }
     
     func setData(shopId id: Int) {
         selectedShop = mapViewModel.findShop(shopId: id)
     }
     
+    func updateDetailModalView() {
+        menuNameView.text = selectedShop?.menu
+        menuPriceView.text = selectedShop?.price
+        infoAddressView.text = selectedShop?.address
+        infoPhoneNumberView.text = selectedShop?.phoneNumber
+        shopCallAddress = selectedShop?.address ?? ""
+        shopCallNumber = selectedShop?.phoneNumber ?? ""
+    }
     @objc override func dismissModal() {
         super.dismissModal()
         selectedShop = nil
