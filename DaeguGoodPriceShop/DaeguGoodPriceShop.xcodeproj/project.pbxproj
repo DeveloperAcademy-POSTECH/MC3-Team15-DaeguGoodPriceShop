@@ -21,6 +21,7 @@
 		A8CBA581287BAF3800BC2DC1 /* WesternFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBA574287BAF3800BC2DC1 /* WesternFoodAnnotationView.swift */; };
 		A8CBA582287BAF3800BC2DC1 /* HairCutAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBA575287BAF3800BC2DC1 /* HairCutAnnotationView.swift */; };
 		A8CBA590287E600D00BC2DC1 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBA58F287E600D00BC2DC1 /* UIFont+Extension.swift */; };
+		A8DA485328828F39004145F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8DA485528828F39004145F0 /* InfoPlist.strings */; };
 		A8E74E6D286BFA8A000DB2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */; };
 		A8E74E6F286BFA8A000DB2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */; };
 		A8E74E71286BFA8A000DB2B8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E70286BFA8A000DB2B8 /* MapViewController.swift */; };
@@ -60,6 +61,9 @@
 		A8CBA574287BAF3800BC2DC1 /* WesternFoodAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesternFoodAnnotationView.swift; sourceTree = "<group>"; };
 		A8CBA575287BAF3800BC2DC1 /* HairCutAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairCutAnnotationView.swift; sourceTree = "<group>"; };
 		A8CBA58F287E600D00BC2DC1 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		A8DA484F28828EE0004145F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		A8DA485028828EE0004145F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A8DA485428828F39004145F0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A8E74E69286BFA8A000DB2B8 /* DaeguGoodPriceShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaeguGoodPriceShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 		A8E74E80286BFAAE000DB2B8 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				A8DA485528828F39004145F0 /* InfoPlist.strings */,
 				A8E74E6C286BFA8A000DB2B8 /* AppDelegate.swift */,
 				A8E74E6E286BFA8A000DB2B8 /* SceneDelegate.swift */,
 				A8E74E72286BFA8A000DB2B8 /* Main.storyboard */,
@@ -287,6 +292,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = A8E74E60286BFA8A000DB2B8;
 			productRefGroup = A8E74E6A286BFA8A000DB2B8 /* Products */;
@@ -307,6 +313,7 @@
 				A8E74E76286BFA8B000DB2B8 /* Assets.xcassets in Resources */,
 				A8E74E74286BFA8A000DB2B8 /* Main.storyboard in Resources */,
 				DAB6043A286C26D20039C969 /* DaeguGoodPriceShop.json in Resources */,
+				A8DA485328828F39004145F0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,10 +362,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		A8DA485528828F39004145F0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A8DA485428828F39004145F0 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		A8E74E72286BFA8A000DB2B8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A8E74E73286BFA8A000DB2B8 /* Base */,
+				A8DA484F28828EE0004145F0 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -367,6 +383,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A8E74E78286BFA8B000DB2B8 /* Base */,
+				A8DA485028828EE0004145F0 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -378,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -438,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -495,7 +514,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G3PA8G576S;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -524,7 +543,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G3PA8G576S;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
