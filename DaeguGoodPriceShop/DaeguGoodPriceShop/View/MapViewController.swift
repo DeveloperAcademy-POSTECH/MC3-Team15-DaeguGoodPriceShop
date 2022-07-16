@@ -258,6 +258,11 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        selectedAnnotationView?.prepareForDisplay()
+        detailModalVC.dismissModal()
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotationView?.prepareForDisplay()
         guard let shopAnnotationView = view as? ShopAnnotationView else { return }
