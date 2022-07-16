@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ShopSubCategory: String {
+enum ShopSubCategory: String, CaseIterable {
     case koreanFood = "한식"
     case chineseFood = "중식"
     case westernFood = "양식"
@@ -47,7 +47,7 @@ enum ShopSubCategory: String {
     }
 }
 
-enum ShopCategory {
+enum ShopCategory: CaseIterable {
     case cateringStore
     case hairdressingShop
     case laundryShop
