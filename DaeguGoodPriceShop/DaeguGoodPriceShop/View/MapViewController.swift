@@ -135,7 +135,8 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.showsScale = true
-        mapView.showsCompass = true
+        mapView.showsCompass = false
+        mapView.isRotateEnabled = true
         mapView.showsLargeContentViewer = true
     }
     
