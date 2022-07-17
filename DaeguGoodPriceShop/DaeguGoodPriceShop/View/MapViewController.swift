@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
     }()
     
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var buttonsContainerView: UIView!
     
     lazy var storeListModalVC: StoreListModalViewController = {
@@ -71,16 +72,28 @@ class MapViewController: UIViewController {
         if sender.tag == 0 {
             likeButtonTapped()
         } else {
+            categoryButtonTapped()
+        }
+    }
+    
+    private func categoryButtonTapped() {
+        mapViewModel.categoryButtonTouched()
+        categoryButton.tintColor = mapViewModel.isShowingCategory ? .systemBlue : .lightGray
+        
+        if mapViewModel.isShowingCategory {
             storeListModalVC.changeModalHeight(.zero)
-            detailModalVC.changeModalHeight(ModalHeight.zero)
+            detailModalVC.changeModalHeight(.zero)
             categoryModalVC.initModal()
+        } else {
+            storeListModalVC.changeModalHeight(.zero)
+            detailModalVC.changeModalHeight(.zero)
+            categoryModalVC.changeModalHeight(.zero)
         }
     }
     
     private func likeButtonTapped() {
-        likeButton.tintColor = mapViewModel.isShowingFavorite ? .lightGray : .systemPink
-        
         mapViewModel.favoriteShopButtonTouched()
+        likeButton.tintColor = mapViewModel.isShowingFavorite ? .systemPink : .lightGray
         removeAnnotations()
         mapViewModel.getFilteredShops(favorite: mapViewModel.isShowingFavorite ? true : nil).forEach { shop in
             guard let annotation = ShopAnnotation(of: shop) else { return }
