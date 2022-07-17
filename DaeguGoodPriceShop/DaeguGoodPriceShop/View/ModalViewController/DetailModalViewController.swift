@@ -141,10 +141,9 @@ class DetailModalViewController: ModalViewController {
         var modalInfo = UIStackView(arrangedSubviews: [infoSubTitleAddressView, modalAddressStack, divider, infoSubTitlePhoneView, modalPhoneStack])
         modalInfo.axis = .vertical
         modalInfo.spacing = 0.0
-        modalInfo.setCustomSpacing(8, after: modalAddressStack)
+        modalInfo.setCustomSpacing(5, after: modalAddressStack)
         modalInfo.setCustomSpacing(20, after: divider)
         modalInfo.customizeBackground(color: .systemGray6, radiusSize: 10.0)
-        //modalInfo.distribution = .equalSpacing
         return modalInfo
     }()
     
