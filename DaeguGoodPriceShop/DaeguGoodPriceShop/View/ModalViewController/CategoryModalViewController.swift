@@ -42,7 +42,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = UIImage(named: "cateringCategory")
         imageView.contentMode = .scaleAspectFill
         label.text = "요식업"
         label.textColor = .white
@@ -64,7 +64,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = UIImage(named: "hairCategory")
         imageView.contentMode = .scaleAspectFill
         label.text = "미용"
         label.textColor = .white
@@ -86,7 +86,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = UIImage(named: "laundryCategory")
         imageView.contentMode = .scaleAspectFill
         label.text = "세탁"
         label.textColor = .white
@@ -108,7 +108,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = UIImage(named: "serviceCategory")
         imageView.contentMode = .scaleAspectFill
         label.text = "서비스"
         label.textColor = .white
