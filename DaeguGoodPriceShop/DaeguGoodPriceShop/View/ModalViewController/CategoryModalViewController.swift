@@ -9,6 +9,7 @@ import UIKit
 
 protocol CategoryFilterable: AnyObject {
     func categoryTouched(_ category: ShopCategory)
+    func removeCategoryFiltering()
 }
 
 class CategoryTapGestureRecognizer: UITapGestureRecognizer {
@@ -197,6 +198,7 @@ class CategoryModalViewController: ModalViewController {
         case .ended:
             if isDraggingDown {
                 changeModalHeight(.zero)
+                self.delegate?.removeCategoryFiltering()
             } else {
                 changeModalHeight(.median)
             }

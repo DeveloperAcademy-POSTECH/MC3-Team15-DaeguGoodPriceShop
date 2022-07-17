@@ -85,7 +85,7 @@ final class MapViewModel {
     }
     
     func getFilteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, favorite: Bool? = nil) -> [Shop] {
-        return model.filteredShops(shopCategory: shopCategory, shopSubCategory: shopSubCategory, favorite: favorite)
+        return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: isShowingFavorite)
     }
     
     func getShopsWithout(shopCategory: ShopCategory) -> [Shop] {
