@@ -68,8 +68,9 @@ class DetailModalViewController: ModalViewController {
     
     lazy var menuPriceView: UILabel = {
         var menuPrice = UILabel()
-        menuPrice.text = "1500"
+        menuPrice.text = "Price Here"
         menuPrice.font = UIFont.systemFont(ofSize: 15)
+        menuPrice.textAlignment = .right
         return menuPrice
     }()
     
@@ -141,8 +142,9 @@ class DetailModalViewController: ModalViewController {
         modalInfo.axis = .vertical
         modalInfo.spacing = 0.0
         modalInfo.setCustomSpacing(8, after: modalAddressStack)
-        modalInfo.setCustomSpacing(8, after: divider)
+        modalInfo.setCustomSpacing(20, after: divider)
         modalInfo.customizeBackground(color: .systemGray6, radiusSize: 10.0)
+        //modalInfo.distribution = .equalSpacing
         return modalInfo
     }()
     
@@ -235,17 +237,28 @@ class DetailModalViewController: ModalViewController {
         modalDetailStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            modalDetailStack.widthAnchor.constraint(equalToConstant: self.view.frame.width),
+            modalDetailStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            modalDetailStack.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30),
+            modalDetailStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            modalDetailStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            
+            modalMenuStack.heightAnchor.constraint(equalToConstant: 40),
+            modalMenuStack.leadingAnchor.constraint(equalTo: modalDetailStack.leadingAnchor),
+            modalMenuStack.trailingAnchor.constraint(equalTo: modalDetailStack.trailingAnchor),
             menuPriceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
+            menuNameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            
             infoSymbolCopyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolCopyButton.widthAnchor.constraint(equalToConstant: 30),
             infoSymbolPhoneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolPhoneButton.widthAnchor.constraint(equalToConstant: 30),
-            menuNameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            
+            modalAddressStack.heightAnchor.constraint(equalToConstant: 40),
+            modalPhoneStack.heightAnchor.constraint(equalToConstant: 40),
             modalAddressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             modalPhoneStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            modalDetailStack.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
-            modalDetailStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            modalDetailStack.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30)
+            infoSubTitleAddressView.topAnchor.constraint(equalTo: modalInfoStack.topAnchor, constant: 15)
         ])
     }
     
