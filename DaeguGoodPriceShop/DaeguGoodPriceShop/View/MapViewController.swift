@@ -69,19 +69,25 @@ class MapViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender.tag == 0 {
-            mapViewModel.favoriteShopButtonTouched()
-            removeAnnotations()
-            mapViewModel.getFilteredShops(favorite: mapViewModel.isShowingFavorite ? true : nil).forEach { shop in
-                guard let annotation = ShopAnnotation(of: shop) else { return }
-                mapView.addAnnotation(annotation)
-            }
-            categoryModalVC.changeModalHeight(ModalHeight.zero)
-            storeListModalVC.changeModalHeight(.zero)
+            likeButtonTapped()
         } else {
             storeListModalVC.changeModalHeight(.zero)
             detailModalVC.changeModalHeight(ModalHeight.zero)
             categoryModalVC.initModal()
         }
+    }
+    
+    private func likeButtonTapped() {
+        likeButton.tintColor = mapViewModel.isShowingFavorite ? .lightGray : .systemPink
+        
+        mapViewModel.favoriteShopButtonTouched()
+        removeAnnotations()
+        mapViewModel.getFilteredShops(favorite: mapViewModel.isShowingFavorite ? true : nil).forEach { shop in
+            guard let annotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(annotation)
+        }
+        categoryModalVC.changeModalHeight(ModalHeight.zero)
+        storeListModalVC.changeModalHeight(.zero)
     }
     
     private func configureView() {
