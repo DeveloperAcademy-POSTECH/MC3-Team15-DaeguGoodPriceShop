@@ -18,6 +18,7 @@ final class MapViewModel {
     private var category: ShopCategory?
     private var subcategory: ShopSubCategory?
     private var distance: CLLocationDistance?
+    private(set) var isShowingCategory = false
     
     init() {
         configureBindings()
@@ -65,6 +66,10 @@ final class MapViewModel {
     
     func favoriteShopButtonTouched() {
         isShowingFavorite.toggle()
+    }
+    
+    func categoryButtonTouched() {
+        isShowingCategory.toggle()
     }
     
     func setCategory(category: ShopCategory?) {

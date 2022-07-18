@@ -28,6 +28,7 @@ class MapViewController: UIViewController {
     }()
     
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var buttonsContainerView: UIView!
     
     lazy var storeListModalVC: StoreListModalViewController = {
@@ -71,19 +72,37 @@ class MapViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender.tag == 0 {
-            mapViewModel.favoriteShopButtonTouched()
-            removeAnnotations()
-            mapViewModel.getFilteredShops(favorite: mapViewModel.isShowingFavorite ? true : nil).forEach { shop in
-                guard let annotation = ShopAnnotation(of: shop) else { return }
-                mapView.addAnnotation(annotation)
-            }
-            categoryModalVC.changeModalHeight(ModalHeight.zero)
+            likeButtonTapped()
+        } else {
+            categoryButtonTapped()
+        }
+    }
+    
+    private func categoryButtonTapped() {
+        mapViewModel.categoryButtonTouched()
+        categoryButton.tintColor = mapViewModel.isShowingCategory ? .systemBlue : .lightGray
+        
+        if mapViewModel.isShowingCategory {
             storeListModalVC.changeModalHeight(.zero)
+            detailModalVC.changeModalHeight(.zero)
+            categoryModalVC.initModal()
         } else {
             storeListModalVC.changeModalHeight(.zero)
-            detailModalVC.changeModalHeight(ModalHeight.zero)
-            categoryModalVC.initModal()
+            detailModalVC.changeModalHeight(.zero)
+            categoryModalVC.changeModalHeight(.zero)
         }
+    }
+    
+    private func likeButtonTapped() {
+        mapViewModel.favoriteShopButtonTouched()
+        likeButton.tintColor = mapViewModel.isShowingFavorite ? .systemPink : .lightGray
+        removeAnnotations()
+        mapViewModel.getFilteredShops(favorite: mapViewModel.isShowingFavorite ? true : nil).forEach { shop in
+            guard let annotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(annotation)
+        }
+        categoryModalVC.changeModalHeight(ModalHeight.zero)
+        storeListModalVC.changeModalHeight(.zero)
     }
     
     private func configureView() {
