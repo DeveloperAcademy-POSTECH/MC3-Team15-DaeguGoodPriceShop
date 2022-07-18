@@ -251,7 +251,7 @@ class DetailModalViewController: ModalViewController {
             modalPhoneStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             modalDetailStack.widthAnchor.constraint(equalToConstant: self.view.frame.width - 30.0),
             modalDetailStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            modalDetailStack.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30)
+            modalDetailStack.topAnchor.constraint(equalTo: gestureBarView.bottomAnchor, constant: 30)
         ])
     }
     

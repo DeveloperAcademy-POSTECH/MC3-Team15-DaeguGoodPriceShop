@@ -8,13 +8,6 @@
 import UIKit
 
 class ModalViewController: UIViewController {
-    lazy var gestureView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
-        return view
-    }()
-    
     lazy var gestureBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -56,19 +49,13 @@ class ModalViewController: UIViewController {
         view.layer.masksToBounds = false
         view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
         
-        view.addSubview(gestureView)
-        gestureView.addSubview(gestureBarView)
+        view.addSubview(gestureBarView)
         
         NSLayoutConstraint.activate([
-            gestureView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            gestureView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            gestureView.topAnchor.constraint(equalTo: view.topAnchor),
-            gestureView.heightAnchor.constraint(equalToConstant: 70),
-            
-            gestureBarView.topAnchor.constraint(equalTo: gestureView.topAnchor, constant: 5),
+            gestureBarView.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
             gestureBarView.widthAnchor.constraint(equalToConstant: 63),
             gestureBarView.heightAnchor.constraint(equalToConstant: 3),
-            gestureBarView.centerXAnchor.constraint(equalTo: gestureView.centerXAnchor),
+            gestureBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
@@ -78,7 +65,7 @@ class ModalViewController: UIViewController {
         gesture.delaysTouchesBegan = false
         gesture.delaysTouchesEnded = false
         
-        gestureView.addGestureRecognizer(gesture)
+        view.addGestureRecognizer(gesture)
     }
     
     @objc func panGesture(gesture: UIPanGestureRecognizer) {
