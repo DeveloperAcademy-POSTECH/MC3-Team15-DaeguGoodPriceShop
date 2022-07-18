@@ -83,6 +83,26 @@ final class MapViewModel {
         return model.filteredShops(shopCategory: shopCategory, shopSubCategory: shopSubCategory, favorite: favorite)
     }
     
+    func getShopsWithout(shopCategory: ShopCategory) -> [Shop] {
+        return ShopCategory.allCases.reduce([]) {
+            if $1 == shopCategory {
+                return $0
+            } else {
+                return $0 + model.filteredShops(shopCategory: $1)
+            }
+        }
+    }
+    
+    func getShopsWithout(shopSubCategory: ShopSubCategory) -> [Shop] {
+        return ShopSubCategory.allCases.reduce([]) {
+            if $1 == shopSubCategory {
+                return $0
+            } else {
+                return $0 + model.filteredShops(shopSubCategory: $1)
+            }
+        }
+    }
+    
     func findShop(shopId id: Int) -> Shop? {
         return model.findById(shopId: id)
     }
