@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "catering  160100.png",
+      "filename" : "CateringShop.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "CateringShop-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "CateringShop-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "service160100.png",
+      "filename" : "service.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "service-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "service-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
