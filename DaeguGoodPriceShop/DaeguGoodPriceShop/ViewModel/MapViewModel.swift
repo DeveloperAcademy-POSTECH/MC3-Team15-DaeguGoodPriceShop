@@ -85,7 +85,11 @@ final class MapViewModel {
     }
     
     func getFilteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, favorite: Bool? = nil) -> [Shop] {
-        return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: isShowingFavorite)
+        if favorite == nil {
+            return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: isShowingFavorite)
+        } else {
+            return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: favorite)
+        }
     }
     
     func findShop(shopId id: Int) -> Shop? {
