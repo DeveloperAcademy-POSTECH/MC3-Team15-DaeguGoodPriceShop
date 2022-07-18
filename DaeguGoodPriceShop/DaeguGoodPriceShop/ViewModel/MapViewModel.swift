@@ -18,6 +18,7 @@ final class MapViewModel {
     private var category: ShopCategory?
     private var subcategory: ShopSubCategory?
     private var distance: CLLocationDistance?
+    private(set) var isShowingCategory = false
     
     init() {
         configureBindings()
@@ -67,6 +68,10 @@ final class MapViewModel {
         isShowingFavorite.toggle()
     }
     
+    func categoryButtonTouched() {
+        isShowingCategory.toggle()
+    }
+    
     func setCategory(category: ShopCategory?) {
         self.category = category
     }
@@ -80,7 +85,7 @@ final class MapViewModel {
     }
     
     func getFilteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, favorite: Bool? = nil) -> [Shop] {
-        return model.filteredShops(shopCategory: shopCategory, shopSubCategory: shopSubCategory, favorite: favorite)
+        return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: isShowingFavorite)
     }
     
     func findShop(shopId id: Int) -> Shop? {

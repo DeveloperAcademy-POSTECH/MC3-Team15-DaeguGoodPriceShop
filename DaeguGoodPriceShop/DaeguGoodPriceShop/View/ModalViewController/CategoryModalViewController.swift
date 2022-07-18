@@ -9,6 +9,7 @@ import UIKit
 
 protocol CategoryFilterable: AnyObject {
     func categoryTouched(_ category: ShopCategory)
+    func removeCategoryFiltering()
 }
 
 class CategoryTapGestureRecognizer: UITapGestureRecognizer {
@@ -164,14 +165,14 @@ class CategoryModalViewController: ModalViewController {
         
         NSLayoutConstraint.activate([
             innerScrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            innerScrollView.topAnchor.constraint(equalTo: gestureBarView.bottomAnchor),
+            innerScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             innerScrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
             innerScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
             textLabel.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 30),
-            textLabel.topAnchor.constraint(equalTo: innerScrollView.topAnchor, constant: 30)
+            textLabel.topAnchor.constraint(equalTo: innerScrollView.topAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -197,6 +198,7 @@ class CategoryModalViewController: ModalViewController {
         case .ended:
             if isDraggingDown {
                 changeModalHeight(.zero)
+                self.delegate?.removeCategoryFiltering()
             } else {
                 changeModalHeight(.median)
             }

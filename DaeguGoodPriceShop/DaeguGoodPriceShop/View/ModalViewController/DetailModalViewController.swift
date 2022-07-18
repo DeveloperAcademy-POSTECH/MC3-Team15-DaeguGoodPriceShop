@@ -32,6 +32,10 @@ class DetailModalViewController: ModalViewController {
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton()
+        button.setImage(UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        button.layer.cornerRadius = 40
+        button.clipsToBounds = true
+        button.tintColor = .gray
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
         return button
@@ -188,7 +192,7 @@ class DetailModalViewController: ModalViewController {
     
     func setFavoriteButtonImage() {
         let isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
-        favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)) : UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         
         favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
     }
@@ -244,6 +248,9 @@ class DetailModalViewController: ModalViewController {
             modalMenuStack.heightAnchor.constraint(equalToConstant: 40),
             modalMenuStack.leadingAnchor.constraint(equalTo: modalDetailStack.leadingAnchor),
             modalMenuStack.trailingAnchor.constraint(equalTo: modalDetailStack.trailingAnchor),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 40),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 40),
+            
             menuPriceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             menuNameView.leadingAnchor.constraint(equalTo: modalMenuStack.leadingAnchor, constant: 15),
             
@@ -256,7 +263,6 @@ class DetailModalViewController: ModalViewController {
             modalPhoneStack.heightAnchor.constraint(equalToConstant: 40),
             modalAddressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             modalPhoneStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            infoSubTitleAddressView.topAnchor.constraint(equalTo: modalInfoStack.topAnchor, constant: 15)
         ])
     }
     
