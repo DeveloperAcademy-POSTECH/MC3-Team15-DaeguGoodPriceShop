@@ -164,7 +164,7 @@ class CategoryModalViewController: ModalViewController {
         
         NSLayoutConstraint.activate([
             innerScrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            innerScrollView.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30),
+            innerScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             innerScrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
             innerScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
