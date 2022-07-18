@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Rectangle 24.png",
+      "filename" : "laundry.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "laundry-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "laundry-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

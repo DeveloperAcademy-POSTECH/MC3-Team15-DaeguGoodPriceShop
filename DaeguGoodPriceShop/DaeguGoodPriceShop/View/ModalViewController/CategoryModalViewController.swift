@@ -43,7 +43,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = resizedImage(image: UIImage(named: "cateringCategory"), width: 160, height: 100)
         imageView.contentMode = .scaleAspectFill
         label.text = "요식업"
         label.textColor = .white
@@ -65,9 +65,9 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = resizedImage(image: UIImage(named: "hairCategory"), width: 160, height: 100)
         imageView.contentMode = .scaleAspectFill
-        label.text = "미용"
+        label.text = "미용업"
         label.textColor = .white
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
@@ -87,9 +87,9 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = resizedImage(image: UIImage(named: "laundryCategory"), width: 160, height: 100)
         imageView.contentMode = .scaleAspectFill
-        label.text = "세탁"
+        label.text = "세탁업"
         label.textColor = .white
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
@@ -109,9 +109,9 @@ class CategoryModalViewController: ModalViewController {
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = UIImage(named: "test")
+        imageView.image = resizedImage(image: UIImage(named: "serviceCategory"), width: 160, height: 100)
         imageView.contentMode = .scaleAspectFill
-        label.text = "서비스"
+        label.text = "서비스업"
         label.textColor = .white
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
@@ -215,5 +215,15 @@ class CategoryModalViewController: ModalViewController {
     func initModal() {
         changeModalHeight(.median)
     }
+    
+    func resizedImage(image: UIImage?, width: CGFloat, height: CGFloat) -> UIImage? {
+         guard let image = image else { return nil }
+         let newSize = CGSize(width: width, height: height)
+         UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
+         image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+         let newImage = UIGraphicsGetImageFromCurrentImageContext()
+         UIGraphicsEndImageContext()
+         return newImage
+     }
 }
 
