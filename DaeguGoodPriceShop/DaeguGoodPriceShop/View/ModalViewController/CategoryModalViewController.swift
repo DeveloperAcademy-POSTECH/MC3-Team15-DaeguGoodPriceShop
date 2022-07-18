@@ -66,7 +66,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.alignment = .center
         imageView.image = resizedImage(image: UIImage(named: "hairCategory"), width: 160, height: 100)
         imageView.contentMode = .scaleAspectFill
-        label.text = "미용"
+        label.text = "미용업"
         label.textColor = .white
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
@@ -88,7 +88,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.alignment = .center
         imageView.image = resizedImage(image: UIImage(named: "laundryCategory"), width: 160, height: 100)
         imageView.contentMode = .scaleAspectFill
-        label.text = "세탁"
+        label.text = "세탁업"
         label.textColor = .white
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
@@ -110,7 +110,7 @@ class CategoryModalViewController: ModalViewController {
         stackView.alignment = .center
         imageView.image = resizedImage(image: UIImage(named: "serviceCategory"), width: 160, height: 100)
         imageView.contentMode = .scaleAspectFill
-        label.text = "서비스"
+        label.text = "서비스업"
         label.textColor = .white
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
