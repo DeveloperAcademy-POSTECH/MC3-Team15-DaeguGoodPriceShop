@@ -90,6 +90,7 @@ class MapViewController: UIViewController {
             categoryModalVC.initModal()
         } else {
             updateAnnotation(category: nil)
+            updateAnnotation(subCategory: nil)
             storeListModalVC.changeModalHeight(.zero)
             detailModalVC.changeModalHeight(.zero)
             categoryModalVC.changeModalHeight(.zero)
@@ -97,10 +98,8 @@ class MapViewController: UIViewController {
     }
     
     private func likeButtonTapped() {
-        likeButton.tintColor = mapViewModel.isShowingFavorite ? .systemPink : .lightGray
         updateAnnotation()
-        categoryModalVC.changeModalHeight(ModalHeight.zero)
-        storeListModalVC.changeModalHeight(.zero)
+        likeButton.tintColor = mapViewModel.isShowingFavorite ? .systemPink : .lightGray
     }
     
     private func updateAnnotation() {
@@ -315,7 +314,6 @@ extension MapViewController: MKMapViewDelegate {
         
         detailModalVC.setData(shopId: selectedShopData.serialNumber)
         detailModalVC.initModal()
-
         zoomTo(shop: mapViewModel.findShop(shopId: selectedShopData.serialNumber)!)
         categoryModalVC.changeModalHeight(.zero)
         storeListModalVC.changeModalHeight(.zero)
@@ -333,7 +331,6 @@ extension MapViewController: CategoryFilterable {
     func removeCategoryFiltering() {
         updateAnnotation(category: nil)
         updateAnnotation(subCategory: nil)
-        print(mapViewModel.isShowingCategory)
         categoryButtonTapped()
     }
     
@@ -389,5 +386,6 @@ extension MapViewController: SubCategoryFilterable {
     
     func removeSubCategoryFiltering() {
         updateAnnotation(subCategory: nil)
+        updateAnnotation(category: nil)
     }
 }
