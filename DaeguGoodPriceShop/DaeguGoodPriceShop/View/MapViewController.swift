@@ -315,8 +315,6 @@ extension MapViewController: MKMapViewDelegate {
         detailModalVC.setData(shopId: selectedShopData.serialNumber)
         detailModalVC.initModal()
         zoomTo(shop: mapViewModel.findShop(shopId: selectedShopData.serialNumber)!)
-        categoryModalVC.changeModalHeight(.zero)
-        storeListModalVC.changeModalHeight(.zero)
     }
 }
 
