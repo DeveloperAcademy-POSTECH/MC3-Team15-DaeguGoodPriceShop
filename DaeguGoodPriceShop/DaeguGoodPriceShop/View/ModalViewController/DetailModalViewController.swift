@@ -236,7 +236,6 @@ class DetailModalViewController: ModalViewController {
         modalDetailStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            modalDetailStack.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             modalDetailStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             modalDetailStack.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30),
             modalDetailStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
@@ -246,7 +245,7 @@ class DetailModalViewController: ModalViewController {
             modalMenuStack.leadingAnchor.constraint(equalTo: modalDetailStack.leadingAnchor),
             modalMenuStack.trailingAnchor.constraint(equalTo: modalDetailStack.trailingAnchor),
             menuPriceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
-            menuNameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            menuNameView.leadingAnchor.constraint(equalTo: modalMenuStack.leadingAnchor, constant: 15),
             
             infoSymbolCopyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolCopyButton.widthAnchor.constraint(equalToConstant: 30),
