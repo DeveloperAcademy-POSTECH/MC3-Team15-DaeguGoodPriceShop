@@ -263,6 +263,8 @@ class DetailModalViewController: ModalViewController {
             modalPhoneStack.heightAnchor.constraint(equalToConstant: 40),
             modalAddressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             modalPhoneStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            
+            infoSubTitleAddressView.topAnchor.constraint(equalTo: modalInfoStack.topAnchor, constant: 15)
         ])
     }
     
