@@ -10,7 +10,7 @@ import UIKit
 protocol SubCategoryFilterable: AnyObject {
     func categoryTouched(_ category: ShopSubCategory)
     func shopTouched(ofSerialNumber number: Int)
-    func removeFiltering()
+    func removeSubCategoryFiltering()
 }
 
 class StoreListModalViewController: ModalViewController {
@@ -134,7 +134,7 @@ class StoreListModalViewController: ModalViewController {
             if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
                     changeModalHeight(.zero)
-                    delegate?.removeFiltering()
+                    delegate?.removeSubCategoryFiltering()
                 } else {
                     changeModalHeight(.median)
                 }

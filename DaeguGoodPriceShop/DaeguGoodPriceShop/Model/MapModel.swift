@@ -25,7 +25,7 @@ struct MapModel {
         shops = getShopData()
     }
     
-    func filteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, favorite: Bool? = nil) -> [Shop] {
+    func filteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, isShowFavorite: Bool? = nil) -> [Shop] {
         var result = shops
         
         if let shopCategory = shopCategory {
@@ -39,8 +39,10 @@ struct MapModel {
             result = result.filter{ $0.shopSubCategory == shopSubCategory }
         }
         
-        if let _ = favorite {
-            result = result.filter{ favoriteShopId.contains($0.serialNumber) }
+        if let isFavorite = isShowFavorite {
+            if isFavorite {
+                result = result.filter{ favoriteShopId.contains($0.serialNumber) }
+            }
         }
         
         return result

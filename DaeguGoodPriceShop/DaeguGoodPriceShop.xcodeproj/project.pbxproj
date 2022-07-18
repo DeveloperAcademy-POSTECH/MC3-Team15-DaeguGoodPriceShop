@@ -515,6 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = ZRTG6WMRW7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -544,6 +545,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = ZRTG6WMRW7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaeguGoodPriceShop/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
