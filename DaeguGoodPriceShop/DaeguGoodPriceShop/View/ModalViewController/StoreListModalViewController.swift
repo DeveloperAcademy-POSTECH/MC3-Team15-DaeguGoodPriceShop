@@ -64,7 +64,7 @@ class StoreListModalViewController: ModalViewController {
     private func configureNormalStores(ofCategory category: ShopCategory?) {
         guard let category = self.category else { return }
         var dataItems: [Item] = []
-        mapViewModel.getFilteredShops(shopCategory: category).forEach { shop in
+        mapViewModel.getFilteredShops(shopCategory: category, favorite: false).forEach { shop in
             let dataItem = Item.normal(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
             dataItems.append(dataItem)
         }
@@ -73,7 +73,7 @@ class StoreListModalViewController: ModalViewController {
     
     private func configureNormalStores(ofSubCategory category: ShopSubCategory) {
         var dataItems: [Item] = []
-        mapViewModel.getFilteredShops(shopSubCategory: category).forEach { shop in
+        mapViewModel.getFilteredShops(shopSubCategory: category, favorite: false).forEach { shop in
             let dataItem = Item.normal(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
             dataItems.append(dataItem)
         }
