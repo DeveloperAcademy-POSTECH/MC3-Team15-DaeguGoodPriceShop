@@ -277,9 +277,7 @@ extension MapViewController: MKMapViewDelegate {
         
         detailModalVC.setData(shopId: selectedShopData.serialNumber)
         detailModalVC.initModal()
-        categoryModalVC.changeModalHeight(.zero)
-        storeListModalVC.changeModalHeight(.zero)
-//        zoomTo(shop: mapViewModel.findShop(shopId: selectedShopData.serialNumber)!)
+        zoomTo(shop: mapViewModel.findShop(shopId: selectedShopData.serialNumber)!)
     }
     
     //    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
