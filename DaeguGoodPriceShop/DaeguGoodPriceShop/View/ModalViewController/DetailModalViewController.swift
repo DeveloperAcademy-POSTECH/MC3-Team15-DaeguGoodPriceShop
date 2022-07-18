@@ -241,7 +241,7 @@ class DetailModalViewController: ModalViewController {
         
         NSLayoutConstraint.activate([
             modalDetailStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            modalDetailStack.topAnchor.constraint(equalTo: gestureView.bottomAnchor, constant: -30),
+            modalDetailStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             modalDetailStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             modalDetailStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
