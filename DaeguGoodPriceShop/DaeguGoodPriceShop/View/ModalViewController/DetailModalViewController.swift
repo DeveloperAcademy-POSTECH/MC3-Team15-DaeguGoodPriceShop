@@ -32,6 +32,10 @@ class DetailModalViewController: ModalViewController {
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton()
+        button.setImage(UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        button.layer.cornerRadius = 40
+        button.clipsToBounds = true
+        button.tintColor = .gray
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
         return button
@@ -187,7 +191,7 @@ class DetailModalViewController: ModalViewController {
     
     func setFavoriteButtonImage() {
         let isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
-        favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)) : UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         
         favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
     }
@@ -235,6 +239,8 @@ class DetailModalViewController: ModalViewController {
         modalDetailStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            favoriteButton.widthAnchor.constraint(equalToConstant: 40),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 40),
             menuPriceView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolCopyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.0),
             infoSymbolCopyButton.widthAnchor.constraint(equalToConstant: 30),
