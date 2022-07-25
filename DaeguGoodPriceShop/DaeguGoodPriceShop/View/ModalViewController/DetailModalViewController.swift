@@ -16,6 +16,7 @@ class DetailModalViewController: ModalViewController {
         }
     }
     
+    private var shopSearchName = ""
     private var shopCallAddress = ""
     private var shopCallNumber = ""
  
@@ -45,6 +46,9 @@ class DetailModalViewController: ModalViewController {
         var title = UILabel()
         title.text = selectedShop?.shopName
         title.font = .boldSystemFont(ofSize: 24)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(searchToNaver))
+        title.isUserInteractionEnabled = true
+        title.addGestureRecognizer(tap)
         return title
     }()
     
@@ -197,6 +201,21 @@ class DetailModalViewController: ModalViewController {
         favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
     }
     
+    @objc func searchToNaver() {
+        var originalURL = "https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=\(shopSearchName)+\(shopCallAddress)"
+        let encodedLink = originalURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+        let encodedURL = NSURL(string: encodedLink!)! as URL
+
+        guard let url = URL(string:"\(encodedURL)") else {
+            return
+        }
+        if #available(iOS 14.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+
     @objc func copyAddress() {
         UIPasteboard.general.string = shopCallAddress
         self.showToast(message: "주소 복사완료!")
@@ -311,6 +330,7 @@ class DetailModalViewController: ModalViewController {
         menuPriceView.text = selectedShop?.price
         infoAddressView.text = selectedShop?.address
         infoPhoneNumberView.text = selectedShop?.phoneNumber
+        shopSearchName = selectedShop?.shopName ?? ""
         shopCallAddress = selectedShop?.address ?? ""
         shopCallNumber = selectedShop?.phoneNumber ?? ""
     }
