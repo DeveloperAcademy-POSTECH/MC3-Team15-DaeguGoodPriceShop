@@ -42,10 +42,17 @@ class DetailModalViewController: ModalViewController {
         return button
     }()
     
-    lazy var titleView: UILabel = {
-        var title = UILabel()
+    lazy var titleView: UITextField = {
+        var title = UITextField()
         title.text = selectedShop?.shopName
         title.font = .boldSystemFont(ofSize: 24)
+        
+        title.rightViewMode = UITextField.ViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        let image = UIImage(systemName: "magnifyingglass.circle.fill")
+        imageView.image = image
+        title.rightView = imageView
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(searchToNaver))
         title.isUserInteractionEnabled = true
         title.addGestureRecognizer(tap)
@@ -202,7 +209,8 @@ class DetailModalViewController: ModalViewController {
     }
     
     @objc func searchToNaver() {
-        var originalURL = "https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=\(shopSearchName)+\(shopCallAddress)"
+        let chopshopCallAddress = shopCallAddress.split(separator: " ")
+        let originalURL = "https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=\(shopSearchName)+\(chopshopCallAddress[0])"
         let encodedLink = originalURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
         let encodedURL = NSURL(string: encodedLink!)! as URL
 
