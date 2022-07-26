@@ -42,21 +42,18 @@ class DetailModalViewController: ModalViewController {
         return button
     }()
     
-    lazy var titleView: UITextField = {
-        var title = UITextField()
+    lazy var titleView: UILabel = {
+        var title = UILabel()
         title.text = selectedShop?.shopName
         title.font = .boldSystemFont(ofSize: 24)
-        
-        title.rightViewMode = UITextField.ViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        let image = UIImage(systemName: "magnifyingglass.circle.fill")
-        imageView.image = image
-        title.rightView = imageView
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(searchToNaver))
-        title.isUserInteractionEnabled = true
-        title.addGestureRecognizer(tap)
         return title
+    }()
+    
+    lazy var SearchButton: UIButton = {
+        let search = UIButton()
+        search.setImage(UIImage(systemName: "magnifyingglass.circle.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        search.addTarget(self, action: #selector(searchToNaver), for: .touchUpInside)
+        return search
     }()
     
     lazy var subTitleMenuView: UILabel = {
@@ -171,7 +168,7 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var modalTitleStack: UIStackView = {
-        var modalTitle = UIStackView(arrangedSubviews: [titleView, spacer, favoriteButton])
+        var modalTitle = UIStackView(arrangedSubviews: [titleView, SearchButton, spacer, favoriteButton])
         modalTitle.axis = .horizontal
         modalTitle.spacing = 16.0
         return modalTitle
