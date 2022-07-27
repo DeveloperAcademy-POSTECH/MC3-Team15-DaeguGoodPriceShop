@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailModalViewController: ModalViewController {
-    let mapViewModel: MapViewModel
+    let mapShopViewModel: MapShopViewModel
     
     private var selectedShop: Shop? {
         didSet {
@@ -20,8 +20,8 @@ class DetailModalViewController: ModalViewController {
     private var shopCallAddress = ""
     private var shopCallNumber = ""
  
-    init(mapViewModel: MapViewModel) {
-        self.mapViewModel = mapViewModel
+    init(mapShopViewModel: MapShopViewModel) {
+        self.mapShopViewModel = mapShopViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -194,12 +194,12 @@ class DetailModalViewController: ModalViewController {
             return
         }
         
-        mapViewModel.toggleFavoriteShop(shopId: shop.serialNumber)
+        mapShopViewModel.toggleFavoriteShop(shopId: shop.serialNumber)
         setFavoriteButtonImage()
     }
     
     func setFavoriteButtonImage() {
-        let isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
+        let isFavoriteShop = mapShopViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
         favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)) : UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         
         favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
@@ -327,7 +327,7 @@ class DetailModalViewController: ModalViewController {
     }
     
     func setData(shopId id: Int) {
-        selectedShop = mapViewModel.findShop(shopId: id)
+        selectedShop = mapShopViewModel.findShop(shopId: id)
     }
     
     func updateDetailModalView() {
