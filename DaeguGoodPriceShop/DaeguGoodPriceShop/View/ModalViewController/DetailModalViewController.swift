@@ -16,6 +16,7 @@ class DetailModalViewController: ModalViewController {
         }
     }
     
+    private var shopSearchName = ""
     private var shopCallAddress = ""
     private var shopCallNumber = ""
  
@@ -46,6 +47,13 @@ class DetailModalViewController: ModalViewController {
         title.text = selectedShop?.shopName
         title.font = .boldSystemFont(ofSize: 24)
         return title
+    }()
+    
+    lazy var SearchButton: UIButton = {
+        let search = UIButton()
+        search.setImage(UIImage(systemName: "magnifyingglass.circle.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        search.addTarget(self, action: #selector(searchToNaver), for: .touchUpInside)
+        return search
     }()
     
     lazy var subTitleMenuView: UILabel = {
@@ -160,7 +168,7 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var modalTitleStack: UIStackView = {
-        var modalTitle = UIStackView(arrangedSubviews: [titleView, spacer, favoriteButton])
+        var modalTitle = UIStackView(arrangedSubviews: [titleView, SearchButton, spacer, favoriteButton])
         modalTitle.axis = .horizontal
         modalTitle.spacing = 16.0
         return modalTitle
@@ -197,6 +205,22 @@ class DetailModalViewController: ModalViewController {
         favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
     }
     
+    @objc func searchToNaver() {
+        let chopshopCallAddress = shopCallAddress.split(separator: " ")
+        let originalURL = "https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=\(shopSearchName)+\(chopshopCallAddress[0])"
+        let encodedLink = originalURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+        let encodedURL = NSURL(string: encodedLink!)! as URL
+
+        guard let url = URL(string:"\(encodedURL)") else {
+            return
+        }
+        if #available(iOS 14.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+
     @objc func copyAddress() {
         UIPasteboard.general.string = shopCallAddress
         self.showToast(message: "주소 복사완료!")
@@ -311,6 +335,7 @@ class DetailModalViewController: ModalViewController {
         menuPriceView.text = selectedShop?.price
         infoAddressView.text = selectedShop?.address
         infoPhoneNumberView.text = selectedShop?.phoneNumber
+        shopSearchName = selectedShop?.shopName ?? ""
         shopCallAddress = selectedShop?.address ?? ""
         shopCallNumber = selectedShop?.phoneNumber ?? ""
     }
