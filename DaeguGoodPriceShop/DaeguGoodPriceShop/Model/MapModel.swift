@@ -8,25 +8,27 @@
 import Foundation
 import OSLog
 
-struct MapModel {
+final class MapModel {
     private enum DataFetchingError: Error {
         case invalidURL
         case urlUnableToConvertToData
         case unDecodable
     }
     
-    var shops: [Shop] = []
+    var totalShops: [Shop] = []
     var favoriteShopId: Set<Int> {
         get { Set(UserDefaults.standard.array(forKey: "favoriteShopId") as? [Int] ?? []) }
         set { UserDefaults.standard.set(Array(newValue), forKey: "favoriteShopId") }
     }
     
     init() {
-        shops = getShopData()
+        Task {
+            self.totalShops = await asyncFetchShops()
+        }
     }
     
     func filteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, isShowFavorite: Bool? = nil) -> [Shop] {
-        var result = shops
+        var result = totalShops
         
         if let shopCategory = shopCategory {
             result = result.filter{
@@ -48,29 +50,39 @@ struct MapModel {
         return result
     }
     
-    private func getShopData() -> [Shop] {
-        let fileName = "DaeguGoodPriceShop"
-        guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-            os_log(.error, log: .default, "INVALID URL: \(DataFetchingError.invalidURL.localizedDescription)")
-            return []
+    private func asyncFetchShops() async -> [Shop] {
+        typealias ShopContinuation = CheckedContinuation<[Shop], Never>
+        return await withCheckedContinuation { (continuation: CheckedContinuation) in
+            fetchShopsFromJson { shops in
+                continuation.resume(returning: shops)
+            }
         }
-        
-        guard let data = try? Data(contentsOf: fileLocation) else {
-            os_log(.error, log: .default, "URL UNABLE: \(DataFetchingError.urlUnableToConvertToData.localizedDescription)")
-            return []
+    }
+    
+    private func fetchShopsFromJson(completion: @escaping ([Shop]) -> ()) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let fileName = "DaeguGoodPriceShop"
+            guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+                os_log(.error, log: .default, "INVALID URL: \(DataFetchingError.invalidURL.localizedDescription)")
+                completion([])
+                return
+            }
+            guard let data = try? Data(contentsOf: fileLocation) else {
+                os_log(.error, log: .default, "URL UNABLE: \(DataFetchingError.urlUnableToConvertToData.localizedDescription)")
+                completion([])
+                return
+            }
+            guard let shops = try? JSONDecoder().decode([Shop].self, from: data) else {
+                os_log(.error, log: .default, "UNDECODABLE: \(DataFetchingError.unDecodable.localizedDescription)")
+                completion([])
+                return
+            }
+            completion(shops)
         }
-        
-        guard let shops = try? JSONDecoder().decode([Shop].self, from: data) else {
-            os_log(.error, log: .default, "UNDECODABLE: \(DataFetchingError.unDecodable.localizedDescription)")
-            return []
-        }
-        
-        os_log(.debug, log: .default, "Successfully Get Json Data")
-        return shops
     }
     
     func findById(shopId id: Int) -> Shop? {
-        return shops.first(where: {$0.serialNumber == id })
+        return totalShops.first(where: {$0.serialNumber == id })
     }
 }
 
