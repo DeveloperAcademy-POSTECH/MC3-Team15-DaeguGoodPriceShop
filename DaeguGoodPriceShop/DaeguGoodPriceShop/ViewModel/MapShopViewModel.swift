@@ -1,45 +1,21 @@
 //
-//  MapViewModel.swift
+//  MapShopViewModel.swift
 //  DaeguGoodPriceShop
 //
-//  Created by Shin Jae Ung on 2022/06/29.
+//  Created by Shin Jae Ung on 2022/07/27.
 //
 
 import Foundation
-import CoreLocation
-import Combine
 
-final class MapViewModel {
-    @Published private(set) var locationAutorization: Bool = false
-    @Published private(set) var initialLocation: CLLocation?
-    private let locationManager = LocationManager()
-    private var model = MapModel()
+final class MapShopViewModel {
+    private var model: MapModel
     private(set) var isShowingFavorite = false
     private var category: ShopCategory?
     private var subcategory: ShopSubCategory?
-    private var distance: CLLocationDistance?
     private(set) var isShowingCategory = false
     
-    init() {
-        configureBindings()
-        configureLocationManager()
-    }
-    
-    func configureBindings() {
-        locationManager.locationAuthorizationEvent = { [weak self] bool in
-            self?.locationAutorization = bool
-        }
-        locationManager.initialLocationEvent = { [weak self] location in
-            self?.initialLocation = location
-        }
-    }
-    
-    func configureLocationManager() {
-        locationManager.configureAutorization()
-    }
-    
-    private func getDistanceFromUser(_ shop: Shop) -> CLLocationDistance {
-        return initialLocation?.distance(from: CLLocation(latitude: shop.latitude, longitude: shop.longitude)) ?? CLLocationDistance.infinity
+    init(mapModel: MapModel) {
+        self.model = mapModel
     }
     
     func toggleFavoriteShop(shopId: Int) {
