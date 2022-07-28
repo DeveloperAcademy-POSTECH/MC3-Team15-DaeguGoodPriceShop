@@ -7,12 +7,11 @@
 
 import Foundation
 import CoreLocation
-import Combine
 
 final class MapLocationViewModel {
-    @Published private(set) var locationAutorization: Bool = false
-    @Published private(set) var initialLocation: CLLocation?
     private let locationManager: LocationManager
+    var locationAuthorizationEvent: (Bool) -> Void = { _ in }
+    var initialLocationEvent: (CLLocation) -> Void = { _ in }
     
     init(locationManager: LocationManager) {
         self.locationManager = locationManager
@@ -22,10 +21,10 @@ final class MapLocationViewModel {
     
     private func configureBindings() {
         locationManager.locationAuthorizationEvent = { [weak self] bool in
-            self?.locationAutorization = bool
+            self?.locationAuthorizationEvent(bool)
         }
         locationManager.initialLocationEvent = { [weak self] location in
-            self?.initialLocation = location
+            self?.initialLocationEvent(location)
         }
     }
     

@@ -6,13 +6,11 @@
 //
 
 import MapKit
-import Combine
 
 class MapViewController: UIViewController {
     let shopViewModel = MapShopViewModel(mapModel: MapModel())
     let locationViewModel = MapLocationViewModel(locationManager: LocationManager())
     @IBOutlet private weak var mapView: MKMapView!
-    private var observers: Set<AnyCancellable> = []
     var selectedAnnotationView: MKAnnotationView?
     var selectedAnnotation: MKAnnotation?
     var selectedShopCategory: ShopCategory?
@@ -231,16 +229,12 @@ class MapViewController: UIViewController {
     }
     
     private func configureBindings() {
-        locationViewModel.$locationAutorization
-            .sink { [weak self] bool in
-                self?.userTrackingButton.isHidden = !bool
-            }
-            .store(in: &self.observers)
-        locationViewModel.$initialLocation
-            .sink { [weak self] location in
-                self?.configureLocation(location)
-            }
-            .store(in: &self.observers)
+        locationViewModel.locationAuthorizationEvent = { [weak self] bool in
+            self?.userTrackingButton.isHidden = !bool
+        }
+        locationViewModel.initialLocationEvent = { [weak self] location in
+            self?.configureLocation(location)
+        }
     }
     
     private func configureLocation(_ location: CLLocation?) {
