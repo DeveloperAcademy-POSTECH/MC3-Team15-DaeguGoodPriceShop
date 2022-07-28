@@ -22,7 +22,7 @@ class CategoryModalViewController: ModalViewController {
     var textLabel: UILabel = {
         let label = UILabel()
         label.text = "업종 선택"
-        label.font = .preferredFont(for: .body, weight: .bold)
+        label.font = .boldSystemFont(ofSize: 24)
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -171,16 +171,16 @@ class CategoryModalViewController: ModalViewController {
         ])
         
         NSLayoutConstraint.activate([
-            textLabel.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 30),
-            textLabel.topAnchor.constraint(equalTo: innerScrollView.topAnchor)
+            textLabel.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 15),
+            textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30)
         ])
         
         NSLayoutConstraint.activate([
-            totalStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 60),
-            totalStackView.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 30),
+            totalStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 30),
+            totalStackView.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 15),
             totalStackView.topAnchor.constraint(equalTo: self.textLabel.bottomAnchor, constant: 30),
             totalStackView.bottomAnchor.constraint(equalTo: innerScrollView.bottomAnchor, constant: -50),
-            totalStackView.rightAnchor.constraint(equalTo: innerScrollView.rightAnchor, constant: -30)
+            totalStackView.rightAnchor.constraint(equalTo: innerScrollView.rightAnchor, constant: -15)
         ])
     }
     
