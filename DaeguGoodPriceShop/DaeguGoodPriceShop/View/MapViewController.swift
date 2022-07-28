@@ -345,7 +345,6 @@ extension MapViewController: MKMapViewDelegate {
             guard let selectedAnnotationData = clusteringAnnotationView.annotation as? MKClusterAnnotation else {
                 return
             }
-            print(selectedAnnotationData.coordinate)
             zoomToCluster(clusteringAnnotation: selectedAnnotationData)
         }
     }
@@ -410,13 +409,6 @@ extension MapViewController: SubCategoryFilterable {
     }
     
     func shopTouched(ofSerialNumber number: Int) {
-        guard let touchedShopIndex = shopViewModel.getShops().firstIndex(where: { $0.serialNumber == number }) else { return }
-        let touchedShop = shopViewModel.getShops()[touchedShopIndex]
-        zoomTo(shop: touchedShop)
-    }
-    
-    // ClusterTouch
-    func clusterTouched(ofSerialNumber number: Int) {
         guard let touchedShopIndex = shopViewModel.getShops().firstIndex(where: { $0.serialNumber == number }) else { return }
         let touchedShop = shopViewModel.getShops()[touchedShopIndex]
         zoomTo(shop: touchedShop)
