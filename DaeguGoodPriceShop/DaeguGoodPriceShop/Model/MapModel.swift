@@ -23,7 +23,11 @@ final class MapModel {
     
     init() {
         Task {
-            self.totalShops = await asyncFetchShops()
+            do {
+                self.totalShops = try await fetchShopsFromJson()
+            } catch {
+                os_log(.error, log: .default, "\(error.localizedDescription)")
+            }
         }
     }
     
@@ -50,35 +54,18 @@ final class MapModel {
         return result
     }
     
-    private func asyncFetchShops() async -> [Shop] {
-        typealias ShopContinuation = CheckedContinuation<[Shop], Never>
-        return await withCheckedContinuation { (continuation: CheckedContinuation) in
-            fetchShopsFromJson { shops in
-                continuation.resume(returning: shops)
-            }
+    private func fetchShopsFromJson() async throws -> [Shop] {
+        let fileName = "DaeguGoodPriceShop"
+        guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+            throw DataFetchingError.invalidURL
         }
-    }
-    
-    private func fetchShopsFromJson(completion: @escaping ([Shop]) -> ()) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let fileName = "DaeguGoodPriceShop"
-            guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-                os_log(.error, log: .default, "INVALID URL: \(DataFetchingError.invalidURL.localizedDescription)")
-                completion([])
-                return
-            }
-            guard let data = try? Data(contentsOf: fileLocation) else {
-                os_log(.error, log: .default, "URL UNABLE: \(DataFetchingError.urlUnableToConvertToData.localizedDescription)")
-                completion([])
-                return
-            }
-            guard let shops = try? JSONDecoder().decode([Shop].self, from: data) else {
-                os_log(.error, log: .default, "UNDECODABLE: \(DataFetchingError.unDecodable.localizedDescription)")
-                completion([])
-                return
-            }
-            completion(shops)
+        guard let data = try? Data(contentsOf: fileLocation) else {
+            throw DataFetchingError.urlUnableToConvertToData
         }
+        guard let shops = try? JSONDecoder().decode([Shop].self, from: data) else {
+            throw DataFetchingError.unDecodable
+        }
+        return shops
     }
     
     func findById(shopId id: Int) -> Shop? {
