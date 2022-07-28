@@ -280,9 +280,9 @@ class MapViewController: UIViewController {
             let latitudeGap = Double(bigLatitude) - Double(smallLatitude)
             let longitudeGap = Double(bigLongitude) - Double(smallLongitude)
             if latitudeGap >= longitudeGap{
-                return latitudeGap + 0.0001
+                return latitudeGap + 0.001
             } else {
-                return longitudeGap + 0.0001
+                return longitudeGap + 0.001
             }
         } else {
             return 0.01
