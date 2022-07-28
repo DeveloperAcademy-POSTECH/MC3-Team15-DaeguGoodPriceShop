@@ -81,6 +81,7 @@ class MapViewController: UIViewController {
         shopViewModel.categoryButtonTouched()
         categoryButton.tintColor = shopViewModel.isShowingCategory ? .systemGray6 : .lightGray
         categoryButton.backgroundColor = shopViewModel.isShowingCategory ? UIColor(named: "MainColor") : .systemBackground
+        storeListModalVC.selectedSubCategory = nil
         
         if shopViewModel.isShowingCategory {
             updateAnnotation(category: nil)
@@ -350,7 +351,7 @@ extension MapViewController: CategoryFilterable {
 }
 
 extension MapViewController: SubCategoryFilterable {
-    func categoryTouched(_ subCategory: ShopSubCategory) {
+    func categoryTouched(_ subCategory: ShopSubCategory?) {
         updateAnnotation(subCategory: subCategory)
     }
     
