@@ -26,7 +26,7 @@ class MapViewController: UIViewController {
         return button
     }()
     
-    @IBOutlet weak var likeButton: UIButton!
+@IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var buttonsContainerView: UIView!
     
@@ -262,6 +262,13 @@ class MapViewController: UIViewController {
         let region = MKCoordinateRegion(center: center, span: span)
         mapView.setRegion(region, animated: true)
     }
+    // Cluster Zoom
+    private func zoomToCluster(ClusterAnnotationView: ClusteringAnnotationView) {
+        let center = CLLocationCoordinate2D(latitude: ClusterAnnotationView.annotation!.coordinate.latitude - 0.002, longitude: ClusterAnnotationView.annotation!.coordinate.latitude - 0.002)//강제언래핑
+        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.setRegion(region, animated: true)
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -300,18 +307,25 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotationView?.prepareForDisplay()
-        guard let shopAnnotationView = view as? ShopAnnotationView else { return }
-        shopAnnotationView.selected()
-        selectedAnnotationView = view
-        selectedAnnotation = selectedAnnotationView?.annotation
-        
-        guard let selectedShopData = view.annotation as? ShopAnnotation else {
+        /*
+        guard let shopAnnotationView = view as? ShopAnnotationView else {
             return
+        }*/
+        if let shopAnnotationView = view as? ShopAnnotationView {
+            shopAnnotationView.selected()
+            selectedAnnotationView = view
+            selectedAnnotation = selectedAnnotationView?.annotation
+            
+            guard let selectedShopData = view.annotation as? ShopAnnotation else {
+                return
+            }
+            
+            detailModalVC.setData(shopId: selectedShopData.serialNumber)
+            detailModalVC.initModal()
+            zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
+        } else if let clusteringAnnotationView = view as? ClusteringAnnotationView {
+            zoomToCluster(ClusterAnnotationView: clusteringAnnotationView)
         }
-        
-        detailModalVC.setData(shopId: selectedShopData.serialNumber)
-        detailModalVC.initModal()
-        zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
     }
 }
 
@@ -374,6 +388,13 @@ extension MapViewController: SubCategoryFilterable {
     }
     
     func shopTouched(ofSerialNumber number: Int) {
+        guard let touchedShopIndex = shopViewModel.getShops().firstIndex(where: { $0.serialNumber == number }) else { return }
+        let touchedShop = shopViewModel.getShops()[touchedShopIndex]
+        zoomTo(shop: touchedShop)
+    }
+    
+    // ClusterTouch
+    func clusterTouched(ofSerialNumber number: Int) {
         guard let touchedShopIndex = shopViewModel.getShops().firstIndex(where: { $0.serialNumber == number }) else { return }
         let touchedShop = shopViewModel.getShops()[touchedShopIndex]
         zoomTo(shop: touchedShop)
