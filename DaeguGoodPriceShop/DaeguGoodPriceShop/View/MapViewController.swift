@@ -26,7 +26,7 @@ class MapViewController: UIViewController {
         return button
     }()
     
-@IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var buttonsContainerView: UIView!
     
@@ -326,10 +326,6 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotationView?.prepareForDisplay()
-        /*
-        guard let shopAnnotationView = view as? ShopAnnotationView else {
-            return
-        }*/
         if let shopAnnotationView = view as? ShopAnnotationView {
             shopAnnotationView.selected()
             selectedAnnotationView = view
