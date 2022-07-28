@@ -262,12 +262,31 @@ class MapViewController: UIViewController {
         let region = MKCoordinateRegion(center: center, span: span)
         mapView.setRegion(region, animated: true)
     }
-    // Cluster Zoom
-    private func zoomToCluster(ClusterAnnotationView: ClusteringAnnotationView) {
-        let center = CLLocationCoordinate2D(latitude: ClusterAnnotationView.annotation!.coordinate.latitude - 0.002, longitude: ClusterAnnotationView.annotation!.coordinate.latitude - 0.002)//강제언래핑
-        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+    
+    private func zoomToCluster(clusteringAnnotation: MKClusterAnnotation) {
+        let center = CLLocationCoordinate2D(latitude: clusteringAnnotation.coordinate.latitude, longitude: clusteringAnnotation.coordinate.longitude)
+        let delta = calculateClusterZoomSpan(memberAnnotations: clusteringAnnotation.memberAnnotations)
+        let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
         let region = MKCoordinateRegion(center: center, span: span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    private func calculateClusterZoomSpan(memberAnnotations: [MKAnnotation]) -> Double {
+        let maxLatitude = memberAnnotations.map { $0.coordinate.latitude }.max()
+        let minLatitude = memberAnnotations.map { $0.coordinate.latitude }.min()
+        let maxLongitude = memberAnnotations.map { $0.coordinate.longitude }.max()
+        let minLongitude = memberAnnotations.map { $0.coordinate.longitude }.min()
+        if let bigLatitude = maxLatitude, let smallLatitude = minLatitude, let bigLongitude = maxLongitude, let smallLongitude = minLongitude {
+            let latitudeGap = Double(bigLatitude) - Double(smallLatitude)
+            let longitudeGap = Double(bigLongitude) - Double(smallLongitude)
+            if latitudeGap >= longitudeGap{
+                return latitudeGap + 0.0001
+            } else {
+                return longitudeGap + 0.0001
+            }
+        } else {
+            return 0.01
+        }
     }
 }
 
@@ -324,7 +343,14 @@ extension MapViewController: MKMapViewDelegate {
             detailModalVC.initModal()
             zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
         } else if let clusteringAnnotationView = view as? ClusteringAnnotationView {
-            zoomToCluster(ClusterAnnotationView: clusteringAnnotationView)
+            selectedAnnotationView = clusteringAnnotationView
+            selectedAnnotation = selectedAnnotationView?.annotation
+            
+            guard let selectedAnnotationData = clusteringAnnotationView.annotation as? MKClusterAnnotation else {
+                return
+            }
+            print(selectedAnnotationData.coordinate)
+            zoomToCluster(clusteringAnnotation: selectedAnnotationData)
         }
     }
 }
