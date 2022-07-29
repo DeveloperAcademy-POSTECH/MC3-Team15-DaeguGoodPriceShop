@@ -10,6 +10,7 @@
 		A80AAF972876508400795C87 /* ShopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AAF962876508400795C87 /* ShopAnnotationView.swift */; };
 		A8C3E0232890D8DE00E65307 /* MapLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3E0222890D8DE00E65307 /* MapLocationViewModel.swift */; };
 		A8C3E0252890D8EA00E65307 /* MapShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3E0242890D8EA00E65307 /* MapShopViewModel.swift */; };
+		A8C3E0292893823500E65307 /* DetailModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3E0282893823500E65307 /* DetailModalViewModel.swift */; };
 		A8CBA576287BAF3800BC2DC1 /* BakeryAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBA569287BAF3800BC2DC1 /* BakeryAnnotationView.swift */; };
 		A8CBA577287BAF3800BC2DC1 /* ChineseFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBA56A287BAF3800BC2DC1 /* ChineseFoodAnnotationView.swift */; };
 		A8CBA578287BAF3800BC2DC1 /* FlourBasedFoodAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBA56B287BAF3800BC2DC1 /* FlourBasedFoodAnnotationView.swift */; };
@@ -51,6 +52,7 @@
 		A80AAF962876508400795C87 /* ShopAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotationView.swift; sourceTree = "<group>"; };
 		A8C3E0222890D8DE00E65307 /* MapLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationViewModel.swift; sourceTree = "<group>"; };
 		A8C3E0242890D8EA00E65307 /* MapShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapShopViewModel.swift; sourceTree = "<group>"; };
+		A8C3E0282893823500E65307 /* DetailModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalViewModel.swift; sourceTree = "<group>"; };
 		A8CBA569287BAF3800BC2DC1 /* BakeryAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BakeryAnnotationView.swift; sourceTree = "<group>"; };
 		A8CBA56A287BAF3800BC2DC1 /* ChineseFoodAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChineseFoodAnnotationView.swift; sourceTree = "<group>"; };
 		A8CBA56B287BAF3800BC2DC1 /* FlourBasedFoodAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlourBasedFoodAnnotationView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				A8C3E0222890D8DE00E65307 /* MapLocationViewModel.swift */,
 				A8C3E0242890D8EA00E65307 /* MapShopViewModel.swift */,
+				A8C3E0282893823500E65307 /* DetailModalViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				A8CBA57D287BAF3800BC2DC1 /* SkinCareAnnotationView.swift in Sources */,
 				DA4A1986287A9583004E019F /* ModalViewController.swift in Sources */,
 				A8CBA57C287BAF3800BC2DC1 /* CafeAnnotationView.swift in Sources */,
+				A8C3E0292893823500E65307 /* DetailModalViewModel.swift in Sources */,
 				F240E3FF287C58920033A8FA /* StoreListViewCell.swift in Sources */,
 				A8CBA57A287BAF3800BC2DC1 /* JapaneseFoodAnnotationView.swift in Sources */,
 				A8CBA578287BAF3800BC2DC1 /* FlourBasedFoodAnnotationView.swift in Sources */,

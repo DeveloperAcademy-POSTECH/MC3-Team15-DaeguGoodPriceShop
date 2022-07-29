@@ -8,28 +8,16 @@
 import UIKit
 
 class DetailModalViewController: ModalViewController {
-    let mapShopViewModel: MapShopViewModel
-    
+    private let spacer = UIView()
+    private let viewModel: DetailModalViewModel
+    private var shopSearchName = ""
+    private var shopCallAddress = ""
+    private var shopCallNumber = ""
     private var selectedShop: Shop? {
         didSet {
             setFavoriteButtonImage()
         }
     }
-    
-    private var shopSearchName = ""
-    private var shopCallAddress = ""
-    private var shopCallNumber = ""
- 
-    init(mapShopViewModel: MapShopViewModel) {
-        self.mapShopViewModel = mapShopViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    let spacer = UIView()
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton()
@@ -182,6 +170,15 @@ class DetailModalViewController: ModalViewController {
         modalDetail.setCustomSpacing(20.0, after: modalMenuStack)
         return modalDetail
     }()
+ 
+    init(viewModel: DetailModalViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -189,17 +186,19 @@ class DetailModalViewController: ModalViewController {
         setupPanGesture()
     }
     
+    func shopTouched(_ shop: Shop) {
+        self.selectedShop = shop
+    }
+    
     @objc func toggleFavorite() {
-        guard let shop = selectedShop else {
-            return
-        }
-        
-        mapShopViewModel.toggleFavoriteShop(shopId: shop.serialNumber)
+        guard let selectedShop = selectedShop else { return }
+        viewModel.toggleFavorite(selectedShop)
         setFavoriteButtonImage()
     }
     
     func setFavoriteButtonImage() {
-        let isFavoriteShop = mapShopViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
+        guard let selectedShop = selectedShop else { return }
+        let isFavoriteShop = viewModel.isFavoriteShop(selectedShop)
         favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)) : UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         
         favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
@@ -260,7 +259,6 @@ class DetailModalViewController: ModalViewController {
     override func setupView() {
         super.setupView()
         view.addSubview(modalDetailStack)
-        setFavoriteButtonImage()
         modalDetailStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -324,10 +322,6 @@ class DetailModalViewController: ModalViewController {
         changeModalHeight(.median)
         titleView.text = selectedShop?.shopName
         updateDetailModalView()
-    }
-    
-    func setData(shopId id: Int) {
-        selectedShop = mapShopViewModel.findShop(shopId: id)
     }
     
     func updateDetailModalView() {

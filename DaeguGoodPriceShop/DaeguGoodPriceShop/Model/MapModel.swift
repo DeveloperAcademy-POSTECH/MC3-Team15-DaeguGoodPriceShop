@@ -14,14 +14,18 @@ final class MapModel {
         case urlUnableToConvertToData
         case unDecodable
     }
-    
-    var totalShops: [Shop] = []
+    var totalShops: [Shop] = [] {
+        didSet {
+            totalShopFetchedEvent()
+        }
+    }
     var favoriteShopId: Set<Int> {
         get { Set(UserDefaults.standard.array(forKey: "favoriteShopId") as? [Int] ?? []) }
         set { UserDefaults.standard.set(Array(newValue), forKey: "favoriteShopId") }
     }
+    var totalShopFetchedEvent: () -> () = { }
     
-    init() {
+    func fetchTotalShop() {
         Task {
             do {
                 self.totalShops = try await fetchShopsFromJson()
@@ -67,9 +71,24 @@ final class MapModel {
         }
         return shops
     }
+
+    func toggleFavorite(of shop: Shop) {
+        isFavorite(shop: shop) ? removeFavorite(shop: shop) : addFavorite(shop: shop)
+    }
     
-    func findById(shopId id: Int) -> Shop? {
-        return totalShops.first(where: {$0.serialNumber == id })
+    private func addFavorite(shop: Shop) {
+        let serialNumber = shop.serialNumber
+        favoriteShopId.insert(serialNumber)
+    }
+    
+    private func removeFavorite(shop: Shop) {
+        let serialNumber = shop.serialNumber
+        favoriteShopId.remove(serialNumber)
+    }
+    
+    private func isFavorite(shop: Shop) -> Bool {
+        let serialNumber = shop.serialNumber
+        return favoriteShopId.contains(serialNumber)
     }
 }
 

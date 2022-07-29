@@ -42,10 +42,9 @@ class StoreListViewCell: UICollectionViewCell {
     
     func configure(_ item: StoreListItem) {
         configureView()
-        
-        titleLabel.text = item.storeName
-        addressLabel.text = item.storeAddress
-        shopCallNumber = item.storeCallNumber ?? ""
+        titleLabel.text = item.shop.shopName
+        addressLabel.text = item.shop.address
+        shopCallNumber = item.shop.phoneNumber
     }
     
     @objc func phoneCall() {

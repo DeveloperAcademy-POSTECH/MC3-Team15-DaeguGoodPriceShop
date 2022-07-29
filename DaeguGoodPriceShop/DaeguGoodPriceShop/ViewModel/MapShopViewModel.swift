@@ -9,66 +9,74 @@ import Foundation
 
 final class MapShopViewModel {
     private var model: MapModel
+    private(set) var category: ShopCategory?
+    private(set) var subCategory: ShopSubCategory?
     private(set) var isShowingFavorite = false
-    private var category: ShopCategory?
-    private var subcategory: ShopSubCategory?
     private(set) var isShowingCategory = false
+    private(set) var shopsShouldBeAdded: [Shop] = []
+    private(set) var shopsShouldRemain: [Shop] = []
+    private(set) var shopsShouldBeRemoved: [Shop] = []
+    var favoriteShopsOfCurrentShops: [Shop] {
+        model.filteredShops(shopCategory: self.category, shopSubCategory: self.subCategory, isShowFavorite: true)
+    }
+    var shopVisibilityChangedEventForMapView: () -> () = { }
     
     init(mapModel: MapModel) {
         self.model = mapModel
+        configureBinding()
     }
     
-    func toggleFavoriteShop(shopId: Int) {
-        if model.favoriteShopId.contains(shopId) {
-            removeFavoriteShop(shopId: shopId)
-        } else {
-            addFavoriteShop(shopId: shopId)
+    func viewDidLoad() {
+        model.fetchTotalShop()
+    }
+    
+    private func configureBinding() {
+        model.totalShopFetchedEvent = { [weak self] in
+            self?.updateShops()
         }
     }
-    
-    private func addFavoriteShop(shopId: Int) {
-        model.favoriteShopId.insert(shopId)
-        UserDefaults.standard.set(Array(model.favoriteShopId), forKey: "favoriteShopId")
-    }
-    
-    private func removeFavoriteShop(shopId: Int) {
-        model.favoriteShopId.remove(shopId)
-        UserDefaults.standard.set(Array(model.favoriteShopId), forKey: "favoriteShopId")
-    }
-    
-    func isFavoriteShop(shopId id: Int) -> Bool {
-        return model.favoriteShopId.contains(id)
+
+    func toggleFavorite(of shop: Shop) {
+        model.toggleFavorite(of: shop)
     }
     
     func favoriteShopButtonTouched() {
         isShowingFavorite.toggle()
+        updateShops()
     }
     
     func categoryButtonTouched() {
         isShowingCategory.toggle()
     }
     
-    func setCategory(category: ShopCategory?) {
+    func storeListModalViewDismissed() {
+        category = nil
+        subCategory = nil
+        updateShops()
+    }
+    
+    func shopCategoryTouched(_ category: ShopCategory) {
         self.category = category
+        updateShops()
     }
     
-    func setSubCategory(subcategory: ShopSubCategory?) {
-        self.subcategory = subcategory
+    func shopSubCategoryTouched(_ subCategory: ShopSubCategory) {
+        self.subCategory = subCategory
+        updateShops()
     }
     
-    func getShops() -> [Shop] {
-        return model.totalShops
+    func shopSubCategoryTouched(of indexPath: IndexPath) {
+        guard let category = category else { return }
+        shopSubCategoryTouched(category.subCategories[indexPath.item])
     }
     
-    func getFilteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, favorite: Bool? = nil) -> [Shop] {
-        if favorite == nil {
-            return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: isShowingFavorite)
-        } else {
-            return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: favorite)
-        }
-    }
-    
-    func findShop(shopId id: Int) -> Shop? {
-        return model.findById(shopId: id)
+    private func updateShops() {
+        let filteredShops = model.filteredShops(shopCategory: category, shopSubCategory: subCategory, isShowFavorite: isShowingFavorite)
+        
+        let currentShops = shopsShouldBeAdded + shopsShouldRemain
+        shopsShouldBeAdded = filteredShops.filter{ !currentShops.contains($0) }
+        shopsShouldBeRemoved = currentShops.filter{ !filteredShops.contains($0) }
+        shopsShouldRemain = currentShops.filter { filteredShops.contains($0) }
+        shopVisibilityChangedEventForMapView()
     }
 }

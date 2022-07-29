@@ -16,7 +16,6 @@ class DetailCategoryViewCell: UICollectionViewCell {
         button.clipsToBounds = true
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.titleLabel?.textColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled = false
         

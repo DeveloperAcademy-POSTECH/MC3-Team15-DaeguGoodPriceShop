@@ -7,10 +7,9 @@
 
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController {    
     let shopViewModel = MapShopViewModel(mapModel: MapModel())
     let locationViewModel = MapLocationViewModel(locationManager: LocationManager())
-    @IBOutlet private weak var mapView: MKMapView!
     var selectedAnnotationView: MKAnnotationView?
     var selectedAnnotation: MKAnnotation?
     var selectedShopCategory: ShopCategory?
@@ -26,12 +25,8 @@ class MapViewController: UIViewController {
         return button
     }()
     
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var categoryButton: UIButton!
-    @IBOutlet weak var buttonsContainerView: UIView!
-    
     lazy var storeListModalVC: StoreListModalViewController = {
-        let defaultModalVC = StoreListModalViewController(mapShopViewModel: self.shopViewModel)
+        let defaultModalVC = StoreListModalViewController(viewModel: self.shopViewModel)
         self.addChild(defaultModalVC)
         view.addSubview(defaultModalVC.view)
         defaultModalVC.willMove(toParent: self)
@@ -41,7 +36,7 @@ class MapViewController: UIViewController {
     }()
     
     lazy var detailModalVC: DetailModalViewController = {
-        let detailModalVC = DetailModalViewController(mapShopViewModel: self.shopViewModel)
+        let detailModalVC = DetailModalViewController(viewModel: DetailModalViewModel())
         self.addChild(detailModalVC)
         view.addSubview(detailModalVC.view)
         detailModalVC.willMove(toParent: self)
@@ -60,13 +55,18 @@ class MapViewController: UIViewController {
         return categoryModalVC
     }()
     
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var likeButton: UIButton!
+    @IBOutlet private weak var categoryButton: UIButton!
+    @IBOutlet private weak var buttonsContainerView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureMapView()
         registerAnnotationViewClasses()
         configureBindings()
-        addAnnotations()
+        shopViewModel.viewDidLoad()
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -79,18 +79,15 @@ class MapViewController: UIViewController {
     
     private func categoryButtonTapped() {
         shopViewModel.categoryButtonTouched()
-        categoryButton.tintColor = shopViewModel.isShowingCategory ? .systemGray6 : .lightGray
+        categoryButton.tintColor = shopViewModel.isShowingCategory ? .systemGray6 : UIColor(named: "MainColor")
         categoryButton.backgroundColor = shopViewModel.isShowingCategory ? UIColor(named: "MainColor") : .systemBackground
         
         if shopViewModel.isShowingCategory {
-            updateAnnotation(category: nil)
             categoryModalVC.changeModalHeight(.zero)
             storeListModalVC.changeModalHeight(.zero)
             detailModalVC.changeModalHeight(.zero)
             categoryModalVC.initModal()
         } else {
-            updateAnnotation(category: nil)
-            updateAnnotation(subCategory: nil)
             storeListModalVC.changeModalHeight(.zero)
             detailModalVC.changeModalHeight(.zero)
             categoryModalVC.changeModalHeight(.zero)
@@ -98,27 +95,24 @@ class MapViewController: UIViewController {
     }
     
     private func likeButtonTapped() {
-        updateAnnotation()
+        shopViewModel.favoriteShopButtonTouched()
         likeButton.tintColor = shopViewModel.isShowingFavorite ? .systemGray6 : .lightGray
         likeButton.backgroundColor = shopViewModel.isShowingFavorite ? UIColor(named: "SubColorRed") : .systemBackground
     }
     
     private func updateAnnotation() {
-        let beforeShopsId = shopViewModel.getFilteredShops().map{ $0.serialNumber }
-        shopViewModel.favoriteShopButtonTouched()
-        let curShopsId = shopViewModel.getFilteredShops().map{ $0.serialNumber }
-        
-        mapView.annotations.forEach { annotation in
-            guard let shopId = (annotation as? ShopAnnotation)?.serialNumber else { return }
-            if beforeShopsId.contains(shopId) && !curShopsId.contains(shopId) {
-                mapView.removeAnnotation(annotation)
-            }
+        shopViewModel.shopsShouldBeAdded.forEach { shop in
+            guard let shopAnnotation = ShopAnnotation(of: shop) else { return }
+            mapView.addAnnotation(shopAnnotation)
         }
         
-        shopViewModel.getShops().forEach { shop in
-            if !beforeShopsId.contains(shop.serialNumber) && curShopsId.contains(shop.serialNumber) {
-                mapView.addAnnotation(ShopAnnotation(of: shop)!)
+        mapView.annotations.forEach { annotation in
+            guard let shopAnnotation = annotation as? ShopAnnotation,
+                  shopViewModel.shopsShouldBeRemoved.contains(shopAnnotation.shop)
+            else {
+                return
             }
+            mapView.removeAnnotation(annotation)
         }
     }
     
@@ -237,6 +231,9 @@ class MapViewController: UIViewController {
         locationViewModel.initialLocationEvent = { [weak self] location in
             self?.configureLocation(location)
         }
+        shopViewModel.shopVisibilityChangedEventForMapView = { [weak self] in
+            self?.updateAnnotation()
+        }
     }
     
     private func configureLocation(_ location: CLLocation?) {
@@ -245,18 +242,15 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
-    private func addAnnotations() {
-        shopViewModel.getShops().forEach { shop in
-            guard let annotation = ShopAnnotation(of: shop) else { return }
-            mapView.addAnnotation(annotation)
-        }
+    private func zoomTo(_ view: MKAnnotationView) {
+        guard let centerCoordinate = view.annotation?.coordinate else { return }
+        let newCenter = CLLocationCoordinate2D(latitude: centerCoordinate.latitude - 0.002, longitude: centerCoordinate.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let region = MKCoordinateRegion(center: newCenter, span: span)
+        mapView.setRegion(region, animated: true)
     }
     
-    private func removeAnnotations() {
-        mapView.removeAnnotations(mapView.annotations)
-    }
-    
-    private func zoomTo(shop: Shop) {
+    private func zoomTo(_ shop: Shop) {
         let center = CLLocationCoordinate2D(latitude: shop.latitude - 0.002, longitude: shop.longitude)
         let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         let region = MKCoordinateRegion(center: center, span: span)
@@ -305,82 +299,26 @@ extension MapViewController: MKMapViewDelegate {
         selectedAnnotationView = view
         selectedAnnotation = selectedAnnotationView?.annotation
         
-        guard let selectedShopData = view.annotation as? ShopAnnotation else {
-            return
-        }
-        
-        detailModalVC.setData(shopId: selectedShopData.serialNumber)
+        guard let selectedShopAnnotation = view.annotation as? ShopAnnotation else { return }
+        detailModalVC.shopTouched(selectedShopAnnotation.shop)
         detailModalVC.initModal()
-        zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
+        zoomTo(view)
     }
 }
 
 extension MapViewController: CategoryFilterable {
     func categoryTouched(_ category: ShopCategory) {
-        storeListModalVC.category = category
-        updateAnnotation(category: category)
+        shopViewModel.shopCategoryTouched(category)
         storeListModalVC.initModal()
     }
     
-    
     func removeCategoryFiltering() {
-        updateAnnotation(category: nil)
-        updateAnnotation(subCategory: nil)
-        categoryButtonTapped()
-    }
-    
-    private func updateAnnotation(category: ShopCategory?) {
-        let beforeShopsId = shopViewModel.getFilteredShops().map{ $0.serialNumber }
-        shopViewModel.setCategory(category: category)
-        let curShopsId = shopViewModel.getFilteredShops().map{ $0.serialNumber }
-        
-        mapView.annotations.forEach { annotation in
-            guard let shopId = (annotation as? ShopAnnotation)?.serialNumber else { return }
-            if beforeShopsId.contains(shopId) && !curShopsId.contains(shopId) {
-                mapView.removeAnnotation(annotation)
-            }
-        }
-        
-        shopViewModel.getShops().forEach { shop in
-            if !beforeShopsId.contains(shop.serialNumber) && curShopsId.contains(shop.serialNumber) {
-                mapView.addAnnotation(ShopAnnotation(of: shop)!)
-            }
-        }
+        shopViewModel.storeListModalViewDismissed()
     }
 }
 
-extension MapViewController: SubCategoryFilterable {
-    func categoryTouched(_ subCategory: ShopSubCategory) {
-        updateAnnotation(subCategory: subCategory)
-    }
-    
-    private func updateAnnotation(subCategory: ShopSubCategory?) {
-        let beforeShopsId = shopViewModel.getFilteredShops().map{ $0.serialNumber }
-        shopViewModel.setSubCategory(subcategory: subCategory)
-        let curShopsId = shopViewModel.getFilteredShops().map{ $0.serialNumber }
-        
-        mapView.annotations.forEach { annotation in
-            guard let shopId = (annotation as? ShopAnnotation)?.serialNumber else { return }
-            if beforeShopsId.contains(shopId) && !curShopsId.contains(shopId) {
-                mapView.removeAnnotation(annotation)
-            }
-        }
-        
-        shopViewModel.getShops().forEach { shop in
-            if !beforeShopsId.contains(shop.serialNumber) && curShopsId.contains(shop.serialNumber) {
-                mapView.addAnnotation(ShopAnnotation(of: shop)!)
-            }
-        }
-    }
-    
-    func shopTouched(ofSerialNumber number: Int) {
-        guard let touchedShopIndex = shopViewModel.getShops().firstIndex(where: { $0.serialNumber == number }) else { return }
-        let touchedShop = shopViewModel.getShops()[touchedShopIndex]
-        zoomTo(shop: touchedShop)
-    }
-    
-    func removeSubCategoryFiltering() {
-        updateAnnotation(subCategory: nil)
-        updateAnnotation(category: nil)
+extension MapViewController: ShopAnnotationZoomable {
+    func shopTouched(_ shop: Shop) {
+        zoomTo(shop)
     }
 }
