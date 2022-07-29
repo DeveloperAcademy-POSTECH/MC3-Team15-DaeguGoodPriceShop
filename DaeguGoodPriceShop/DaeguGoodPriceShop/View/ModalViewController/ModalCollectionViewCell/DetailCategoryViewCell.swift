@@ -16,18 +16,24 @@ class DetailCategoryViewCell: UICollectionViewCell {
         button.clipsToBounds = true
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.titleLabel?.textColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled = false
         
         return button
     }()
         
-    func configure(_ item: ShopSubCategory) {
+    func configure(_ item: ShopSubCategory, isSelected: Bool) {
         configureView()
         
-        categoryItemButton.backgroundColor = item.categoryColor ?? UIColor.systemBackground
+        let categoryColor = item.categoryColor ?? UIColor.systemBackground
+        let whiteColor = UIColor.systemBackground
+        
+        categoryItemButton.backgroundColor = isSelected ? categoryColor : whiteColor
+        categoryItemButton.layer.borderColor = categoryColor.cgColor
+        categoryItemButton.layer.borderWidth = 2
+        
         categoryItemButton.setTitle(item.rawValue, for: .normal)
+        categoryItemButton.setTitleColor(isSelected ? whiteColor : categoryColor, for: .normal)
     }
 }
 

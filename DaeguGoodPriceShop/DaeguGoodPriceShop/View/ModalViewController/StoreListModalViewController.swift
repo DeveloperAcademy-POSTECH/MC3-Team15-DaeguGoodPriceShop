@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SubCategoryFilterable: AnyObject {
-    func categoryTouched(_ category: ShopSubCategory)
+    func categoryTouched(_ category: ShopSubCategory?)
     func shopTouched(ofSerialNumber number: Int)
     func removeSubCategoryFiltering()
 }
@@ -17,6 +17,7 @@ class StoreListModalViewController: ModalViewController {
     weak var delegate: SubCategoryFilterable?
     var mapShopViewModel: MapShopViewModel
     var category: ShopCategory?
+    var selectedSubCategory: ShopSubCategory?
     
     static let sectionHeaderElementKind = "section-header-element-kind"
     
@@ -71,7 +72,7 @@ class StoreListModalViewController: ModalViewController {
         self.normalStores = dataItems
     }
     
-    private func configureNormalStores(ofSubCategory category: ShopSubCategory) {
+    private func configureNormalStores(ofSubCategory category: ShopSubCategory?) {
         var dataItems: [Item] = []
         mapShopViewModel.getFilteredShops(shopSubCategory: category, favorite: false).forEach { shop in
             let dataItem = Item.normal(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
@@ -134,6 +135,7 @@ class StoreListModalViewController: ModalViewController {
             if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
                     changeModalHeight(.zero)
+                    selectedSubCategory = nil
                     delegate?.removeSubCategoryFiltering()
                 } else {
                     changeModalHeight(.median)
@@ -163,9 +165,15 @@ extension StoreListModalViewController: UICollectionViewDelegate {
         guard let category = category else { return }
         switch indexPath.section {
         case 0:
-            delegate?.categoryTouched(category.subCategories[indexPath.item])
-            configureNormalStores(ofSubCategory: category.subCategories[indexPath.item])
-            configureFavoriteStores(ofSubCategory: category.subCategories[indexPath.item])
+            if category.subCategories[indexPath.item] == selectedSubCategory {
+                selectedSubCategory = nil
+            } else {
+                selectedSubCategory = category.subCategories[indexPath.item]
+            }
+            
+            delegate?.categoryTouched(selectedSubCategory)
+            configureNormalStores(ofSubCategory: selectedSubCategory)
+            configureFavoriteStores(ofSubCategory: selectedSubCategory)
             configureDataSource()
         case 1:
             if case let .favourite(store) = favouriteStores[indexPath.item] {
@@ -190,8 +198,11 @@ extension StoreListModalViewController {
             switch item {
             case .category(let category):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCategoryViewCell.identifier, for: indexPath) as? DetailCategoryViewCell else { return nil }
-                
-                cell.configure(category)
+                if self.selectedSubCategory == nil {
+                    cell.configure(category, isSelected: true)
+                } else {
+                    cell.configure(category, isSelected: self.selectedSubCategory == category)
+                }
                 
                 return cell
             case .favourite(let favourite):
