@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
     
     private func categoryButtonTapped() {
         shopViewModel.categoryButtonTouched()
-        categoryButton.tintColor = shopViewModel.isShowingCategory ? .systemGray6 : .lightGray
+        categoryButton.tintColor = shopViewModel.isShowingCategory ? .systemGray6 : UIColor(named: "MainColor")
         categoryButton.backgroundColor = shopViewModel.isShowingCategory ? UIColor(named: "MainColor") : .systemBackground
         storeListModalVC.selectedSubCategory = nil
         
@@ -100,7 +100,7 @@ class MapViewController: UIViewController {
     
     private func likeButtonTapped() {
         updateAnnotation()
-        likeButton.tintColor = shopViewModel.isShowingFavorite ? .systemGray6 : .lightGray
+        likeButton.tintColor = shopViewModel.isShowingFavorite ? .systemGray6 : UIColor(named: "SubColorRed")
         likeButton.backgroundColor = shopViewModel.isShowingFavorite ? UIColor(named: "SubColorRed") : .systemBackground
     }
     
