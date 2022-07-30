@@ -320,13 +320,11 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        print("1번 취소")
         selectedAnnotationView?.prepareForDisplay()
         detailModalVC.dismissModal()
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("2번 일반")
         selectedAnnotationView?.prepareForDisplay()
         if let shopAnnotationView = view as? ShopAnnotationView {
             shopAnnotationView.selected()
@@ -351,7 +349,6 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("3번 줌 투 클러스터")
         guard view is ClusteringAnnotationView else {
             return
         }
@@ -363,7 +360,6 @@ extension MapViewController: MKMapViewDelegate {
         }
         zoomToCluster(clusteringAnnotation: selectedAnnotation)
     }
-    
 }
 
 extension MapViewController: CategoryFilterable {
@@ -372,7 +368,6 @@ extension MapViewController: CategoryFilterable {
         updateAnnotation(category: category)
         storeListModalVC.initModal()
     }
-    
     
     func removeCategoryFiltering() {
         updateAnnotation(category: nil)

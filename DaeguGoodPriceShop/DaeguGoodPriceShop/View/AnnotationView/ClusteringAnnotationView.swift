@@ -9,7 +9,6 @@ import MapKit
 
 final class ClusteringAnnotationView: MKAnnotationView {
     static let identifier = "ClusteringAnnotationView"
-    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         collisionMode = .circle
