@@ -342,9 +342,9 @@ extension MapViewController: MKMapViewDelegate {
             selectedAnnotationView = clusteringAnnotationView
             selectedAnnotation = selectedAnnotationView?.annotation
             
-            let leftIconView = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            leftIconView.setImage(UIImage(systemName: "plus.magnifyingglass"), for: .normal)
-            selectedAnnotationView?.rightCalloutAccessoryView = leftIconView
+            let clusterAnnotationZoomButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            clusterAnnotationZoomButton.setImage(UIImage(systemName: "plus.magnifyingglass"), for: .normal)
+            selectedAnnotationView?.rightCalloutAccessoryView = clusterAnnotationZoomButton
         }
     }
     
