@@ -7,32 +7,11 @@
 
 import UIKit
 
-protocol SubCategoryFilterable: AnyObject {
-    func categoryTouched(_ category: ShopSubCategory?)
-    func shopTouched(ofSerialNumber number: Int)
-    func removeSubCategoryFiltering()
+protocol ShopAnnotationZoomable: AnyObject {
+    func shopTouched(_ shop: Shop)
 }
 
 class StoreListModalViewController: ModalViewController {
-    weak var delegate: SubCategoryFilterable?
-    var mapShopViewModel: MapShopViewModel
-    var category: ShopCategory?
-    var selectedSubCategory: ShopSubCategory?
-    
-    static let sectionHeaderElementKind = "section-header-element-kind"
-    
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        return cv
-    }()
-    
     enum StoreListSection: String, CaseIterable {
         case category = "카테고리"
         case favourite = "즐겨찾기"
@@ -47,61 +26,47 @@ class StoreListModalViewController: ModalViewController {
     
     typealias Section = StoreListSection
     typealias Item = DataItemType
-    private var datasource: UICollectionViewDiffableDataSource<Section, Item>!
     
+    weak var delegate: ShopAnnotationZoomable?
+    static let sectionHeaderElementKind = "section-header-element-kind"
+    private let viewModel: MapShopViewModel
+    private var datasource: UICollectionViewDiffableDataSource<Section, Item>!
+    var favouriteStores: [Item] {
+        self.viewModel.favoriteShopsOfCurrentShops.map {
+            let item = StoreListItem(shop: $0)
+            return Item.favourite(item)
+        }
+    }
+    var normalStores: [Item] {
+        (self.viewModel.shopsShouldBeAdded + self.viewModel.shopsShouldRemain).map {
+            let item = StoreListItem(shop: $0)
+            return Item.normal(item)
+        }
+    }
     private var detailCategories: [Item] {
-        guard let category = self.category else { return [] }
+        guard let category = viewModel.category else { return [] }
         var dataItems: [Item] = []
-        category.subCategories.forEach {
+            category.subCategories.forEach {
             let dataItem = Item.category($0)
             dataItems.append(dataItem)
         }
         return dataItems
     }
+
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        return cv
+    }()
     
-    private var favouriteStores: [Item] = []
-    private var normalStores: [Item] = []
-    
-    private func configureNormalStores(ofCategory category: ShopCategory?) {
-        guard let category = self.category else { return }
-        var dataItems: [Item] = []
-        mapShopViewModel.getFilteredShops(shopCategory: category, favorite: false).forEach { shop in
-            let dataItem = Item.normal(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
-            dataItems.append(dataItem)
-        }
-        self.normalStores = dataItems
-    }
-    
-    private func configureNormalStores(ofSubCategory category: ShopSubCategory?) {
-        var dataItems: [Item] = []
-        mapShopViewModel.getFilteredShops(shopSubCategory: category, favorite: false).forEach { shop in
-            let dataItem = Item.normal(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
-            dataItems.append(dataItem)
-        }
-        self.normalStores = dataItems
-    }
-    
-    private func configureFavoriteStores(ofCategory category: ShopCategory?) {
-        var dataItems: [Item] = []
-        mapShopViewModel.getFilteredShops(shopCategory: category, favorite: true).forEach { shop in
-            let dataItem = Item.favourite(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
-            dataItems.append(dataItem)
-        }
-        self.favouriteStores = dataItems
-    }
-    
-    private func configureFavoriteStores(ofSubCategory category: ShopSubCategory?) {
-        var dataItems: [Item] = []
-        mapShopViewModel.getFilteredShops(shopSubCategory: category, favorite: true).forEach { shop in
-            let dataItem = Item.favourite(StoreListItem(storeName: shop.shopName, storeAddress: shop.address, storeCallNumber: shop.phoneNumber, storeSerialNumber: shop.serialNumber))
-            dataItems.append(dataItem)
-        }
-        self.favouriteStores = dataItems
-    }
-    
-    init(category: ShopCategory? = nil, mapShopViewModel: MapShopViewModel) {
-        self.category = category
-        self.mapShopViewModel = mapShopViewModel
+    init(viewModel: MapShopViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -114,10 +79,6 @@ class StoreListModalViewController: ModalViewController {
         collectionView.delegate = self
         collectionView.collectionViewLayout = generateLayout()
         configureCollectionViewLayout()
-    }
-    
-    override func setupView() {
-        super.setupView()
     }
     
     @objc override func panGesture(gesture: UIPanGestureRecognizer) {
@@ -135,8 +96,7 @@ class StoreListModalViewController: ModalViewController {
             if newHeight < ModalHeight.median.value {
                 if isDraggingDown {
                     changeModalHeight(.zero)
-                    selectedSubCategory = nil
-                    delegate?.removeSubCategoryFiltering()
+                    viewModel.storeListModalViewDismissed()
                 } else {
                     changeModalHeight(.median)
                 }
@@ -154,36 +114,24 @@ class StoreListModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.median)
-        configureNormalStores(ofCategory: category)
-        configureFavoriteStores(ofCategory: category)
         configureDataSource()
     }
 }
 
 extension StoreListModalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let category = category else { return }
         switch indexPath.section {
         case 0:
-            if category.subCategories[indexPath.item] == selectedSubCategory {
-                selectedSubCategory = nil
-            } else {
-                selectedSubCategory = category.subCategories[indexPath.item]
-            }
-            
-            delegate?.categoryTouched(selectedSubCategory)
-            configureNormalStores(ofSubCategory: selectedSubCategory)
-            configureFavoriteStores(ofSubCategory: selectedSubCategory)
-            configureDataSource()
+            viewModel.shopSubCategoryTouched(of: indexPath)
+            let snapshot = snapshotCurrentState()
+            datasource.apply(snapshot)
         case 1:
             if case let .favourite(store) = favouriteStores[indexPath.item] {
-                guard let serialNumber = store.storeSerialNumber else { return }
-                delegate?.shopTouched(ofSerialNumber: serialNumber)
+                delegate?.shopTouched(store.shop)
             }
         case 2:
             if case let .normal(store) = normalStores[indexPath.item] {
-                guard let serialNumber = store.storeSerialNumber else { return }
-                delegate?.shopTouched(ofSerialNumber: serialNumber)
+                delegate?.shopTouched(store.shop)
             }
         default: break
         }
@@ -191,18 +139,13 @@ extension StoreListModalViewController: UICollectionViewDelegate {
 }
 
 extension StoreListModalViewController {
-    
     private func configureDataSource() {
         datasource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             
             switch item {
             case .category(let category):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCategoryViewCell.identifier, for: indexPath) as? DetailCategoryViewCell else { return nil }
-                if self.selectedSubCategory == nil {
-                    cell.configure(category, isSelected: true)
-                } else {
-                    cell.configure(category, isSelected: self.selectedSubCategory == category)
-                }
+                cell.configure(category)
                 
                 return cell
             case .favourite(let favourite):
