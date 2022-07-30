@@ -341,10 +341,6 @@ extension MapViewController: MKMapViewDelegate {
         } else if let clusteringAnnotationView = view as? ClusteringAnnotationView {
             selectedAnnotationView = clusteringAnnotationView
             selectedAnnotation = selectedAnnotationView?.annotation
-            
-            let clusterAnnotationZoomButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            clusterAnnotationZoomButton.setImage(UIImage(systemName: "plus.magnifyingglass"), for: .normal)
-            selectedAnnotationView?.rightCalloutAccessoryView = clusterAnnotationZoomButton
         }
     }
     
