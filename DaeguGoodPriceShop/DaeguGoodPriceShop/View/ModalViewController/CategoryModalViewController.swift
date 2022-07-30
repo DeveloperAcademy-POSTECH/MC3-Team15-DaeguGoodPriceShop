@@ -37,7 +37,7 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var cateringStoreButtonView: UIStackView = {
         let imageView = UIImageView()
-        let label = UILabel()
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -59,7 +59,7 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var hairdressingShop: UIStackView = {
         let imageView = UIImageView()
-        let label = UILabel()
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -81,7 +81,7 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var laundryShop: UIStackView = {
         let imageView = UIImageView()
-        let label = UILabel()
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -103,7 +103,7 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var serviceShop: UIStackView = {
         let imageView = UIImageView()
-        let label = UILabel()
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill

@@ -33,6 +33,7 @@
 		A8E74E79286BFA8B000DB2B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8E74E77286BFA8B000DB2B8 /* LaunchScreen.storyboard */; };
 		A8E74E88286BFBA5000DB2B8 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E87286BFBA5000DB2B8 /* MapModel.swift */; };
 		A8E74E8A286BFBB5000DB2B8 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E74E89286BFBB5000DB2B8 /* Shop.swift */; };
+		AFA6561C289583E100B6E912 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6561B289583E100B6E912 /* BasePaddingLabel.swift */; };
 		DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7052873C7630038EDE4 /* ShopCategory.swift */; };
 		DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E7082873D9DD0038EDE4 /* LocationManager.swift */; };
 		DA34E70B2873DBDC0038EDE4 /* ShopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */; };
@@ -79,6 +80,7 @@
 		A8E74E7A286BFA8B000DB2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8E74E87286BFBA5000DB2B8 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		A8E74E89286BFBB5000DB2B8 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		AFA6561B289583E100B6E912 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		DA34E7052873C7630038EDE4 /* ShopCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategory.swift; sourceTree = "<group>"; };
 		DA34E7082873D9DD0038EDE4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAnnotation.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				A8E74E87286BFBA5000DB2B8 /* MapModel.swift */,
 				DA34E70A2873DBDC0038EDE4 /* ShopAnnotation.swift */,
 				F2277F78287EA1EA00FAB0B0 /* StoreListItem.swift */,
+				AFA6561B289583E100B6E912 /* BasePaddingLabel.swift */,
 				DA34E7082873D9DD0038EDE4 /* LocationManager.swift */,
 			);
 			path = Model;
@@ -352,6 +355,7 @@
 				DA34E7092873D9DD0038EDE4 /* LocationManager.swift in Sources */,
 				A8CBA579287BAF3800BC2DC1 /* BathAnnotationView.swift in Sources */,
 				A8CBA57F287BAF3800BC2DC1 /* ClusteringAnnotationView.swift in Sources */,
+				AFA6561C289583E100B6E912 /* BasePaddingLabel.swift in Sources */,
 				DA4A198A287A95B0004E019F /* DetailModalViewController.swift in Sources */,
 				DA34E7062873C7640038EDE4 /* ShopCategory.swift in Sources */,
 				F2277F79287EA1EA00FAB0B0 /* StoreListItem.swift in Sources */,
