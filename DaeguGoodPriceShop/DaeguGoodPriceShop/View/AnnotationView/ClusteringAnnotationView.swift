@@ -9,17 +9,24 @@ import MapKit
 
 final class ClusteringAnnotationView: MKAnnotationView {
     static let identifier = "ClusteringAnnotationView"
-    
+    override var rightCalloutAccessoryView: UIView? {
+        get {
+            let clusterAnnotationZoomButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            clusterAnnotationZoomButton.setImage(UIImage(systemName: "plus.magnifyingglass"), for: .normal)
+            return  clusterAnnotationZoomButton
+        }
+        set {}
+    }
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         collisionMode = .circle
         centerOffset = CGPoint(x: 0, y: -10)
+        //var rightCalloutAccessoryView = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("This method cannot be called.")
     }
-    
     override func prepareForDisplay() {
         super.prepareForDisplay()
         guard let cluster = annotation as? MKClusterAnnotation else { return }

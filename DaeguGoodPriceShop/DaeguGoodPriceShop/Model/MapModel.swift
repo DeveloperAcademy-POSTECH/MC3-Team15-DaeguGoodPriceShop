@@ -72,4 +72,3 @@ final class MapModel {
         return totalShops.first(where: {$0.serialNumber == id })
     }
 }
-

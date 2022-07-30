@@ -67,7 +67,6 @@ final class MapShopViewModel {
             return model.filteredShops(shopCategory: category, shopSubCategory: subcategory, isShowFavorite: favorite)
         }
     }
-    
     func findShop(shopId id: Int) -> Shop? {
         return model.findById(shopId: id)
     }

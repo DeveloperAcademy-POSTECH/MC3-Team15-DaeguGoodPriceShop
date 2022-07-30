@@ -263,6 +263,32 @@ class MapViewController: UIViewController {
         let region = MKCoordinateRegion(center: center, span: span)
         mapView.setRegion(region, animated: true)
     }
+    
+    private func zoomToCluster(clusteringAnnotation: MKClusterAnnotation) {
+        let calData = calculateClusterZoomregion(memberAnnotations: clusteringAnnotation.memberAnnotations)
+        let span = MKCoordinateSpan(latitudeDelta: calData.1, longitudeDelta: calData.1)
+        let region = MKCoordinateRegion(center: calData.0, span: span)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    private func calculateClusterZoomregion(memberAnnotations: [MKAnnotation]) -> (CLLocationCoordinate2D, Double) {
+        let maxLatitude = memberAnnotations.map { $0.coordinate.latitude }.max()
+        let minLatitude = memberAnnotations.map { $0.coordinate.latitude }.min()
+        let maxLongitude = memberAnnotations.map { $0.coordinate.longitude }.max()
+        let minLongitude = memberAnnotations.map { $0.coordinate.longitude }.min()
+        if let bigLatitude = maxLatitude, let smallLatitude = minLatitude, let bigLongitude = maxLongitude, let smallLongitude = minLongitude {
+            let center = CLLocationCoordinate2D(latitude: Double(bigLatitude + smallLatitude) / 2.0, longitude: Double(bigLongitude + smallLongitude) / 2.0)
+            let latitudeGap = Double(bigLatitude) - Double(smallLatitude)
+            let longitudeGap = Double(bigLongitude) - Double(smallLongitude)
+            if latitudeGap >= longitudeGap{
+                return (center, latitudeGap + 0.003)
+            } else {
+                return (center, longitudeGap + 0.003)
+            }
+        } else {
+            return (CLLocationCoordinate2D(latitude: 35.8714, longitude: 128.6014), 0.1)
+        }
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -301,18 +327,35 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotationView?.prepareForDisplay()
-        guard let shopAnnotationView = view as? ShopAnnotationView else { return }
-        shopAnnotationView.selected()
+        if let shopAnnotationView = view as? ShopAnnotationView {
+            shopAnnotationView.selected()
+            selectedAnnotationView = view
+            selectedAnnotation = selectedAnnotationView?.annotation
+            
+            guard let selectedShopData = view.annotation as? ShopAnnotation else {
+                return
+            }
+            
+            detailModalVC.setData(shopId: selectedShopData.serialNumber)
+            detailModalVC.initModal()
+            zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
+        } else if let clusteringAnnotationView = view as? ClusteringAnnotationView {
+            selectedAnnotationView = clusteringAnnotationView
+            selectedAnnotation = selectedAnnotationView?.annotation
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard view is ClusteringAnnotationView else {
+            return
+        }
         selectedAnnotationView = view
         selectedAnnotation = selectedAnnotationView?.annotation
         
-        guard let selectedShopData = view.annotation as? ShopAnnotation else {
+        guard let selectedAnnotation = view.annotation as? MKClusterAnnotation else {
             return
         }
-        
-        detailModalVC.setData(shopId: selectedShopData.serialNumber)
-        detailModalVC.initModal()
-        zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
+        zoomToCluster(clusteringAnnotation: selectedAnnotation)
     }
 }
 
@@ -322,7 +365,6 @@ extension MapViewController: CategoryFilterable {
         updateAnnotation(category: category)
         storeListModalVC.initModal()
     }
-    
     
     func removeCategoryFiltering() {
         updateAnnotation(category: nil)
