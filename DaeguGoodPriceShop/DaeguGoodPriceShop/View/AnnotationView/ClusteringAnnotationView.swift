@@ -19,7 +19,6 @@ final class ClusteringAnnotationView: MKAnnotationView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("This method cannot be called.")
     }
-    
     override func prepareForDisplay() {
         super.prepareForDisplay()
         guard let cluster = annotation as? MKClusterAnnotation else { return }

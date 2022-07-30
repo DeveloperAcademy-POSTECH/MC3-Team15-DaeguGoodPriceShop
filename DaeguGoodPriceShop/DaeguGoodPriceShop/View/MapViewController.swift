@@ -319,34 +319,42 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("1번")
+        selectedAnnotationView?.prepareForDisplay()
+        guard view is ClusteringAnnotationView else {
+            return
+        }
+        selectedAnnotationView = view
+        selectedAnnotation = selectedAnnotationView?.annotation
+        
+        guard let selectedAnnotation = view.annotation as? MKClusterAnnotation else {
+            return
+        }
+        zoomToCluster(clusteringAnnotation: selectedAnnotation)
+    }
+    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        print("2번")
         selectedAnnotationView?.prepareForDisplay()
         detailModalVC.dismissModal()
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("3번")
         selectedAnnotationView?.prepareForDisplay()
-        if let shopAnnotationView = view as? ShopAnnotationView {
-            shopAnnotationView.selected()
-            selectedAnnotationView = view
-            selectedAnnotation = selectedAnnotationView?.annotation
+        guard let shopAnnotationView = view as? ShopAnnotationView else { return }
+        shopAnnotationView.selected()
+        selectedAnnotationView = view
+        selectedAnnotation = selectedAnnotationView?.annotation
             
-            guard let selectedShopData = view.annotation as? ShopAnnotation else {
-                return
-            }
-            
-            detailModalVC.setData(shopId: selectedShopData.serialNumber)
-            detailModalVC.initModal()
-            zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
-        } else if let clusteringAnnotationView = view as? ClusteringAnnotationView {
-            selectedAnnotationView = clusteringAnnotationView
-            selectedAnnotation = selectedAnnotationView?.annotation
-            
-            guard let selectedAnnotationData = clusteringAnnotationView.annotation as? MKClusterAnnotation else {
-                return
-            }
-            zoomToCluster(clusteringAnnotation: selectedAnnotationData)
+        guard let selectedShopData = view.annotation as? ShopAnnotation else {
+            return
         }
+            
+        detailModalVC.setData(shopId: selectedShopData.serialNumber)
+        detailModalVC.initModal()
+        zoomTo(shop: shopViewModel.findShop(shopId: selectedShopData.serialNumber)!)
     }
 }
 
