@@ -14,8 +14,6 @@ class DetailModalViewController: ModalViewController {
     private var shopSearchName = ""
     private var shopCallAddress = ""
     private var shopCallNumber = ""
-    private var shopLatitude: Double = 0.0
-    private var shopLongitude: Double = 0.0
     private var shopDistance: Double = 0.0
     private var selectedShop: Shop? {
         didSet {
@@ -339,9 +337,7 @@ class DetailModalViewController: ModalViewController {
     func initModal() {
         changeModalHeight(.median)
         titleView.text = selectedShop?.shopName
-        shopLatitude = selectedShop?.latitude ?? 0.0
-        shopLongitude = selectedShop?.longitude ?? 0.0
-        shopDistance = locationManager.calDistance(latitude: shopLatitude, longitude: shopLongitude)
+        shopDistance = locationManager.calDistance(latitude: selectedShop?.latitude, longitude: selectedShop?.longitude)
         locationView.text = String(format: "내 위치에서 %.01fkm 떨어져 있어요", shopDistance)
         updateDetailModalView()
     }
