@@ -229,7 +229,7 @@ class DetailModalViewController: ModalViewController {
        }
     
     func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
-            let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-350, width: 150, height: 35))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: ModalHeight.zero.value-40, width: 150, height: 35))
             toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             toastLabel.textColor = UIColor.white
             toastLabel.font = font
