@@ -91,4 +91,3 @@ final class MapModel {
         return favoriteShopId.contains(serialNumber)
     }
 }
-
