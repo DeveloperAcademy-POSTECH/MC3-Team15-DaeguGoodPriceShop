@@ -54,7 +54,7 @@ class StoreListViewCell: UICollectionViewCell {
     func configure(_ item: StoreListItem) {
         configureView()
         titleLabel.text = item.shop.shopName
-        addressLabel.text = item.shop.address
+        addressLabel.text = item.shop.menu + "  " + item.shop.price
         shopCallNumber = item.shop.phoneNumber
         shopDistance = locationManager.calDistance(latitude: item.shop.latitude, longitude: item.shop.longitude)
         locationView.text = String(format: "내 위치에서 %.01fkm 떨어져 있어요", shopDistance)
