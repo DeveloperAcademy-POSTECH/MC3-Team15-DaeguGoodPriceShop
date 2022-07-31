@@ -37,13 +37,13 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var cateringStoreButtonView: UIStackView = {
         let imageView = UIImageView()
-        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 11, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = resizedImage(image: UIImage(named: "cateringCategory"), width: 160, height: 100)
+        imageView.image = resizedImage(image: UIImage(named: "cateringCategory"), width: ModalHeight.median.value/2.5, height: ModalHeight.median.value/4)
         imageView.contentMode = .scaleAspectFill
         label.text = "요식업"
         label.textColor = .white
@@ -59,13 +59,13 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var hairdressingShop: UIStackView = {
         let imageView = UIImageView()
-        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 11, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = resizedImage(image: UIImage(named: "hairCategory"), width: 160, height: 100)
+        imageView.image = resizedImage(image: UIImage(named: "hairCategory"), width: ModalHeight.median.value/2.5, height: ModalHeight.median.value/4)
         imageView.contentMode = .scaleAspectFill
         label.text = "미용업"
         label.textColor = .white
@@ -81,13 +81,13 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var laundryShop: UIStackView = {
         let imageView = UIImageView()
-        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 11, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = resizedImage(image: UIImage(named: "laundryCategory"), width: 160, height: 100)
+        imageView.image = resizedImage(image: UIImage(named: "laundryCategory"), width: ModalHeight.median.value/2.5, height: ModalHeight.median.value/4)
         imageView.contentMode = .scaleAspectFill
         label.text = "세탁업"
         label.textColor = .white
@@ -103,13 +103,13 @@ class CategoryModalViewController: ModalViewController {
     
     lazy var serviceShop: UIStackView = {
         let imageView = UIImageView()
-        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
+        let label = BasePaddingLabel(padding: UIEdgeInsets(top: 0, left: 0, bottom: 11, right: 0))
         let stackView = UIStackView(arrangedSubviews: [imageView, label])
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 0
         stackView.alignment = .center
-        imageView.image = resizedImage(image: UIImage(named: "serviceCategory"), width: 160, height: 100)
+        imageView.image = resizedImage(image: UIImage(named: "serviceCategory"), width: ModalHeight.median.value/2.5, height: ModalHeight.median.value/4)
         imageView.contentMode = .scaleAspectFill
         label.text = "서비스업"
         label.textColor = .white
@@ -127,7 +127,7 @@ class CategoryModalViewController: ModalViewController {
         let stackView = UIStackView(arrangedSubviews: [cateringStoreButtonView, hairdressingShop])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = 30
+        stackView.spacing = ModalHeight.median.value/18
         return stackView
     }()
     
@@ -135,14 +135,14 @@ class CategoryModalViewController: ModalViewController {
         let stackView = UIStackView(arrangedSubviews: [laundryShop, serviceShop])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = 30
+        stackView.spacing = ModalHeight.median.value/18
         return stackView
     }()
     
     lazy var totalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [upperStackView, underStackView])
         stackView.axis = .vertical
-        stackView.spacing = 30
+        stackView.spacing = ModalHeight.median.value/18
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -178,7 +178,7 @@ class CategoryModalViewController: ModalViewController {
         NSLayoutConstraint.activate([
             totalStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 30),
             totalStackView.leftAnchor.constraint(equalTo: innerScrollView.leftAnchor, constant: 15),
-            totalStackView.topAnchor.constraint(equalTo: self.textLabel.bottomAnchor, constant: 30),
+            totalStackView.topAnchor.constraint(equalTo: self.textLabel.bottomAnchor, constant: ModalHeight.median.value/18),
             totalStackView.bottomAnchor.constraint(equalTo: innerScrollView.bottomAnchor, constant: -50),
             totalStackView.rightAnchor.constraint(equalTo: innerScrollView.rightAnchor, constant: -15)
         ])
