@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailModalViewController: ModalViewController {
+final class DetailModalViewController: ModalViewController {
     private let spacer = UIView()
     private let viewModel: DetailModalViewModel
     private let locationManager = LocationManager()
@@ -39,7 +39,7 @@ class DetailModalViewController: ModalViewController {
         return title
     }()
     
-    lazy var locationView: UILabel = {
+    lazy private var locationView: UILabel = {
           var loc = UILabel()
           loc.font = .boldSystemFont(ofSize: 15)
           loc.textColor = .systemGray
@@ -171,14 +171,14 @@ class DetailModalViewController: ModalViewController {
         return modalTitle
     }()
     
-    lazy var titleVStack: UIStackView = {
+    lazy private var titleVStack: UIStackView = {
         var title = UIStackView(arrangedSubviews: [modalTitleStack, locationView])
         title.axis = .vertical
         title.spacing = 1.0
         return title
     }()
     
-    lazy var modalDetailStack: UIStackView = {
+    lazy private var modalDetailStack: UIStackView = {
         var modalDetail = UIStackView(arrangedSubviews: [titleVStack, subTitleMenuView, modalMenuStack, subTitleInfoView, modalInfoStack])
         modalDetail.axis = .vertical
         modalDetail.spacing = 10.0
