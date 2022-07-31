@@ -73,30 +73,13 @@ class MapViewController: UIViewController {
         if sender.tag == 0 {
             likeButtonTapped()
         } else {
-            categoryButtonTapped()
-        }
-    }
-    
-    private func categoryButtonTapped() {
-        shopViewModel.categoryButtonTouched()
-        categoryButton.tintColor = shopViewModel.isShowingCategory ? .systemGray6 : UIColor(named: "MainColor")
-        categoryButton.backgroundColor = shopViewModel.isShowingCategory ? UIColor(named: "MainColor") : .systemBackground
-        
-        if shopViewModel.isShowingCategory {
-            categoryModalVC.changeModalHeight(.zero)
-            storeListModalVC.changeModalHeight(.zero)
-            detailModalVC.changeModalHeight(.zero)
-            categoryModalVC.initModal()
-        } else {
-            storeListModalVC.changeModalHeight(.zero)
-            detailModalVC.changeModalHeight(.zero)
-            categoryModalVC.changeModalHeight(.zero)
+            shopViewModel.categoryButtonTouched()
         }
     }
     
     private func likeButtonTapped() {
         shopViewModel.favoriteShopButtonTouched()
-        likeButton.tintColor = shopViewModel.isShowingFavorite ? .systemGray6 : .lightGray
+        likeButton.tintColor = shopViewModel.isShowingFavorite ? .systemBackground : UIColor(named: "SubColorRed")
         likeButton.backgroundColor = shopViewModel.isShowingFavorite ? UIColor(named: "SubColorRed") : .systemBackground
     }
     
@@ -133,6 +116,7 @@ class MapViewController: UIViewController {
         view.addSubview(detailModalVC.view)
         
         categoryModalVC.delegate = self
+        categoryModalVC.dismissDelegate = self
         storeListModalVC.delegate = self
         
         NSLayoutConstraint.activate([
@@ -233,6 +217,28 @@ class MapViewController: UIViewController {
         }
         shopViewModel.shopVisibilityChangedEventForMapView = { [weak self] in
             self?.updateAnnotation()
+        }
+        shopViewModel.categoryShowingChangedEvent = { [weak self] bool in
+            self?.updateViewFromCategoryButton(isSelected: bool)
+        }
+    }
+    
+    private func updateViewFromCategoryButton(isSelected: Bool) {
+        switch isSelected {
+        case true:
+            categoryButton.tintColor = .systemBackground
+            categoryButton.backgroundColor = UIColor(named: "MainColor")
+            categoryModalVC.changeModalHeight(.zero)
+            storeListModalVC.changeModalHeight(.zero)
+            detailModalVC.changeModalHeight(.zero)
+            categoryModalVC.initModal()
+        case false:
+            categoryButton.tintColor = UIColor(named: "MainColor")
+            categoryButton.backgroundColor = .systemBackground
+            storeListModalVC.changeModalHeight(.zero)
+            detailModalVC.changeModalHeight(.zero)
+            categoryModalVC.changeModalHeight(.zero)
+            shopViewModel.storeListModalViewDismissed()
         }
     }
     
@@ -359,5 +365,11 @@ extension MapViewController: CategoryFilterable {
 extension MapViewController: ShopAnnotationZoomable {
     func shopTouched(_ shop: Shop) {
         zoomTo(shop)
+    }
+}
+
+extension MapViewController: ModalDismissable {
+    func dismissed() {
+        self.shopViewModel.categoryButtonTouched()
     }
 }

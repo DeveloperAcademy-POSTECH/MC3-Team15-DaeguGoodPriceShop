@@ -12,14 +12,19 @@ final class MapShopViewModel {
     private(set) var category: ShopCategory?
     private(set) var subCategory: ShopSubCategory?
     private(set) var isShowingFavorite = false
-    private(set) var isShowingCategory = false
     private(set) var shopsShouldBeAdded: [Shop] = []
     private(set) var shopsShouldRemain: [Shop] = []
     private(set) var shopsShouldBeRemoved: [Shop] = []
+    private(set) var isShowingCategory = false {
+        willSet {
+            categoryShowingChangedEvent(newValue)
+        }
+    }
     var favoriteShopsOfCurrentShops: [Shop] {
         model.filteredShops(shopCategory: self.category, shopSubCategory: self.subCategory, isShowFavorite: true)
     }
     var shopVisibilityChangedEventForMapView: () -> () = { }
+    var categoryShowingChangedEvent: (Bool) -> () = { _ in }
     
     init(mapModel: MapModel) {
         self.model = mapModel
