@@ -336,9 +336,9 @@ class DetailModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.median)
-        titleView.text = selectedShop?.shopName
         shopDistance = locationManager.calDistance(latitude: selectedShop?.latitude, longitude: selectedShop?.longitude)
         locationView.text = String(format: "내 위치에서 %.01fkm 떨어져 있어요", shopDistance)
+        titleView.text = selectedShop?.shopName
         updateDetailModalView()
     }
     
