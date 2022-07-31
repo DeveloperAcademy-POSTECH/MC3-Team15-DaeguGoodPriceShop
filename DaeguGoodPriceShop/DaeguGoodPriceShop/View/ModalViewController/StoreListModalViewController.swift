@@ -122,8 +122,12 @@ extension StoreListModalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
+            guard let selectedCategory = viewModel.category else { return }
+            let subcategoryItems = selectedCategory.subCategories.map{ Item.category($0) }
+            
             viewModel.shopSubCategoryTouched(of: indexPath)
-            let snapshot = snapshotCurrentState()
+            var snapshot = snapshotCurrentState()
+            snapshot.reloadItems(subcategoryItems)
             datasource.apply(snapshot)
         case 1:
             if case let .favourite(store) = favouriteStores[indexPath.item] {
@@ -145,8 +149,14 @@ extension StoreListModalViewController {
             switch item {
             case .category(let category):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCategoryViewCell.identifier, for: indexPath) as? DetailCategoryViewCell else { return nil }
-                cell.configure(category)
                 
+                if self.viewModel.subCategory == nil {
+                    cell.isSelected = true
+                    cell.configure(category)
+                } else {
+                    cell.isSelected = category == self.viewModel.subCategory
+                    cell.configure(category)
+                }
                 return cell
             case .favourite(let favourite):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreListViewCell.identifier, for: indexPath) as? StoreListViewCell else { return nil }

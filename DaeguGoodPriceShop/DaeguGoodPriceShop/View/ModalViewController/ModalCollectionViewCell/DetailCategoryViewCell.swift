@@ -23,10 +23,14 @@ class DetailCategoryViewCell: UICollectionViewCell {
     }()
         
     func configure(_ item: ShopSubCategory) {
-        configureView()
+        let color = item.categoryColor ?? UIColor.systemBackground
         
-        categoryItemButton.backgroundColor = item.categoryColor ?? UIColor.systemBackground
+        configureView()
+        categoryItemButton.layer.borderWidth = 3
+        categoryItemButton.layer.borderColor = color.cgColor
+        categoryItemButton.backgroundColor = isSelected ? color : .systemBackground
         categoryItemButton.setTitle(item.rawValue, for: .normal)
+        categoryItemButton.setTitleColor(isSelected ? .systemBackground : color, for: .normal)
     }
 }
 
