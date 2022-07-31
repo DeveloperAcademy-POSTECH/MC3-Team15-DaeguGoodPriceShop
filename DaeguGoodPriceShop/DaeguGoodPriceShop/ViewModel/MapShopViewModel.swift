@@ -61,7 +61,11 @@ final class MapShopViewModel {
     }
     
     func shopSubCategoryTouched(_ subCategory: ShopSubCategory) {
-        self.subCategory = subCategory
+        if self.subCategory == subCategory {
+            self.subCategory = nil
+        } else {
+            self.subCategory = subCategory
+        }
         updateShops()
     }
     
