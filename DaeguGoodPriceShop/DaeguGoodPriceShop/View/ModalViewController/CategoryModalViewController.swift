@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ModalDismissable: AnyObject {
+    func dismissed()
+}
+
 protocol CategoryFilterable: AnyObject {
     func categoryTouched(_ category: ShopCategory)
     func removeCategoryFiltering()
@@ -18,6 +22,7 @@ class CategoryTapGestureRecognizer: UITapGestureRecognizer {
 
 class CategoryModalViewController: ModalViewController {
     weak var delegate: CategoryFilterable?
+    weak var dismissDelegate: ModalDismissable?
     
     var textLabel: UILabel = {
         let label = UILabel()
@@ -199,6 +204,7 @@ class CategoryModalViewController: ModalViewController {
             if isDraggingDown {
                 changeModalHeight(.zero)
                 self.delegate?.removeCategoryFiltering()
+                self.dismissDelegate?.dismissed()
             } else {
                 changeModalHeight(.median)
             }
