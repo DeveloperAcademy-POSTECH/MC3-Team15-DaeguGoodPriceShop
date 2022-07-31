@@ -41,7 +41,7 @@ class DetailModalViewController: ModalViewController {
     
     lazy var locationView: UILabel = {
           var loc = UILabel()
-          loc.font = .boldSystemFont(ofSize: 10)
+          loc.font = .boldSystemFont(ofSize: 15)
           loc.textColor = .systemGray
           return loc
       }()
