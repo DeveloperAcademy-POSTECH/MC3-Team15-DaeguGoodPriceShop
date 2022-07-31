@@ -41,6 +41,7 @@ class DetailModalViewController: ModalViewController {
         let search = UIButton()
         search.setImage(UIImage(systemName: "magnifyingglass.circle.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         search.addTarget(self, action: #selector(searchToNaver), for: .touchUpInside)
+        search.tintColor = UIColor(named: "MainColor")
         return search
     }()
     
@@ -100,8 +101,9 @@ class DetailModalViewController: ModalViewController {
     
     lazy var infoSymbolCopyButton: UIButton = {
         let infoSymbolCopy = UIButton()
-        infoSymbolCopy.setImage(UIImage(systemName: "doc.on.doc.fill"), for: .normal)
+        infoSymbolCopy.setImage(UIImage(systemName: "square.fill.on.square.fill"), for: .normal)
         infoSymbolCopy.addTarget(self, action: #selector(copyAddress), for: .touchUpInside)
+        infoSymbolCopy.tintColor = UIColor(named: "MainColor")
         return infoSymbolCopy
     }()
     
@@ -117,6 +119,7 @@ class DetailModalViewController: ModalViewController {
         let infoSymbolPhone = UIButton()
         infoSymbolPhone.setImage(UIImage(systemName: "phone.fill"), for: .normal)
         infoSymbolPhone.addTarget(self, action: #selector(phoneCall), for: .touchUpInside)
+        infoSymbolPhone.tintColor = UIColor(named: "MainColor")
         return infoSymbolPhone
     }()
     
@@ -201,7 +204,7 @@ class DetailModalViewController: ModalViewController {
         let isFavoriteShop = viewModel.isFavoriteShop(selectedShop)
         favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)) : UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         
-        favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
+        favoriteButton.tintColor = isFavoriteShop ? UIColor(named: "SubColorRed") : UIColor.gray
     }
     
     @objc func searchToNaver() {
@@ -226,7 +229,7 @@ class DetailModalViewController: ModalViewController {
        }
     
     func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
-            let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-350, width: 150, height: 35))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: ModalHeight.zero.value-40, width: 150, height: 35))
             toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             toastLabel.textColor = UIColor.white
             toastLabel.font = font

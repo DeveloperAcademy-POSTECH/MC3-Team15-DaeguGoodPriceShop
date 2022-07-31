@@ -30,9 +30,9 @@ class StoreListViewCell: UICollectionViewCell {
     
     private lazy var callButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "phone"), for: .normal)
+        button.setImage(UIImage(systemName: "phone.fill"), for: .normal)
         button.addTarget(self, action: #selector(phoneCall), for: .touchUpInside)
-        button.tintColor = UIColor(displayP3Red: 50/255, green: 105/255, blue: 217/255, alpha: 1.0)
+        button.tintColor = UIColor(named: "MainColor")
         button.backgroundColor = .systemBackground
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
