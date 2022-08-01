@@ -7,12 +7,14 @@
 
 import UIKit
 
-class DetailModalViewController: ModalViewController {
+final class DetailModalViewController: ModalViewController {
     private let spacer = UIView()
     private let viewModel: DetailModalViewModel
+    private let locationManager = LocationManager()
     private var shopSearchName = ""
     private var shopCallAddress = ""
     private var shopCallNumber = ""
+    private var shopDistance: Double = 0.0
     private var selectedShop: Shop? {
         didSet {
             setFavoriteButtonImage()
@@ -36,6 +38,13 @@ class DetailModalViewController: ModalViewController {
         title.font = .boldSystemFont(ofSize: 24)
         return title
     }()
+    
+    lazy private var locationView: UILabel = {
+          var loc = UILabel()
+          loc.font = .boldSystemFont(ofSize: 15)
+          loc.textColor = .systemGray
+          return loc
+      }()
     
     lazy var SearchButton: UIButton = {
         let search = UIButton()
@@ -165,11 +174,18 @@ class DetailModalViewController: ModalViewController {
         return modalTitle
     }()
     
-    lazy var modalDetailStack: UIStackView = {
-        var modalDetail = UIStackView(arrangedSubviews: [modalTitleStack, subTitleMenuView, modalMenuStack, subTitleInfoView, modalInfoStack])
+    lazy private var titleVStack: UIStackView = {
+        var title = UIStackView(arrangedSubviews: [modalTitleStack, locationView])
+        title.axis = .vertical
+        title.spacing = 1.0
+        return title
+    }()
+    
+    lazy private var modalDetailStack: UIStackView = {
+        var modalDetail = UIStackView(arrangedSubviews: [titleVStack, subTitleMenuView, modalMenuStack, subTitleInfoView, modalInfoStack])
         modalDetail.axis = .vertical
         modalDetail.spacing = 10.0
-        modalDetail.setCustomSpacing(20.0, after: modalTitleStack)
+        modalDetail.setCustomSpacing(20.0, after: titleVStack)
         modalDetail.setCustomSpacing(20.0, after: modalMenuStack)
         return modalDetail
     }()
@@ -323,6 +339,8 @@ class DetailModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.median)
+        shopDistance = locationManager.calDistance(latitude: selectedShop?.latitude, longitude: selectedShop?.longitude)
+        locationView.text = String(format: "내 위치에서 %.01fkm 떨어져 있어요", shopDistance)
         titleView.text = selectedShop?.shopName
         updateDetailModalView()
     }
