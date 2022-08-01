@@ -7,28 +7,19 @@
 
 import UIKit
 
-class DetailModalViewController: ModalViewController {
-    let mapViewModel: MapViewModel
-    
+final class DetailModalViewController: ModalViewController {
+    private let spacer = UIView()
+    private let viewModel: DetailModalViewModel
+    private let locationManager = LocationManager()
+    private var shopSearchName = ""
+    private var shopCallAddress = ""
+    private var shopCallNumber = ""
+    private var shopDistance: Double = 0.0
     private var selectedShop: Shop? {
         didSet {
             setFavoriteButtonImage()
         }
     }
-    
-    private var shopCallAddress = ""
-    private var shopCallNumber = ""
- 
-    init(mapViewModel: MapViewModel) {
-        self.mapViewModel = mapViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    let spacer = UIView()
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton()
@@ -46,6 +37,21 @@ class DetailModalViewController: ModalViewController {
         title.text = selectedShop?.shopName
         title.font = .boldSystemFont(ofSize: 24)
         return title
+    }()
+    
+    lazy private var locationView: UILabel = {
+          var loc = UILabel()
+          loc.font = .boldSystemFont(ofSize: 15)
+          loc.textColor = .systemGray
+          return loc
+      }()
+    
+    lazy var SearchButton: UIButton = {
+        let search = UIButton()
+        search.setImage(UIImage(systemName: "magnifyingglass.circle.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        search.addTarget(self, action: #selector(searchToNaver), for: .touchUpInside)
+        search.tintColor = UIColor(named: "MainColor")
+        return search
     }()
     
     lazy var subTitleMenuView: UILabel = {
@@ -104,8 +110,9 @@ class DetailModalViewController: ModalViewController {
     
     lazy var infoSymbolCopyButton: UIButton = {
         let infoSymbolCopy = UIButton()
-        infoSymbolCopy.setImage(UIImage(systemName: "doc.on.doc.fill"), for: .normal)
+        infoSymbolCopy.setImage(UIImage(systemName: "square.fill.on.square.fill"), for: .normal)
         infoSymbolCopy.addTarget(self, action: #selector(copyAddress), for: .touchUpInside)
+        infoSymbolCopy.tintColor = UIColor(named: "MainColor")
         return infoSymbolCopy
     }()
     
@@ -121,6 +128,7 @@ class DetailModalViewController: ModalViewController {
         let infoSymbolPhone = UIButton()
         infoSymbolPhone.setImage(UIImage(systemName: "phone.fill"), for: .normal)
         infoSymbolPhone.addTarget(self, action: #selector(phoneCall), for: .touchUpInside)
+        infoSymbolPhone.tintColor = UIColor(named: "MainColor")
         return infoSymbolPhone
     }()
     
@@ -160,20 +168,36 @@ class DetailModalViewController: ModalViewController {
     }()
     
     lazy var modalTitleStack: UIStackView = {
-        var modalTitle = UIStackView(arrangedSubviews: [titleView, spacer, favoriteButton])
+        var modalTitle = UIStackView(arrangedSubviews: [titleView, SearchButton, spacer, favoriteButton])
         modalTitle.axis = .horizontal
         modalTitle.spacing = 16.0
         return modalTitle
     }()
     
-    lazy var modalDetailStack: UIStackView = {
-        var modalDetail = UIStackView(arrangedSubviews: [modalTitleStack, subTitleMenuView, modalMenuStack, subTitleInfoView, modalInfoStack])
+    lazy private var titleVStack: UIStackView = {
+        var title = UIStackView(arrangedSubviews: [modalTitleStack, locationView])
+        title.axis = .vertical
+        title.spacing = 1.0
+        return title
+    }()
+    
+    lazy private var modalDetailStack: UIStackView = {
+        var modalDetail = UIStackView(arrangedSubviews: [titleVStack, subTitleMenuView, modalMenuStack, subTitleInfoView, modalInfoStack])
         modalDetail.axis = .vertical
         modalDetail.spacing = 10.0
-        modalDetail.setCustomSpacing(20.0, after: modalTitleStack)
+        modalDetail.setCustomSpacing(20.0, after: titleVStack)
         modalDetail.setCustomSpacing(20.0, after: modalMenuStack)
         return modalDetail
     }()
+ 
+    init(viewModel: DetailModalViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -181,29 +205,47 @@ class DetailModalViewController: ModalViewController {
         setupPanGesture()
     }
     
+    func shopTouched(_ shop: Shop) {
+        self.selectedShop = shop
+    }
+    
     @objc func toggleFavorite() {
-        guard let shop = selectedShop else {
-            return
-        }
-        
-        mapViewModel.toggleFavoriteShop(shopId: shop.serialNumber)
+        guard let selectedShop = selectedShop else { return }
+        viewModel.toggleFavorite(selectedShop)
         setFavoriteButtonImage()
     }
     
     func setFavoriteButtonImage() {
-        let isFavoriteShop = mapViewModel.isFavoriteShop(shopId: selectedShop?.serialNumber ?? 0)
+        guard let selectedShop = selectedShop else { return }
+        let isFavoriteShop = viewModel.isFavoriteShop(selectedShop)
         favoriteButton.setImage(isFavoriteShop ? UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .large)) : UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         
-        favoriteButton.tintColor = isFavoriteShop ? UIColor.red : UIColor.gray
+        favoriteButton.tintColor = isFavoriteShop ? UIColor(named: "SubColorRed") : UIColor.gray
     }
     
+    @objc func searchToNaver() {
+        let chopshopCallAddress = shopCallAddress.split(separator: " ")
+        let originalURL = "https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=\(shopSearchName)+\(chopshopCallAddress[0])"
+        let encodedLink = originalURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+        let encodedURL = NSURL(string: encodedLink!)! as URL
+
+        guard let url = URL(string:"\(encodedURL)") else {
+            return
+        }
+        if #available(iOS 14.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+
     @objc func copyAddress() {
         UIPasteboard.general.string = shopCallAddress
         self.showToast(message: "주소 복사완료!")
        }
     
     func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
-            let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-350, width: 150, height: 35))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: ModalHeight.zero.value-40, width: 150, height: 35))
             toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             toastLabel.textColor = UIColor.white
             toastLabel.font = font
@@ -236,7 +278,6 @@ class DetailModalViewController: ModalViewController {
     override func setupView() {
         super.setupView()
         view.addSubview(modalDetailStack)
-        setFavoriteButtonImage()
         modalDetailStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -298,12 +339,10 @@ class DetailModalViewController: ModalViewController {
     
     func initModal() {
         changeModalHeight(.median)
+        shopDistance = locationManager.calDistance(latitude: selectedShop?.latitude, longitude: selectedShop?.longitude)
+        locationView.text = String(format: "내 위치에서 %.01fkm 떨어져 있어요", shopDistance)
         titleView.text = selectedShop?.shopName
         updateDetailModalView()
-    }
-    
-    func setData(shopId id: Int) {
-        selectedShop = mapViewModel.findShop(shopId: id)
     }
     
     func updateDetailModalView() {
@@ -311,6 +350,7 @@ class DetailModalViewController: ModalViewController {
         menuPriceView.text = selectedShop?.price
         infoAddressView.text = selectedShop?.address
         infoPhoneNumberView.text = selectedShop?.phoneNumber
+        shopSearchName = selectedShop?.shopName ?? ""
         shopCallAddress = selectedShop?.address ?? ""
         shopCallNumber = selectedShop?.phoneNumber ?? ""
     }

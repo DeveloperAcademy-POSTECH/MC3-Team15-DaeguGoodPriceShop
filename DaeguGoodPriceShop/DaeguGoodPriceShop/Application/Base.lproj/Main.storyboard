@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,11 +31,11 @@
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFS-Nb-S7H" userLabel="LikeButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="SubColorRed"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal">
                                                     <color key="titleColor" systemColor="labelColor"/>
-                                                    <imageReference key="image" image="heart.fill" catalog="system" variableValue="1"/>
+                                                    <imageReference key="image" image="heart.fill" catalog="system"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     </preferredSymbolConfiguration>
@@ -46,11 +47,11 @@
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-yD-N7y" userLabel="CategoryButton">
                                                 <rect key="frame" x="0.0" y="50" width="50" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="MainColor"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal">
                                                     <color key="titleColor" systemColor="labelColor"/>
-                                                    <imageReference key="image" image="square.grid.2x2.fill" catalog="system" variableValue="1"/>
+                                                    <imageReference key="image" image="square.grid.2x2.fill" catalog="system"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     </preferredSymbolConfiguration>
@@ -113,10 +114,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
+        <namedColor name="MainColor">
+            <color red="0.19607843137254902" green="0.41176470588235292" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="SubColorRed">
+            <color red="0.94117647058823528" green="0.28235294117647058" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

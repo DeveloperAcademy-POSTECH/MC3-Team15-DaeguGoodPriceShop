@@ -8,25 +8,35 @@
 import Foundation
 import OSLog
 
-struct MapModel {
+final class MapModel {
     private enum DataFetchingError: Error {
         case invalidURL
         case urlUnableToConvertToData
         case unDecodable
     }
-    
-    var shops: [Shop] = []
+    var totalShops: [Shop] = [] {
+        didSet {
+            totalShopFetchedEvent()
+        }
+    }
     var favoriteShopId: Set<Int> {
         get { Set(UserDefaults.standard.array(forKey: "favoriteShopId") as? [Int] ?? []) }
         set { UserDefaults.standard.set(Array(newValue), forKey: "favoriteShopId") }
     }
+    var totalShopFetchedEvent: () -> () = { }
     
-    init() {
-        shops = getShopData()
+    func fetchTotalShop() {
+        Task {
+            do {
+                self.totalShops = try await fetchShopsFromJson()
+            } catch {
+                os_log(.error, log: .default, "\(error.localizedDescription)")
+            }
+        }
     }
     
     func filteredShops(shopCategory: ShopCategory? = nil, shopSubCategory: ShopSubCategory? = nil, isShowFavorite: Bool? = nil) -> [Shop] {
-        var result = shops
+        var result = totalShops
         
         if let shopCategory = shopCategory {
             result = result.filter{
@@ -48,29 +58,36 @@ struct MapModel {
         return result
     }
     
-    private func getShopData() -> [Shop] {
+    private func fetchShopsFromJson() async throws -> [Shop] {
         let fileName = "DaeguGoodPriceShop"
         guard let fileLocation = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-            os_log(.error, log: .default, "INVALID URL: \(DataFetchingError.invalidURL.localizedDescription)")
-            return []
+            throw DataFetchingError.invalidURL
         }
-        
         guard let data = try? Data(contentsOf: fileLocation) else {
-            os_log(.error, log: .default, "URL UNABLE: \(DataFetchingError.urlUnableToConvertToData.localizedDescription)")
-            return []
+            throw DataFetchingError.urlUnableToConvertToData
         }
-        
         guard let shops = try? JSONDecoder().decode([Shop].self, from: data) else {
-            os_log(.error, log: .default, "UNDECODABLE: \(DataFetchingError.unDecodable.localizedDescription)")
-            return []
+            throw DataFetchingError.unDecodable
         }
-        
-        os_log(.debug, log: .default, "Successfully Get Json Data")
         return shops
     }
+
+    func toggleFavorite(of shop: Shop) {
+        isFavorite(shop: shop) ? removeFavorite(shop: shop) : addFavorite(shop: shop)
+    }
     
-    func findById(shopId id: Int) -> Shop? {
-        return shops.first(where: {$0.serialNumber == id })
+    private func addFavorite(shop: Shop) {
+        let serialNumber = shop.serialNumber
+        favoriteShopId.insert(serialNumber)
+    }
+    
+    private func removeFavorite(shop: Shop) {
+        let serialNumber = shop.serialNumber
+        favoriteShopId.remove(serialNumber)
+    }
+    
+    private func isFavorite(shop: Shop) -> Bool {
+        let serialNumber = shop.serialNumber
+        return favoriteShopId.contains(serialNumber)
     }
 }
-
