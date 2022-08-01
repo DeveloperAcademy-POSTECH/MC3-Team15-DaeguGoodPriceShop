@@ -20,13 +20,11 @@ final class LocationManager: NSObject {
     }
     var locationAuthorizationEvent: (Bool) -> Void = { _ in }
     var initialLocationEvent: (CLLocation) -> Void = { _ in }
-    var locationManager: CLLocationManager!
     var myLatitude: Double?
     var myLongitude: Double?
     
     override init() {
         super.init()
-        locationManager = CLLocationManager()
         self.prepareLocationManager()
     }
     
@@ -38,7 +36,7 @@ final class LocationManager: NSObject {
         guard let latitude = latitude, let longitude = longitude else {
             return 0.0
         }
-        let coor = locationManager.location?.coordinate
+        let coor = manager.location?.coordinate
         myLatitude = coor?.latitude ?? 0.0
         myLongitude = coor?.longitude ?? 0.0
         let myLocation = CLLocation(latitude: myLatitude ?? 0.0, longitude: myLongitude ?? 0.0)
