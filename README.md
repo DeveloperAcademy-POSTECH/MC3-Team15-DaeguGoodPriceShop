@@ -96,3 +96,92 @@
 ## 🔒 License
 
 - [MIT License](./LICENSE)
+
+<br>
+
+## 📖 Wiki
+
+- 🙋‍♂️ 발표
+
+    <details>
+        <summary> Milestone Sharing </summary>
+
+    - [2022.06.29.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.06.29.-마일스톤-공유)
+    - [2022.07.01.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.01.-마일스톤-공유)
+    - [2022.07.08.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.08.-마일스톤-공유)
+    - [2022.07.21.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/Sprint-1)
+
+    </details>
+
+- 💻 기술
+
+    <details>
+        <summary> Study </summary>
+
+    - [Swift event handling](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/Swift-event-handling)
+    - [Swift concurrency](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/Swift-concurrency)
+    - [MVC](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/MVC)
+    - [Repository Pattern](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/Repository-Pattern)
+
+    </details>
+
+    <details>
+        <summary> Trouble Shooting </summary>
+
+    - [Clustering을 멈추자](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/Clustering을-멈추자)
+    - [시뮬레이터가 없어졌다](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/Apple-Academy-내-다른-그룹을-코칭하다가-발견한-문제)
+    - [공공 데이터의 좌표 구하기](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/공공-데이터의-좌표-구하기)
+    - [공공 데이터의 좌표 구하기 2](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/%EA%B3%B5%EA%B3%B5-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%EC%A2%8C%ED%91%9C-%EA%B5%AC%ED%95%98%EA%B8%B02)
+
+    </details>
+
+- 🎥 기록
+
+    <details>
+        <summary> Daily Standup </summary>
+
+    - [2022.06.28.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.06.28.-Daily-Standup)
+    - [2022.06.29.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.06.29.-Daily-Standup)
+    - [2022.06.30.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.06.30.-Daily-Standup)
+    - [2022.07.01.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.01.-Daily-Standup)
+    - [2022.07.04.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.04.-Daily-Standup)
+    - [2022.07.05.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.05.-Daily-Standup)
+    - [2022.07.06.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.06.-Daily-Standup)
+    - [2022.07.07.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.07.-Daily-StandUp)
+    - [2022.07.08.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.08.-Daily-Standup)
+    - [2022.07.11.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.11.-Daily-Standup)
+    - [2022.07.12.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.12.-Daily-Standup)
+    - [2022.07.13.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.13.-Daily-Standup)
+    - [2022.07.14.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.14.-Daily-Standup)
+    - [2022.07.26.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.26.-Daily-Standup)
+    - [2022.07.27.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.27.-Daily-Standup)
+    - [2022.07.28.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.28.-Daily-Standup)
+    - [2022.07.29.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.29.-Daily-Standup)
+
+    </details>
+
+    <details>
+        <summary> Retrospect </summary>
+
+    - [2022.07.14.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.14.-Sprint-회고)
+    - [2022.07.21.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/Sprint-1)
+    - [2022.08.02.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.08.02.-Sprint2-회고)
+
+    </details>
+
+    <details>
+        <summary> Minutes </summary>
+
+    - [기초 자료조사(업종, 디자인 컬러)](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/기초-자료조사(업종,-디자인-컬러))
+    - [2022.06.29.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.06.29.-회의록)
+    - [2022.06.30.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.06.30.-회의록)
+    - [2022.07.01.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.01.-회의록)
+    - [2022.07.04.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.04.-회의록)
+    - [2022.07.06.](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.06.-회의록)
+    </details>
+
+    <details>
+        <summary> User </summary>
+
+    - [감자바위 현장 답사](https://github.com/DeveloperAcademy-POSTECH/MC3-Team15-DaeguGoodPriceShop/wiki/2022.07.04-감자바위-현장-답사-결과)
+    </details>
