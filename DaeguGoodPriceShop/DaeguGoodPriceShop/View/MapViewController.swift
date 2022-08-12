@@ -249,9 +249,12 @@ class MapViewController: UIViewController {
     }
     
     private func zoomTo(_ view: MKAnnotationView) {
+        let currentSpan = mapView.region.span
+        let newLongitudeDelta = currentSpan.longitudeDelta / 3
+        let newLatitudeDelta = currentSpan.latitudeDelta / 3
         guard let centerCoordinate = view.annotation?.coordinate else { return }
-        let newCenter = CLLocationCoordinate2D(latitude: centerCoordinate.latitude - 0.002, longitude: centerCoordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let newCenter = CLLocationCoordinate2D(latitude: centerCoordinate.latitude - newLatitudeDelta / 3, longitude: centerCoordinate.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: newLongitudeDelta, longitudeDelta: newLatitudeDelta)
         let region = MKCoordinateRegion(center: newCenter, span: span)
         mapView.setRegion(region, animated: true)
     }
@@ -330,7 +333,7 @@ extension MapViewController: MKMapViewDelegate {
             shopAnnotationView.selected()
             selectedAnnotationView = view
             selectedAnnotation = selectedAnnotationView?.annotation
-            guard let selectedShopData = view.annotation as? ShopAnnotation else { return }
+            guard view.annotation is ShopAnnotation else { return }
             guard let selectedShopAnnotation = view.annotation as? ShopAnnotation else { return }
             detailModalVC.shopTouched(selectedShopAnnotation.shop)
             detailModalVC.initModal()
