@@ -217,9 +217,9 @@
 		DA4A1984287A956B004E019F /* ModalViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F240E3F9287C54A00033A8FA /* ModalCollectionViewCell */,
 				DA4A1985287A9583004E019F /* ModalViewController.swift */,
 				DA4A1987287A9596004E019F /* StoreListModalViewController.swift */,
-				F240E3F9287C54A00033A8FA /* ModalCollectionViewCell */,
 				DA4A1989287A95B0004E019F /* DetailModalViewController.swift */,
 				DA4A198B287A95C4004E019F /* CategoryModalViewController.swift */,
 			);

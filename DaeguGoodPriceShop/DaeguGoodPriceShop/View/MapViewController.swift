@@ -12,8 +12,6 @@ class MapViewController: UIViewController {
     let locationViewModel = MapLocationViewModel(locationManager: LocationManager())
     var selectedAnnotationView: MKAnnotationView?
     var selectedAnnotation: MKAnnotation?
-    var selectedShopCategory: ShopCategory?
-    var selectedShopSubCategory: ShopSubCategory?
     
     private lazy var userTrackingButton: MKUserTrackingButton = {
         let button = MKUserTrackingButton(mapView: mapView)
@@ -324,6 +322,7 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         selectedAnnotationView?.prepareForDisplay()
+        selectedAnnotationView?.collisionMode = .rectangle
         detailModalVC.dismissModal()
     }
     
@@ -332,6 +331,7 @@ extension MapViewController: MKMapViewDelegate {
         if let shopAnnotationView = view as? ShopAnnotationView {
             shopAnnotationView.selected()
             selectedAnnotationView = view
+            selectedAnnotationView?.collisionMode = .none
             selectedAnnotation = selectedAnnotationView?.annotation
             guard view.annotation is ShopAnnotation else { return }
             guard let selectedShopAnnotation = view.annotation as? ShopAnnotation else { return }
